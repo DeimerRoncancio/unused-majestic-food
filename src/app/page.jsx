@@ -2,8 +2,8 @@ import Image from 'next/image'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h2>Holaaaaa</h2>
+    <main className="flex min-h-screen flex-col">
+      <h2>Inicio</h2>
     </main>
   )
 }

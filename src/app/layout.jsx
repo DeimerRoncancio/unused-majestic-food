@@ -1,8 +1,8 @@
-import { Roboto_Mono } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import NavBar from '../components/navbar'
 import './globals.css'
 
-const openSans = Roboto_Mono({
+const inter = Inter({
     subsets: ['latin']
 })
 
@@ -14,7 +14,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={openSans.className}>
+            <body className={inter.className}>
                 <NavBar />
                 {children}
             </body>

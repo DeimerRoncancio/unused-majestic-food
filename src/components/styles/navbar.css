@@ -1,0 +1,15 @@
+.nav-styles {
+    background-color: var(--second-white);
+}
+
+.nav-brand {
+    color: var(--first-green);
+}
+
+.img-profile {
+    background-color: aqua;
+}
+
+.icon-setting {
+    color: var(--first-gray);
+}

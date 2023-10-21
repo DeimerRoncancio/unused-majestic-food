@@ -1,3 +1,14 @@
-.not-found-button-styles {
-    text-decoration: none;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --first-green: #3da443;
+    --first-white: #f4f4f4;
+    --second-white: #ffffff;
+    --first-gray: #343434;
+}
+
+body {
+    background-color: var(--first-white);
 }
