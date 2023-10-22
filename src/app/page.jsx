@@ -1,6 +1,9 @@
 import Image from 'next/image'
-import './styles/main-page.css'
+import CardOrder from '../components/card-order'
+
 import { BsSearch } from "react-icons/bs"
+
+import './styles/main-page.css'
 
 export default function Home() {
   return (
@@ -13,6 +16,10 @@ export default function Home() {
         <span className="search-icon"><BsSearch /></span>
         <input className="w-full ml-6 outline-none bg-transparent" placeholder="Buscar"></input>
       </div>
+      <section className="order-section m-28 flex flex-wrap">
+        <CardOrder />
+        <CardOrder />
+      </section>
     </main>
   )
 }

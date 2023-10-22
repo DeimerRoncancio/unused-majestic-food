@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
         <html lang="en">
             <body className={inter.className}>
                 <NavBar />
+                <div className='w-full h-[46px]'></div>
                 {children}
             </body>
         </html>
