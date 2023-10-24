@@ -5,13 +5,17 @@ import { AiFillStar,AiOutlinePlus } from "react-icons/ai";
 
 import './styles/card-order.css'
 
-export default function CardOrder() {
+export default function CardOrder({validate}) {
+    const validation = ()=> {{
+        validate(true);
+    }}
+
     return (
         <div className="card-container min-w-[280px] rounded-2xl mr-28">
             <div className="px-4 pt-4">
                 <h2>Hamburguesa clasica</h2>
                 <div className="w-full flex justify-center">
-                    <Image className="w-[200px] h-[160px] my-6 object-cover" src={burguerImage} />
+                    <Image className="w-[200px] h-[160px] my-6 object-cover" src={burguerImage} alt="food-image" />
                 </div>
             </div>
             <div className='flex justify-between'>
@@ -22,7 +26,9 @@ export default function CardOrder() {
                     </div>
                     <p className="text-xl font-medium">$30.000</p>
                 </div>
-                <button className="button-add-order flex justify-center items-center rounded-br-2xl w-[60px]">
+                <button 
+                className="button-add-order flex justify-center items-center rounded-br-2xl w-[60px]"
+                onClick={validation}>
                     <span className="text-5xl text-white"><AiOutlinePlus /></span>
                 </button>
             </div>
