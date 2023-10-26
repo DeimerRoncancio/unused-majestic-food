@@ -1,14 +1,14 @@
 "use client"
 
-import CardOrder from '../components/card-order'
-import Pedido from '../components/pedido'
-import FormPedidos from '../components/form-pedidos'
+import CardOrder from '@/components/card-order'
+import FetchPedidos from '@/components/form-pedidos'
 
 import { useState } from 'react'
 
 import { BsSearch } from "react-icons/bs"
 
 import './styles/main-page.css'
+import FetchTesting from '@/components/fetch-testing'
 
 export default function Home() {
     const [showPopup, setShowPopup] = useState(false);
@@ -41,7 +41,7 @@ export default function Home() {
             ${showPopup ? '' : 'hidden'} 
             flex justify-center items-center backdrop-blur-[2px] transition`}>
                 <button
-                className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white"
+                className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
                 onClick={() => setShowPopup(false)}>
                     X
                 </button>
@@ -66,7 +66,12 @@ export default function Home() {
             fixed flex top-0 left-0 w-full h-full 
             ${showNewOrder ? '' : 'hidden'} backdrop-blur-[2px] justify-center items-center`}>
                 <div className="bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] rounded-2xl flex flex-col justify-center items-center">
-                    <FormPedidos />
+                    <button
+                    className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
+                    onClick={() => setShowNewOrder(false)}>
+                        X
+                    </button>
+                    <FetchPedidos />
                 </div>
             </div>
         </main>

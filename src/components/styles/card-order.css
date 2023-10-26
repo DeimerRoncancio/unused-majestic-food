@@ -1,6 +1,5 @@
 .card-container {
     background-color: var(--second-white);
-    box-shadow: 0 0 15px var(--second-gray);
 }
 
 .button-add-order {

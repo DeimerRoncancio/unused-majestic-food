@@ -11,7 +11,9 @@ export default function CardOrder({validate}) {
     }}
 
     return (
-        <div className="card-container min-w-[280px] rounded-2xl mr-28">
+        <div 
+        className="card-container min-w-[280px] rounded-2xl mr-28 shadow-[0_0_15px_#a9a9a9] 
+        hover:shadow-[0_0_25px_#9b9b9b] transition-all duration-300">
             <div className="px-4 pt-4">
                 <h2>Hamburguesa clasica</h2>
                 <div className="w-full flex justify-center">

@@ -26,10 +26,11 @@ export default function NavBar() {
                     </li>
                 </ul>
                 <div className='ml-auto flex w-[100px]'>
-                    <Image src={profile} className='img-profile w-[55px] h-[55px] absolute rounded-full shadow-lg object-cover'/>
+                    <Image src={profile} className='img-profile w-[55px] h-[55px] absolute rounded-full shadow-lg object-cover' alt="profile"/>
                     <button className='ml-auto'>
                         <span className="icon-setting text-3xl"><IoIosSettings /></span>
                     </button>
+                    
                 </div>
             </div>
             
