@@ -1,4 +1,4 @@
-import { IoIosSettings } from "react-icons/io";
+import { IoIosSettings } from "react-icons/io"
 
 import Link from 'next/link'
 import profile from '../assets/images/profile-image.webp'
@@ -33,7 +33,6 @@ export default function NavBar() {
                     
                 </div>
             </div>
-            
         </nav>
     )
 }

@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import burguerImage from '../assets/images/burguer.png'
 
-import { AiFillStar,AiOutlinePlus } from "react-icons/ai";
+import { AiFillStar,AiOutlinePlus } from "react-icons/ai"
 
 import './styles/card-order.css'
 
 export default function CardOrder({validate}) {
-    const validation = ()=> {{
+    const validation = ()=> {
         validate(true);
-    }}
+    }
 
     return (
         <div 

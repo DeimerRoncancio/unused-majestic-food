@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import CardOrder from '@/components/card-order'
-import FetchPedidos from '@/components/form-pedidos'
+import FormPedidos from '@/components/form-pedidos'
 
 import { useState } from 'react'
 
@@ -34,20 +34,20 @@ export default function Home() {
                 <CardOrder validate={ifShowPopup} />
                 <CardOrder validate={ifShowPopup} />
             </section>
-
+            
             <div
             className={`
             fixed top-0 lef-0 w-full h-full
             ${showPopup ? '' : 'hidden'} 
             flex justify-center items-center backdrop-blur-[2px] transition`}>
                 <button
-                className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
+                className="z-50 absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
                 onClick={() => setShowPopup(false)}>
                     X
                 </button>
 
                 <button
-                className="w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105 transition"
+                className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105 transition"
                 onClick={()=> {
                     setShowPopup(false)
                     setShowNewOrder(true)
@@ -56,24 +56,28 @@ export default function Home() {
                 </button>
 
                 <button
-                className="w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105 transition">
+                className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105 transition">
                     Añadir a pedido existente
                 </button>
+
+                <div className="w-full h-full absolute z-0" onClick={()=> setShowPopup(false)}></div>
             </div>
 
             <div
             className={`
             fixed flex top-0 left-0 w-full h-full 
             ${showNewOrder ? '' : 'hidden'} backdrop-blur-[2px] justify-center items-center`}>
-                <div className="bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] rounded-2xl flex flex-col justify-center items-center">
+                <div className="z-50 bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] rounded-2xl flex flex-col justify-center items-center">
                     <button
                     className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
                     onClick={() => setShowNewOrder(false)}>
                         X
                     </button>
-                    <FetchPedidos />
+                    <FormPedidos />
                 </div>
+
+                <div className="w-full h-full absolute z-0" onClick={()=> setShowNewOrder(false)}></div>
             </div>
         </main>
-    )
+    );
 }

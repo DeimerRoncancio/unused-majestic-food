@@ -1,17 +1,12 @@
 import { useState } from 'react'
+import { useDataForm } from './hooks/useDataForm'
 
-export default function FetchPedidos() {
-    const [nameOrder,setOrder] = useState('');
-    const [id,setId] = useState('')
+export default function FormPedidos() {
+    const {id,name,putDates} = useDataForm({
+        id: '',
+        name: ''
+    });
     
-    const putName = ({target}) => {
-        setOrder(target.value);
-    }
-
-    const putId = ({target})=> {
-        setId(target.value);
-    }
-
     const readFile = async(evt)=> {
         evt.preventDefault();
 
@@ -19,12 +14,11 @@ export default function FetchPedidos() {
         const allData = Object.fromEntries(data);
 
         try {
-            const peticion = await fetch("http://localhost:5000/pedidos",{
+            await fetch("http://localhost:5000/pedidos",{
                 method: 'POST',
                 headers: {'content-type':'application/json'},
                 body: JSON.stringify(allData)
             });
-            console.log(peticion);
         } catch(err) {
             console.error(err);
         }
@@ -37,14 +31,14 @@ export default function FetchPedidos() {
             <label className='m-2 ' htmlFor='id'>Id del pedido:</label>
             <input 
                 id="id" name="id" className="m-2 bg-zinc-100 p-2" type="text" 
-                placeholder="Nombre del pedido" value={id} onChange={putId} 
+                placeholder="Nombre del pedido" value={id} onChange={putDates} 
             />
             <label className='m-2 ' htmlFor='nameOrder'>Nombre del pedido:</label>
             <input 
-                id="nameOrder" name="nameOrder" className="m-2 bg-zinc-100 p-2" type="text" 
-                placeholder="Nombre del pedido" value={nameOrder} onChange={putName} 
+                id="nameOrder" name="name" className="m-2 bg-zinc-100 p-2" type="text" 
+                placeholder="Nombre del pedido" value={name} onChange={putDates} 
             />
-            <button className="m-2 p-2 bg-teal-500" type="submit">
+            <button className="m-2 p-2 bg-teal-500">
                 Crear
             </button>
         </form>
