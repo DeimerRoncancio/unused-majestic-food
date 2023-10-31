@@ -1,8 +1,9 @@
 "use client"
 
 export default function FetchTesting() {
+
     const fetching = async(evt)=> {
-        evt.prevetnDefault();
+        evt.preventDefault();
 
         try {
             const response = await fetch("http://localhost:5000/pedidos",{
@@ -24,7 +25,7 @@ export default function FetchTesting() {
 
     return (
         <>
-            <form onSubmit={callFetch}>
+            <form onSubmit={fetching}>
                 <button>
                     Click
                 </button> 

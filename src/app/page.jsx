@@ -2,13 +2,16 @@
 
 import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
+import FetchTesting from '../components/fetch-testing'
+
+import burguerImage from '../assets/images/burguer.png'
+
 
 import { useState } from 'react'
 
 import { BsSearch } from "react-icons/bs"
 
 import './styles/main-page.css'
-import FetchTesting from '@/components/fetch-testing'
 
 export default function Home() {
     const [showPopup, setShowPopup] = useState(false);
@@ -31,8 +34,20 @@ export default function Home() {
             </div>
 
             <section className="order-section m-28 flex flex-wrap">
-                <CardOrder validate={ifShowPopup} />
-                <CardOrder validate={ifShowPopup} />
+                <CardOrder 
+                    name="Hamburguesa clasica" 
+                    image={burguerImage}
+                    qualification={4.2} 
+                    validate={ifShowPopup} 
+                    price={"40.000"}
+                />
+                <CardOrder 
+                    name="Empanada" 
+                    image={burguerImage}
+                    qualification={3.2} 
+                    validate={ifShowPopup} 
+                    price={"39.000"}
+                />
             </section>
             
             <div

@@ -15,3 +15,7 @@
 body {
     background-color: var(--first-white);
 }
+
+textarea {
+    resize: none;
+}
