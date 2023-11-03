@@ -5,7 +5,7 @@ import FormPedidos from '@/components/form-pedidos'
 import FetchTesting from '../components/fetch-testing'
 
 import burguerImage from '../assets/images/burguer.png'
-
+import empanadaImage from '../assets/images/empanadas.webp'
 
 import { useState } from 'react'
 
@@ -22,7 +22,7 @@ export default function Home() {
     }
 
     return (
-        <main className="flex min-h-screen flex-col">
+        <>
             <div className='m-28'>
                 <h1 className='text-3xl'>¡Bienvenido de nuevo!</h1>
                 <h2>Señor Deimer Roncancio</h2>
@@ -43,13 +43,13 @@ export default function Home() {
                 />
                 <CardOrder 
                     name="Empanada" 
-                    image={burguerImage}
+                    image={empanadaImage}
                     qualification={3.2} 
                     validate={ifShowPopup} 
                     price={"39.000"}
                 />
             </section>
-            
+
             <div
             className={`
             fixed top-0 lef-0 w-full h-full
@@ -93,6 +93,6 @@ export default function Home() {
 
                 <div className="w-full h-full absolute z-0" onClick={()=> setShowNewOrder(false)}></div>
             </div>
-        </main>
+        </>
     );
 }

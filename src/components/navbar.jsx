@@ -8,7 +8,7 @@ import './styles/navbar.css'
 
 export default function NavBar() {
     return (
-        <nav className='w-screen fixed bg-transparent'>
+        <nav className='w-screen fixed bg-transparent z-50'>
             <div className="nav-styles flex p-2 mx-10 rounded-b-[15px] shadow-lg">
                 <h2 className='nav-brand m-auto ml-1 mr-[120px]'>Majestic Food</h2>
                 <ul className='flex'>

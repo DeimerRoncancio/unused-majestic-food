@@ -1,10 +1,15 @@
 import { useDataForm } from './hooks/useDataForm'
+import { useRouter } from 'next/navigation'
 
 import { plato } from './helpers/plato'
 
 export default function FormPedidos() {
-    const {name,putDates} = useDataForm({
-        name: ''
+    const router = useRouter();
+    
+    const {name,description,date,putDates} = useDataForm({
+        name: '',
+        description: '',
+        date: ''
     });
 
     const readFile = async(evt)=> {
@@ -12,17 +17,19 @@ export default function FormPedidos() {
 
         const data = new FormData(evt.currentTarget);
         const allData = Object.fromEntries(data);
-        allData.platos = [ plato().platosList[0] ];
 
         try {
-            await fetch("http://localhost:5000/pedidos",{
+            const response = await fetch("http://localhost:5000/pedidos",{
                 method: 'POST',
                 headers: {'content-type':'application/json'},
                 body: JSON.stringify(allData)
             });
+            const res = await response.json();
+            router.push(`pedidos/${res.id}`)
         } catch(err) {
             console.error(err);
         }
+
     }
 
     return (
@@ -38,11 +45,13 @@ export default function FormPedidos() {
             <label className='m-2' htmlFor='descriptionOrder'>Descripción</label>
             <textarea 
                 id='descriptionOrder' name='description' className='m-2 bg-zinc-100 p-2' 
-                placeholder="Descripción" 
+                placeholder="Descripción" value={description} onChange={putDates}
             />
 
             <label className='m-2' htmlFor='dateOrder'>Fecha de entrega</label>
-            <input id='dateOrder' name='date' className='m-2 bg-zinc-100 p-2' type="datetime-local" />
+            <input id='dateOrder' name='date' className='m-2 bg-zinc-100 p-2' type="datetime-local" 
+                value={date} onChange={putDates}
+            />
 
             <button className="m-2 p-2 bg-teal-500">
                 Crear

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export  function useDataForm(order = {}) {
+export function useDataForm(order = {}) {
     const [dataOrder,setDataOrder] = useState(order);
 
     const putDates = ({target})=> {
