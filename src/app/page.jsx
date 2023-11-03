@@ -4,8 +4,8 @@ import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
 import FetchTesting from '../components/fetch-testing'
 
-import burguerImage from '../assets/images/burguer.png'
-import empanadaImage from '../assets/images/empanadas.webp'
+import burguerImage from '@/assets/images/burguer.png'
+import empanadaImage from '@/assets/images/empanadas.webp'
 
 import { useState } from 'react'
 

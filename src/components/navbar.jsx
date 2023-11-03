@@ -1,7 +1,7 @@
 import { IoIosSettings } from "react-icons/io"
 
 import Link from 'next/link'
-import profile from '../assets/images/profile-image.webp'
+import profile from '@/assets/images/profile-image.webp'
 import Image from 'next/image'
 
 import './styles/navbar.css'
@@ -25,12 +25,13 @@ export default function NavBar() {
                         </Link>
                     </li>
                 </ul>
-                <div className='ml-auto flex w-[100px]'>
-                    <Image src={profile} className='img-profile w-[55px] h-[55px] absolute rounded-full shadow-lg object-cover' alt="profile"/>
+                <div className='ml-auto flex w-[100px] relative'>
+                    <div className="img-profile w-[55px] h-[55px] absolute rounded-full shadow-lg object-cover">
+                        <Image src={`/profile-image.webp`} className="rounded-full" layout="fill" alt="profile"/>
+                    </div>
                     <button className='ml-auto'>
                         <span className="icon-setting text-3xl"><IoIosSettings /></span>
                     </button>
-                    
                 </div>
             </div>
         </nav>
