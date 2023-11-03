@@ -24,7 +24,7 @@ export default function CardOrder({name,image,qualification,price,validate}) {
             <div className="px-4 pt-4">
                 <h2>{name}</h2>
                 <div className="w-full flex justify-center">
-                    <Image className="w-[200px] h-[160px] my-6 object-cover" src={image} alt="food-image" />
+                    <Image className="object-cover w-[200px] h-[160px] my-6" src={image} alt="food-image" />
                 </div>
             </div>
             <div className='flex justify-between'>
