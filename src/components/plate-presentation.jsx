@@ -5,12 +5,12 @@ import Image from 'next/image'
 
 import '@/components/styles/plate-presentation.css'
 
-export default function PlatePresentation() {
+export default function PlatePresentation({orderId}) {
     const item = localStorage.getItem("Order");
     const order = JSON.parse(item)
 
     return (
-        <div className="plate-presentation w-[610px] p-5 rounded-xl shadow-[0_0_15px_#a9a9a9]">
+        <div className={`plate-presentation ${orderId === order.idOrder ? '' : 'hidden' } w-[610px] p-5 rounded-xl shadow-[0_0_15px_#a9a9a9]`}>
             <h1 className="text-lg pl-5">{order.nombre}</h1>
             <div className="w-full flex justify-center">
                 <div className='w-[350px] h-[250px] relative'>

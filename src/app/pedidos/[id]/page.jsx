@@ -3,9 +3,7 @@ import PlatePresentation from '@/components/plate-presentation'
 export default async function Pedidos({ params }) {
     const getData = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/pedidos/${id}`)
-            const res = await response.json();
-            return res;
+            return await fetch(`http://localhost:5000/pedidos/${id}`).then(res => res.json())
         } catch (err) {
             console.log(err);
         }
@@ -22,7 +20,7 @@ export default async function Pedidos({ params }) {
                         <h2 className="text-2xl w-[610px]">{data.name}</h2>
                         <h3>Deimer Steven Roncancio</h3>
                         <div className="flex w-full justify-center mt-10">
-                            <PlatePresentation />
+                            <PlatePresentation orderId={params.id} />
                         </div>
                     </div>
                 </div>

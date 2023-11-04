@@ -14,18 +14,24 @@ export default function FormPedidos() {
     const readFile = async(evt)=> {
         evt.preventDefault();
 
+        
         const data = new FormData(evt.currentTarget);
         const allData = Object.fromEntries(data);
         allData.id = uuid();
+        
+        const item = localStorage.getItem("Order");
+        const dataStorage = JSON.parse(item);
+        dataStorage.idOrder = allData.id;
+
+        localStorage.setItem("Order",JSON.stringify(dataStorage));
 
         try {
             const response = await fetch("http://localhost:5000/pedidos",{
                 method: 'POST',
                 headers: {'content-type':'application/json'},
                 body: JSON.stringify(allData)
-            });
-            const res = await response.json();
-            router.push(`pedidos/${res.id}`)
+            }).then(res => res.json());
+            router.push(`pedidos/${response.id}`)
         } catch(err) {
             console.error(err);
         }
