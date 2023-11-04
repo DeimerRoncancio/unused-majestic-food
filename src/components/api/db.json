@@ -1,11 +1,6 @@
 {
   "pedidos": [
-    {
-      "name": "Pedido # 79",
-      "description": "Pedido numero 79",
-      "date": "2023-11-04T10:22",
-      "id": 1
-    }
+    
   ],
   "platos": []
 }

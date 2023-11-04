@@ -1,19 +1,16 @@
-import Image from 'next/image'
-
 import { AiFillStar,AiOutlinePlus } from "react-icons/ai"
-
-import { plato } from './helpers/plato'
+import Image from 'next/image'
 
 import './styles/card-order.css'
 
 export default function CardOrder({name,image,qualification,price,validate}) {
     const handleClick = ()=> {
-        const data = plato(0,{
+        localStorage.setItem("Order",JSON.stringify({
             nombre: name,
             imagen: image,
             calificacion: qualification,
             price: price
-        });
+        }));
 
         validate(true);
     }
@@ -24,7 +21,9 @@ export default function CardOrder({name,image,qualification,price,validate}) {
             <div className="px-4 pt-4">
                 <h2>{name}</h2>
                 <div className="w-full flex justify-center">
-                    <Image className="object-cover w-[200px] h-[160px] my-6" src={image} alt="food-image" />
+                    <div className="w-[200px] h-[160px] my-6 relative">
+                        <Image className="object-cover" src={`/assets/images/${image}`} layout="fill" alt="food-image" />
+                    </div>
                 </div>
             </div>
             <div className='flex justify-between'>

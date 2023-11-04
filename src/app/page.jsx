@@ -1,15 +1,10 @@
 "use client";
 
+import { useState } from 'react'
+import { BsSearch } from "react-icons/bs"
 import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
 import FetchTesting from '../components/fetch-testing'
-
-import burguerImage from '@/../public/assets/images/burguer.png'
-import empanadaImage from '@/../public/assets/images/empanadas.webp'
-
-import { useState } from 'react'
-
-import { BsSearch } from "react-icons/bs"
 
 import './styles/main-page.css'
 
@@ -36,14 +31,14 @@ export default function Home() {
             <section className="order-section m-28 flex flex-wrap">
                 <CardOrder 
                     name="Hamburguesa clasica" 
-                    image={burguerImage}
+                    image={"burguer.png"}
                     qualification={4.2} 
                     validate={ifShowPopup} 
                     price={"40.000"}
-                />
+                    />
                 <CardOrder 
                     name="Empanada" 
-                    image={empanadaImage}
+                    image={"empanadas.webp"}
                     qualification={3.2} 
                     validate={ifShowPopup} 
                     price={"39.000"}
@@ -51,10 +46,8 @@ export default function Home() {
             </section>
 
             <div
-            className={`
-            fixed top-0 lef-0 w-full h-full
-            ${showPopup ? '' : 'hidden'} 
-            flex justify-center items-center backdrop-blur-[2px] transition`}>
+            className={`fixed top-0 lef-0 w-full h-full ${showPopup ? '' : 'hidden'} flex justify-center 
+            items-center backdrop-blur-[2px] transition z-50`}>
                 <button
                 className="z-50 absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
                 onClick={() => setShowPopup(false)}>
@@ -79,9 +72,8 @@ export default function Home() {
             </div>
 
             <div
-            className={`
-            fixed flex top-0 left-0 w-full h-full 
-            ${showNewOrder ? '' : 'hidden'} backdrop-blur-[2px] justify-center items-center`}>
+            className={`fixed flex top-0 left-0 w-full h-full ${showNewOrder ? '' : 'hidden'} 
+            backdrop-blur-[2px] justify-center items-center z-50`}>
                 <div className="z-50 bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] rounded-2xl flex flex-col justify-center items-center">
                     <button
                     className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"

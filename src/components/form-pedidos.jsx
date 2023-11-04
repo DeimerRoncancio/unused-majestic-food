@@ -1,7 +1,6 @@
+import { v4 as uuid } from 'uuid'
 import { useDataForm } from './hooks/useDataForm'
 import { useRouter } from 'next/navigation'
-
-import { plato } from './helpers/plato'
 
 export default function FormPedidos() {
     const router = useRouter();
@@ -17,6 +16,7 @@ export default function FormPedidos() {
 
         const data = new FormData(evt.currentTarget);
         const allData = Object.fromEntries(data);
+        allData.id = uuid();
 
         try {
             const response = await fetch("http://localhost:5000/pedidos",{
