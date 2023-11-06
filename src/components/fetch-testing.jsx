@@ -1,9 +1,12 @@
 "use client"
 
-export default function FetchTesting() {
+import { useEffect, useState } from "react";
 
-    const fetching = async(evt)=> {
-        evt.preventDefault();
+export default function FetchTesting() {
+    const [data,setData] = useState({})
+
+    const fetching = async()=> {
+        // evt.preventDefault();
 
         try {
             const response = await fetch("http://localhost:5000/pedidos",{
@@ -12,24 +15,24 @@ export default function FetchTesting() {
                 body: JSON.stringify({
                     nombre:"Deimer"
                 })
-            });
-            console.log(response);
+            }).then(res => res.json());
+            setData(response);
         } catch(err) {
             console.log(err);
         }
     }
-    
+
     const callFetch = async() => {
         fetching();
     }
 
+    useEffect(()=> {
+        fetching()
+    },[])
+
     return (
         <>
-            <form onSubmit={fetching}>
-                <button>
-                    Click
-                </button> 
-            </form>
+            <h2>{data.nombre}</h2>
         </>
     )
 }
