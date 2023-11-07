@@ -13,7 +13,6 @@ export default function FormPedidos() {
 
     const readFile = async(evt)=> {
         evt.preventDefault();
-
         
         const data = new FormData(evt.currentTarget);
         const allData = Object.fromEntries(data);
@@ -39,9 +38,7 @@ export default function FormPedidos() {
     }
 
     return (
-        <form
-        className="flex flex-col"
-        onSubmit={readFile}>
+        <form className="flex flex-col" onSubmit={readFile}>
             <label className='m-2 ' htmlFor='nameOrder'>Nombre del pedido:</label>
             <input 
                 id="nameOrder" name="name" className="m-2 bg-zinc-100 p-2" type="text" 

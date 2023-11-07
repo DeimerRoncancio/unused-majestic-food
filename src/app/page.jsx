@@ -45,8 +45,7 @@ export default function Home() {
                 />
             </section>
 
-            <div
-            className={`fixed top-0 lef-0 w-full h-full ${showPopup ? '' : 'hidden'} flex justify-center 
+            <div className={`fixed top-0 lef-0 w-full h-full ${showPopup ? '' : 'hidden'} flex justify-center 
             items-center backdrop-blur-[2px] transition z-50`}>
                 <button
                 className="z-50 absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
@@ -71,8 +70,7 @@ export default function Home() {
                 <div className="w-full h-full absolute z-0" onClick={()=> setShowPopup(false)}></div>
             </div>
 
-            <div
-            className={`fixed flex top-0 left-0 w-full h-full ${showNewOrder ? '' : 'hidden'} 
+            <div className={`fixed flex top-0 left-0 w-full h-full ${showNewOrder ? '' : 'hidden'} 
             backdrop-blur-[2px] justify-center items-center z-50`}>
                 <div className="z-50 bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] rounded-2xl flex flex-col justify-center items-center">
                     <button

@@ -1,6 +1,51 @@
 {
   "pedidos": [
-    
+    {
+      "name": "Pedido #2",
+      "description": "",
+      "date": "",
+      "id": "a9309b9c-eb9a-4011-88f8-fc8aa4bc6e12"
+    },
+    {
+      "name": "Pedido #2",
+      "description": "",
+      "date": "",
+      "id": "e7ec5c6e-f924-457b-9844-696d901d81f4"
+    },
+    {
+      "name": "Pedido #2",
+      "description": "",
+      "date": "",
+      "id": "d6b468f4-e44a-4f01-96b4-299e7ad02d99"
+    }
   ],
-  "platos": []
+  "platos": [
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "40.000",
+      "idOrder": "a9309b9c-eb9a-4011-88f8-fc8aa4bc6e12",
+      "categoria": "Plato secundario",
+      "id": 1
+    },
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "40.000",
+      "idOrder": "d6b468f4-e44a-4f01-96b4-299e7ad02d99",
+      "categoria": "Plato secundario",
+      "id": 2
+    },
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "40.000",
+      "idOrder": "d6b468f4-e44a-4f01-96b4-299e7ad02d99",
+      "categoria": "Bebida",
+      "id": 3
+    }
+  ]
 }
