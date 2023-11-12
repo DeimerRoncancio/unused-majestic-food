@@ -1,7 +1,9 @@
 "use client";
 
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { BsSearch } from "react-icons/bs"
+import Link from 'next/link'
 import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
 import FetchTesting from '../components/fetch-testing'
@@ -11,10 +13,34 @@ import './styles/main-page.css'
 export default function Home() {
     const [showPopup, setShowPopup] = useState(false);
     const [showNewOrder,setShowNewOrder] = useState(false);
+    const [showAllOrders,setAllOrders] = useState(false);
+    const [allOrders,setOrders] = useState([])
+
+    const router = useRouter()
 
     const ifShowPopup = (validation) => {
         setShowPopup(validation);
     }
+
+    const getOrders = async ()=> {
+        try {
+            const response = await fetch('http://localhost:5000/pedidos').then(res => res.json())
+            setOrders(response)
+        } catch(err) {
+            console.error(err)
+        }
+    }
+
+    const sendInOrder = (id)=> {
+        const item = localStorage.getItem("Order")
+        const data = JSON.parse(item)
+        data.idOrder = id
+        localStorage.setItem('Order',JSON.stringify(data))
+    }
+    
+    useEffect(()=> {
+        getOrders()
+    },[])
 
     return (
         <>
@@ -53,8 +79,8 @@ export default function Home() {
                     X
                 </button>
 
-                <button
-                className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105 transition"
+                <button className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl 
+                hover:scale-105 transition" 
                 onClick={()=> {
                     setShowPopup(false)
                     setShowNewOrder(true)
@@ -62,8 +88,12 @@ export default function Home() {
                     Añadir en nuevo pedido
                 </button>
 
-                <button
-                className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105 transition">
+                <button className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl 
+                hover:scale-105 transition" 
+                onClick={()=> {
+                    setShowPopup(false)
+                    setAllOrders(true)
+                }}>
                     Añadir a pedido existente
                 </button>
 
@@ -72,7 +102,8 @@ export default function Home() {
 
             <div className={`fixed flex top-0 left-0 w-full h-full ${showNewOrder ? '' : 'hidden'} 
             backdrop-blur-[2px] justify-center items-center z-50`}>
-                <div className="z-50 bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] rounded-2xl flex flex-col justify-center items-center">
+                <div className="z-50 bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] rounded-2xl flex 
+                flex-col justify-center items-center">
                     <button
                     className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
                     onClick={() => setShowNewOrder(false)}>
@@ -82,6 +113,33 @@ export default function Home() {
                 </div>
 
                 <div className="w-full h-full absolute z-0" onClick={()=> setShowNewOrder(false)}></div>
+            </div>
+
+            <div className={`fixed flex top-0 left-0 w-full h-full ${showAllOrders ? '' : 'hidden'} 
+            backdrop-blur-[2px] justify-center items-center z-50`}>
+                <div className="z-50 bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] rounded-2xl flex 
+                flex-col justify-center items-center">
+                    <button
+                    className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
+                    onClick={() => setAllOrders(false)}>
+                        X
+                    </button>
+                    <ul>
+                        {
+                            allOrders.map((item)=> (
+                                <li>
+                                    <button onClick={()=>sendInOrder(item.id)}>
+                                        <Link href={`pedidos/${item.id}`}>
+                                            {item.name}
+                                        </Link>
+                                    </button>
+                                </li> 
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <div className="w-full h-full absolute z-0" onClick={()=> setAllOrders(false)}></div>
             </div>
         </>
     );

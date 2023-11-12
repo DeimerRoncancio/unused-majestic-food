@@ -6,16 +6,11 @@ import { AiOutlinePlus } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
 import PlatePresentation from '@/components/plate-presentation'
 import Plate from '@/components/plate'
-import ImageBurguer from '../../../../public/assets/images/burguer.png'
-import ImageEmpanada from '../../../../public/assets/images/empanadas.webp'
-import Image from 'next/image'
-import Button from '@/components/button'
 
 export default function Pedidos({ params }) {
     const [showInfo,setShowInfo] = useState(true);
     const [showPopupCategories,setPopupCategories] = useState(false)
     const [allPlates,setAllPlates] = useState([])
-    const [thesePlates,setThesePlates] = useState([])
     const { data } = useFetchId(params.id)
 
     const router = useRouter()
@@ -117,7 +112,7 @@ export default function Pedidos({ params }) {
                             }
                             <button className="flex p-4 bg-white shadow-[0_0_10px_#a9a9a9] rounded-xl"
                             onClick={()=> {
-                                router.push('/')
+                                router.push('/tienda')
                             }}>
                                 <div className="flex w-[40%] flex-col justify-between">
                                     <h3>Añadir Articulo</h3>
