@@ -87,7 +87,13 @@
       "id": 8
     }
   ],
-  "Usuarios": [
-    
+  "usuarios": [
+    {
+      "email": "deimerroncancio@gmail.com",
+      "password": "02062002de",
+      "name": "Deimer",
+      "lastName": "Roncancio",
+      "id": 1
+    }
   ]
 }
