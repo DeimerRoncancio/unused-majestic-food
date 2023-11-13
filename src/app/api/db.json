@@ -11,6 +11,18 @@
       "description": "",
       "date": "",
       "id": "411f9dd7-d4f8-4951-945f-a3d4955b1213"
+    },
+    {
+      "name": "Pedido #1",
+      "description": "",
+      "date": "",
+      "id": "e257e21a-f5ed-4558-ac9e-1022f71df93b"
+    },
+    {
+      "name": "Pedido #1",
+      "description": "",
+      "date": "",
+      "id": "ac3c5df8-c35a-44a6-8da3-66338a18243f"
     }
   ],
   "platos": [
@@ -85,6 +97,15 @@
       "idOrder": "411f9dd7-d4f8-4951-945f-a3d4955b1213",
       "categoria": "Postre",
       "id": 8
+    },
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "40.000",
+      "idOrder": "ac3c5df8-c35a-44a6-8da3-66338a18243f",
+      "categoria": "Plato principal",
+      "id": 9
     }
   ],
   "usuarios": [
