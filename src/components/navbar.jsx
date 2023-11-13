@@ -1,5 +1,7 @@
-import { IoIosSettings } from "react-icons/io"
+"use client"
 
+import { IoIosSettings } from "react-icons/io"
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import profile from '@/../public/assets/images/profile-image.webp'
 import Image from 'next/image'
@@ -7,6 +9,8 @@ import Image from 'next/image'
 import './styles/navbar.css'
 
 export default function NavBar() {
+    const { data:session,status } = useSession();
+
     return (
         <nav className='w-screen fixed bg-transparent z-30'>
             <div className="nav-styles flex p-2 mx-10 rounded-b-[15px] shadow-lg">

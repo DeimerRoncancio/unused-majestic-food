@@ -23,6 +23,18 @@
       "description": "",
       "date": "",
       "id": "ac3c5df8-c35a-44a6-8da3-66338a18243f"
+    },
+    {
+      "name": "Pedido #1",
+      "description": "",
+      "date": "",
+      "id": "9121b195-f9a7-4428-9fba-b4f4d3cc5fa7"
+    },
+    {
+      "name": "Pedido #1",
+      "description": "",
+      "date": "",
+      "id": "83341937-c6de-4b00-8c70-67eb430d1757"
     }
   ],
   "platos": [
@@ -106,11 +118,54 @@
       "idOrder": "ac3c5df8-c35a-44a6-8da3-66338a18243f",
       "categoria": "Plato principal",
       "id": 9
+    },
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "40.000",
+      "idOrder": "ac3c5df8-c35a-44a6-8da3-66338a18243f",
+      "categoria": "Plato secundario",
+      "id": 10
+    },
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "40.000",
+      "idOrder": "e257e21a-f5ed-4558-ac9e-1022f71df93b",
+      "categoria": "Plato principal",
+      "id": 11
+    },
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "40.000",
+      "idOrder": "83341937-c6de-4b00-8c70-67eb430d1757",
+      "categoria": "Plato secundario",
+      "id": 12
+    },
+    {
+      "nombre": "Empanada",
+      "imagen": "empanadas.webp",
+      "calificacion": 3.2,
+      "price": "39.000",
+      "idOrder": "83341937-c6de-4b00-8c70-67eb430d1757",
+      "categoria": "Plato secundario",
+      "id": 13
     }
   ],
   "usuarios": [
     {
       "email": "deimerroncancio@gmail.com",
+      "password": "02062002de",
+      "name": "Emerson",
+      "lastName": "Roncancio",
+      "id": 1
+    },
+    {
+      "email": "emersonroncancio@gmail.com",
       "password": "02062002de",
       "name": "Deimer",
       "lastName": "Roncancio",

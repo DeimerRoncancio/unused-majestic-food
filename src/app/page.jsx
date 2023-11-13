@@ -3,9 +3,11 @@
 import { useState,useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { BsSearch } from "react-icons/bs"
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
+import UploadFile from '@/components/upfile';
 import FetchTesting from '../components/fetch-testing'
 
 import './styles/main-page.css'
@@ -16,7 +18,7 @@ export default function Home() {
     const [showAllOrders,setAllOrders] = useState(false);
     const [allOrders,setOrders] = useState([])
 
-    const router = useRouter()
+    const { data:session,status } = useSession();
 
     const ifShowPopup = (validation) => {
         setShowPopup(validation);
@@ -46,7 +48,7 @@ export default function Home() {
         <>
             <div className='m-28'>
                 <h1 className='text-3xl'>¡Bienvenido de nuevo!</h1>
-                <h2>Señor Deimer Roncancio</h2>
+                <h2>Señor {session?.user.name} {session?.user.lastName}</h2>
             </div>
 
             <div className="input-container px-6 py-2 mx-60 flex items-center rounded-full ">
@@ -141,6 +143,7 @@ export default function Home() {
 
                 <div className="w-full h-full absolute z-0" onClick={()=> setAllOrders(false)}></div>
             </div>
+            <UploadFile />
         </>
     );
 }

@@ -1,6 +1,6 @@
 import { Inter } from 'next/font/google'
 import NavBar from '@/components/navbar'
-
+import Providers from './Provider'
 import './globals.css'
 
 const inter = Inter({
@@ -17,9 +17,11 @@ export default function RootLayout({ children }) {
         <html lang="es">
             <body className={inter.className}>
                 <main className="flex min-h-screen flex-col relative">
-                    <NavBar />
-                    <div className='space w-full h-[46px]'></div>
-                    {children}
+                    <Providers>
+                        <NavBar />
+                        <div className='space w-full h-[46px]'></div>
+                        {children}
+                    </Providers>
                 </main>
             </body>
         </html>
