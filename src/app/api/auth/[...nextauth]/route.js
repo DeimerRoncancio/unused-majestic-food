@@ -6,7 +6,7 @@ const handler = NextAuth ({
         CredentialsProvider({
             name: "Credentials",
             credentials: {
-                user: { label: "Correo electronico", type: "email", placeholder: "Email" },
+                email: { label: "Correo electronico", type: "email", placeholder: "Email" },
                 password: { label: "Contraseña", type: "password", placeholder: "*******" }
             },
             async authorize(credentials,req) {
@@ -15,7 +15,7 @@ const handler = NextAuth ({
                 let user;
                 
                 users.forEach((item)=> {
-                    if(item.email == credentials.user && item.password == credentials.password) {
+                    if(item.email == credentials.email && item.password == credentials.password) {
                         user = item
                     }
                 })

@@ -31,7 +31,7 @@ export default function NavBar() {
                 </ul>
                 <div className='ml-auto flex w-[100px] relative'>
                     <div className="img-profile w-[55px] h-[55px] absolute rounded-full shadow-lg object-cover">
-                        <Image src={profile} className="rounded-full" layout="fill" alt="profile" placeholder="blur"/>
+                        <Image src={`/assets/images/${session?.user.profileImage}`} className="rounded-full" layout="fill" alt="profile"/>
                     </div>
                     <button className='ml-auto'>
                         <span className="icon-setting text-3xl"><IoIosSettings /></span>

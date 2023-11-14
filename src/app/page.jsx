@@ -7,7 +7,6 @@ import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
-import UploadFile from '@/components/upfile';
 import FetchTesting from '../components/fetch-testing'
 
 import './styles/main-page.css'
@@ -19,6 +18,7 @@ export default function Home() {
     const [allOrders,setOrders] = useState([])
 
     const { data:session,status } = useSession();
+    // console.log(session)
 
     const ifShowPopup = (validation) => {
         setShowPopup(validation);
@@ -143,7 +143,6 @@ export default function Home() {
 
                 <div className="w-full h-full absolute z-0" onClick={()=> setAllOrders(false)}></div>
             </div>
-            <UploadFile />
         </>
     );
 }

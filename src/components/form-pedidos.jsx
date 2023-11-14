@@ -1,10 +1,12 @@
 import { v4 as uuid } from 'uuid'
 import { useDataForm } from './hooks/useDataForm'
+import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 export default function FormPedidos() {
+    const { data:session,status } = useSession()
     const router = useRouter();
-    
+
     const {name,description,date,putDates} = useDataForm({
         name: '',
         description: '',
@@ -17,6 +19,7 @@ export default function FormPedidos() {
         const data = new FormData(evt.currentTarget);
         const allData = Object.fromEntries(data);
         allData.id = uuid();
+        allData.idUser = session?.user.id
         
         const item = localStorage.getItem("Order");
         const dataStorage = JSON.parse(item);
