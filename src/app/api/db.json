@@ -1,44 +1,9 @@
 {
   "pedidos": [
-    {
-      "name": "Pedido #4",
-      "description": "",
-      "date": "",
-      "id": "bca496d5-f149-4971-a0e2-3f98543f2c98",
-      "idUser": "a36aed7e-e62d-4a57-a6fe-dcd110cb651f"
-    },
-    {
-      "name": "Deimer",
-      "description": "",
-      "date": "",
-      "id": "018c7480-5d0c-4eff-ac32-657b97d06daf",
-      "idUser": "a36aed7e-e62d-4a57-a6fe-dcd110cb651f"
-    },
-    {
-      "name": "Pedido # 79",
-      "description": "",
-      "date": "",
-      "id": "64190f2e-5642-4c9e-a9ed-f85882bf8b58",
-      "idUser": "ef6c7016-843f-4a2a-8bf1-fa8283fde87b"
-    },
-    {
-      "name": "Pedido #3",
-      "description": "",
-      "date": "",
-      "id": "7ed358b0-c56b-492e-9609-b5e62fd18213",
-      "idUser": "ef6c7016-843f-4a2a-8bf1-fa8283fde87b"
-    }
+    
   ],
   "platos": [
-    {
-      "nombre": "Hamburguesa clasica",
-      "imagen": "burguer.png",
-      "calificacion": 4.2,
-      "price": "40.000",
-      "idOrder": "64190f2e-5642-4c9e-a9ed-f85882bf8b58",
-      "categoria": "Plato principal",
-      "id": 1
-    }
+    
   ],
   "usuarios": [
     {

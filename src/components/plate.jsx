@@ -11,7 +11,7 @@ export default function Plate({nombre,precio,categoria,imagen}) {
                 <h3 className='text-sm text-[#3ea440]'>$ {precio}</h3>
             </div>
             <div className='flex w-[60%] h-[120px] relative justify-center'>
-                <Image src={`/assets/images/${imagen}`} className="object-cover" layout="fill" alt="plate-image" />
+                <Image src={`/assets/images/products/${imagen}`} className="object-contain" layout="fill" alt="plate-image" />
             </div>
         </div>
     )

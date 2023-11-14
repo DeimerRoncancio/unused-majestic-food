@@ -1,9 +1,10 @@
 "use client";
 
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useContext } from 'react'
 import { useRouter } from 'next/navigation'
 import { BsSearch } from "react-icons/bs"
 import { useSession } from 'next-auth/react'
+import { OrdersContext } from '@/context/OrdersContext'
 import Link from 'next/link'
 import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
@@ -16,6 +17,7 @@ export default function Home() {
     const [showNewOrder,setShowNewOrder] = useState(false);
     const [showAllOrders,setAllOrders] = useState(false);
     const [allOrders,setOrders] = useState([])
+    const platos = useContext(OrdersContext)
 
     const { data:session,status } = useSession();
     // console.log(session)
@@ -56,21 +58,20 @@ export default function Home() {
                 <input className="w-full ml-6 outline-none bg-transparent" placeholder="Buscar"></input>
             </div>
 
-            <section className="order-section m-28 flex flex-wrap">
-                <CardOrder 
-                    name="Hamburguesa clasica" 
-                    image={"burguer.png"}
-                    qualification={4.2} 
-                    validate={ifShowPopup} 
-                    price={"40.000"}
-                    />
-                <CardOrder 
-                    name="Empanada" 
-                    image={"empanadas.webp"}
-                    qualification={3.2} 
-                    validate={ifShowPopup} 
-                    price={"39.000"}
-                />
+            <section className="order-section m-28 grid gap-24">
+                {
+                    platos.map((item)=> (
+                        <CardOrder
+                            id={item.id}
+                            name={item.name}
+                            image={item.image}
+                            qualification={item.qualification}
+                            validate={ifShowPopup}
+                            price={item.price}
+                            category={item.category}
+                        />
+                    ))
+                }
             </section>
 
             <div className={`fixed top-0 lef-0 w-full h-full ${showPopup ? '' : 'hidden'} flex justify-center 

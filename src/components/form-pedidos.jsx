@@ -3,7 +3,7 @@ import { useDataForm } from './hooks/useDataForm'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-export default function FormPedidos() {
+export default function FormPedidos({category}) {
     const { data:session,status } = useSession()
     const router = useRouter();
 

@@ -3,26 +3,27 @@ import Image from 'next/image'
 
 import './styles/card-order.css'
 
-export default function CardOrder({name,image,qualification,price,validate}) {
+export default function CardOrder({name,image,qualification,price,validate,category}) {
     const handleClick = ()=> {
         localStorage.setItem("Order",JSON.stringify({
             nombre: name,
             imagen: image,
             calificacion: qualification,
-            price: price
+            price: price,
+            category: category
         }));
 
         validate(true);
     }
 
     return (
-        <div className="card-container min-w-[280px] rounded-2xl mr-28 shadow-[0_0_15px_#a9a9a9] 
+        <div className="card-container min-w-[280px] rounded-2xl shadow-[0_0_15px_#a9a9a9] 
         hover:shadow-[0_0_25px_#9b9b9b] transition-all duration-300">
             <div className="px-4 pt-4">
                 <h2>{name}</h2>
                 <div className="w-full flex justify-center">
                     <div className="w-[200px] h-[160px] my-6 relative">
-                        <Image className="object-cover" src={`/assets/images/${image}`} layout="fill" alt="food-image" />
+                        <Image className="object-contain" src={`/assets/images/products/${image}`} layout="fill" alt="food-image" />
                     </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ export default function PlatePresentation() {
             <h1 className="text-lg pl-5">{order.nombre}</h1>
             <div className="w-full flex justify-center">
                 <div className='w-[350px] h-[250px] relative'>
-                    <Image src={`/assets/images/${order.imagen}`} className='object-cover' alt="image" layout="fill" />
+                    <Image src={`/assets/images/products/${order.imagen}`} className='object-contain' alt="image" layout="fill" />
                 </div>
             </div>
             <div className="w-full flex items-center justify-center">

@@ -10,3 +10,7 @@ nav {
 .search-icon {
     color: var(--second-gray);
 }
+
+.order-section {
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr))
+}

@@ -18,6 +18,8 @@ export default function Pedidos({ params }) {
     const item = localStorage.getItem("Order");
     const order = JSON.parse(item)
     const newItem = order;
+    
+    // console.log(newItem.category[0])
 
     const closeOperation = ()=> {
         newItem.idOrder = ''
@@ -127,33 +129,28 @@ export default function Pedidos({ params }) {
             </div>
             <div className={`fixed top-0 lef-0 w-full h-full ${showPopupCategories ? '' : 'hidden'} flex
             justify-center items-center backdrop-blur-[2px] transition z-50`}>
-                <button
-                className="z-50 absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
+                <button className="z-50 absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
                 onClick={() => setPopupCategories(false)}>
                     X
                 </button>
 
-                <button
-                className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
-                transition" onClick={(evt)=> setPlate(evt,"Plato principal")}>
+                <button className={`z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
+                transition`} onClick={(evt)=> setPlate(evt,"Plato principal")}>
                     Plato principal
                 </button>
 
-                <button
-                className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
-                transition" onClick={(evt)=> setPlate(evt,"Plato secundario")}>
+                <button className={`z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
+                transition`} onClick={(evt)=> setPlate(evt,"Plato secundario")}>
                     Plato secundario
                 </button>
 
-                <button
-                className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
-                transition" onClick={(evt)=> setPlate(evt,"Bebida")}>
+                <button className={`z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
+                transition`} onClick={(evt)=> setPlate(evt,"Bebida")}>
                     Bebida
                 </button>
 
-                <button
-                className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
-                transition" onClick={(evt)=> setPlate(evt,"Postre")}>
+                <button className={`z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
+                transition`} onClick={(evt)=> setPlate(evt,"Postre")}>
                     Postre
                 </button>
 
