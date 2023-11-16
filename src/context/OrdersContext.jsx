@@ -10,7 +10,7 @@ export const OrdersProvider = ({children})=> {
             name: "Hamburguesa clasica",
             image: "burguer.png",
             qualification: 4.2,
-            price: "30.000",
+            price: "5000",
             category: [
                 "plato-principal",
                 "plato-secundario"
@@ -21,7 +21,7 @@ export const OrdersProvider = ({children})=> {
             name: "Empanada",
             image: "empanadas.webp",
             qualification: 3.2,
-            price: "25.000",
+            price: "5000",
             category: [
                 "plato-principal",
                 "plato-secundario"
@@ -32,7 +32,7 @@ export const OrdersProvider = ({children})=> {
             name: "Coca Cola",
             image: "cocacola.png",
             qualification: 4.2,
-            price: "15.000",
+            price: "3500",
             category: [
                 "bebida"
             ],
@@ -42,11 +42,21 @@ export const OrdersProvider = ({children})=> {
             name: "Bandeja Paisa",
             image: "bandeja-paisa.png",
             qualification: 4.8,
-            price: "55.500",
+            price: "18500",
             category: [
                 "plato-principal"
             ],
-            id: 3
+            id: 4
+        },
+        {
+            name: "Arroz con pollo",
+            image: "arroz-con-pollo.png",
+            qualification: 4.8,
+            price: "15500",
+            category: [
+                "plato-principal"
+            ],
+            id: 12
         }
     ]
     

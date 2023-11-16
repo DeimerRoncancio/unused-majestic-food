@@ -2,23 +2,28 @@
 
 import { useState,useEffect } from 'react'
 
-export const useFetchId = (id) => {
-    const [data,setData] = useState({})   
+export const useFetchId = (url,id) => {
+    const [dataId,setData] = useState({})   
+    const [isLoadingId,setIsLoading] = useState(true)
+    const [errorId,setError] = useState(true)
     
     const getData = async()=> {
         try {
-            const response = await fetch(`http://localhost:5000/pedidos/${id}`).then(res => res.json())
-            setData(response);
+            const response = await fetch(`${url}/${id}`).then(res => res.json())
+            setData(response)
+            setIsLoading(false)
         } catch (err) {
-            console.error(err);
+            setError(false)
         }
     }
-    
+
     useEffect(()=> {
         getData()
     },[id])
 
     return {
-        data
+        dataId,
+        isLoadingId,
+        errorId
     }
 }
