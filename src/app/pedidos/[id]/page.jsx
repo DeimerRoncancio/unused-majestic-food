@@ -111,7 +111,7 @@ export default function Pedidos({ params }) {
                                 session?.user.name + ' ' + session?.user.lastName
                             }
                         </h3>
-                        
+
                         <div className={`flex w-full justify-center flex-col mt-10
                         ${params.id === order.idOrder && showInfo  ? '' : 'hidden' }`}>
                             <PlatePresentation />
@@ -144,6 +144,7 @@ export default function Pedidos({ params }) {
                                         precio={item.price} 
                                         categoria={item.categoria}
                                         imagen={item.imagen}
+                                        id={item.id}
                                     />
                                 ))
                             }

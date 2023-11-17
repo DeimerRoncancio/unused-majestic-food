@@ -1,10 +1,28 @@
 {
   "pedidos": [
-    
+    {
+      "name": "Pedido #1",
+      "description": "",
+      "date": "",
+      "id": "b7c9017c-bfd0-42cb-8d35-8f4b907309c8",
+      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+    },
+    {
+      "name": "Pedido #2",
+      "description": "",
+      "date": "",
+      "id": "74a569a1-4942-4ee6-b547-751b576390e9",
+      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+    },
+    {
+      "name": "Pedido #3",
+      "description": "",
+      "date": "",
+      "id": "8be5c728-9544-4569-bc8b-a1eaff42d104",
+      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+    }
   ],
-  "platos": [
-    
-  ],
+  "platos": [],
   "usuarios": [
     {
       "email": "deimerroncancio@gmail.com",
