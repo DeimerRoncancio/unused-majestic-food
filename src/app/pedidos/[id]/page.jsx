@@ -5,6 +5,7 @@ import { useFetchId } from '@/components/hooks/useFetchId'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useFetch } from '@/components/hooks/useFetch'
+import { useDataForm } from '@/components/hooks/useDataForm'
 import { v4 as uuid } from 'uuid'
 import { AiOutlinePlus } from 'react-icons/ai'
 import PlatePresentation from '@/components/plate-presentation'
@@ -13,7 +14,7 @@ import Plate from '@/components/plate'
 export default function Pedidos({ params }) {
     const { data:session } = useSession()
     const router = useRouter()
-
+    
     const [showInfo,setShowInfo] = useState(true);
     const [showPopupCategories,setPopupCategories] = useState(false)
     const [allPlates,setAllPlates] = useState([])
@@ -21,6 +22,10 @@ export default function Pedidos({ params }) {
     const [price,setPrice] = useState()
     const { dataId,isLoadingId,errorId } = useFetchId("http://localhost:5000/pedidos",params.id)
     const { data,isLoading,error } = useFetch("http://localhost:5000/platos")
+
+    const {nameOrder,putDates} = useDataForm({
+        nameOrder: ''
+    })
 
     const item = localStorage.getItem("Order");
     const order = JSON.parse(item)
@@ -90,10 +95,35 @@ export default function Pedidos({ params }) {
             await fetch(`http://localhost:5000/pedidos/${params.id}`,{
                 method: "DELETE"
             })
+            allPlates.forEach(async(item)=> {
+                await fetch(`http://localhost:5000/platos/${item.id}`,{
+                    method: 'DELETE'
+                })
+            })
         } catch(err) {
             console.error(err)
         }
     }
+
+    const updateName = async(evt)=> {
+        evt.preventDefault();
+        
+        const newName = evt.target[0].value
+        dataId.name = newName
+
+        try {
+            await fetch(`http://localhost:5000/pedidos/${params.id}`,{
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataId)
+            })
+        } catch(err) {
+            console.error(err)
+        }
+    }
+    
 
     useEffect(()=> {
         if(!errorId) {
@@ -113,7 +143,11 @@ export default function Pedidos({ params }) {
                 <div className='w-full flex flex-col items-center'>
                     <div className="w-[$610px]">
                         <h2 className="text-2xl w-[610px]">
-                            {isLoadingId ? 'Loading...' : dataId.name}</h2>
+                            {isLoadingId ? 'Loading...' : dataId.name}
+                        </h2>
+                        <form onSubmit={updateName}>
+                            <input className="text-2xl" name="nameOrder" value={nameOrder} onChange={putDates}></input>
+                        </form>
                         <h3>
                             {
                                 (session?.user.name == undefined) ? 
