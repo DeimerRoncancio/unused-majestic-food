@@ -1,6 +1,85 @@
 {
-  "pedidos": [],
-  "platos": [],
+  "pedidos": [
+    {
+      "name": "Pedido #1",
+      "description": "wersrtdygkuiulhñojp",
+      "date": {
+        "year": 2023,
+        "month": 11,
+        "day": 19,
+        "hours": 18,
+        "minutes": 16
+      },
+      "id": "0d6fec3e-5051-4187-9f30-fa017cd7b4be",
+      "idUser": "922ca23d-87bd-4bba-abbc-f763c585b010"
+    },
+    {
+      "name": "Pedido de juliana 2",
+      "description": "aegrsthyjkuilok",
+      "date": {
+        "year": 2023,
+        "month": 11,
+        "day": 18,
+        "hours": 20,
+        "minutes": 18
+      },
+      "id": "227d83bc-6d0b-4877-8e5b-de8a9ff99a01",
+      "idUser": "922ca23d-87bd-4bba-abbc-f763c585b010"
+    },
+    {
+      "name": "Pedido de Deimer 1",
+      "description": "ateysdrtifukyguloi",
+      "date": {
+        "year": 2023,
+        "month": 11,
+        "day": 18,
+        "hours": 20,
+        "minutes": 19
+      },
+      "id": "ae7ba24c-76ac-4de6-9aed-a3fd43db05af",
+      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+    }
+  ],
+  "platos": [
+    {
+      "nombre": "Empanada",
+      "imagen": "empanadas.webp",
+      "calificacion": 3.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "0d6fec3e-5051-4187-9f30-fa017cd7b4be",
+      "categoria": "Plato principal",
+      "id": "02722e6f-da63-465c-8731-702dbd334c2f"
+    },
+    {
+      "nombre": "Coca Cola",
+      "imagen": "cocacola.png",
+      "calificacion": 4.2,
+      "price": "3500",
+      "category": [
+        "bebida"
+      ],
+      "idOrder": "227d83bc-6d0b-4877-8e5b-de8a9ff99a01",
+      "categoria": "Plato secundario",
+      "id": "1028c1ef-69bc-4348-b7e3-dd9c57594664"
+    },
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "ae7ba24c-76ac-4de6-9aed-a3fd43db05af",
+      "categoria": "Plato secundario",
+      "id": "88c36ad0-1514-42fc-a050-c1161e4e9812"
+    }
+  ],
   "usuarios": [
     {
       "email": "deimerroncancio@gmail.com",
@@ -9,6 +88,22 @@
       "lastName": "Roncancio",
       "profileImage": "profile-image.webp",
       "id": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+    },
+    {
+      "email": "roncanciodeison@gmail.com",
+      "password": "02062002De",
+      "name": "Emerson",
+      "lastName": "Roncancio",
+      "profileImage": "heisenberg-breaking-bad-minimalista_1920x1080_xtrafondos.com.jpg",
+      "id": "ef1964a0-4878-4958-b162-e40046f551b8"
+    },
+    {
+      "email": "juliana@gmail.com",
+      "password": "02062002De",
+      "name": "Juliana",
+      "lastName": "Mendez",
+      "profileImage": "chica-anime-con-lentes-y-cigarro_3840x2160_xtrafondos.com.jpg",
+      "id": "922ca23d-87bd-4bba-abbc-f763c585b010"
     }
   ]
 }

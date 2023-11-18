@@ -24,6 +24,7 @@ export default function FormPedidos({category}) {
         const item = localStorage.getItem("Order");
         const dataStorage = JSON.parse(item);
         dataStorage.idOrder = allData.id;
+
         const dateTarget = new Date(allData.date)
         const dateOrder = {
             year: dateTarget.getFullYear(),
@@ -32,6 +33,7 @@ export default function FormPedidos({category}) {
             hours: dateTarget.getHours(),
             minutes: dateTarget.getMinutes()
         }
+        
         allData.date = dateOrder
 
         localStorage.setItem("Order",JSON.stringify(dataStorage));

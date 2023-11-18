@@ -28,7 +28,8 @@ export default function Home() {
     const getOrders = async ()=> {
         try {
             const response = await fetch('http://localhost:5000/pedidos').then(res => res.json())
-            setOrders(response)
+            const orders = response.filter(item => item.idUser === session?.user.id)
+            setOrders(orders)
         } catch(err) {
             console.error(err)
         }

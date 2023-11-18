@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
 import { useState } from 'react'
 import {v4 as uuid} from 'uuid'
-import '@/app/styles/register.css'
 
 export default function Register() {
     const router = useRouter()

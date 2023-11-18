@@ -58,10 +58,13 @@ export default function NavBar() {
                         hiddenProfileOptions()
                         setProfileOptions(!showProfileOptions)
                     }}>
-                        <Image src={`/assets/images/${session?.user.profileImage}`} className="rounded-full" 
+                        <Image src={`/assets/images/${session?.user.profileImage}`} className="rounded-full object-cover" 
                         layout="fill" alt="profile"/>
                         <div className={`profile-options flex absolute top-[120%] flex-col ${showProfileOptions ? 'hidden' : ''}`}>
-                            <button className="mt-4">Perfil</button>
+                            <button className="mt-4"
+                            onClick={()=> {
+                                router.push(`/profile/${session?.user.id}`)
+                            }}>Perfil</button>
                             <button className="mt-4" onClick={() => {
                                 setProfileOptions(!showProfileOptions)
                                 router.push('/user-pedidos')

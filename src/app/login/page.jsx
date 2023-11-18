@@ -3,6 +3,7 @@
 import { useDataForm } from '@/components/hooks/useDataForm'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function Login() {
     const router = useRouter()
@@ -27,7 +28,7 @@ export default function Login() {
     }
     
     return (
-        <div className="w-full h-screen flex justify-center items-center">
+        <div className="w-full h-screen flex flex-col justify-center items-center">
             <form className="grid grid-cols-2 gap-6" onSubmit={sendUser}>
                 <div className='col-span-2 flex flex-col'>
                     <label htmlFor="email">Email</label>
@@ -39,6 +40,12 @@ export default function Login() {
                 </div>
                 <button className="col-span-2">Iniciar sesión</button>
             </form>
+            <div className='flex'>
+                <h4 className='mr-2'>¿Aun no tienes cuenta?</h4>
+                <Link href='/register'>
+                    <h4 className='text-green-700'>¡Registrate!</h4>
+                </Link>
+            </div>
         </div>
     )
 }
