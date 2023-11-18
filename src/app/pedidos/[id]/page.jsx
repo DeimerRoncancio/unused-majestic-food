@@ -8,6 +8,7 @@ import { useFetch } from '@/components/hooks/useFetch'
 import { useDataForm } from '@/components/hooks/useDataForm'
 import { v4 as uuid } from 'uuid'
 import { AiOutlinePlus } from 'react-icons/ai'
+import { FaEdit } from "react-icons/fa";
 import PlatePresentation from '@/components/plate-presentation'
 import Plate from '@/components/plate'
 
@@ -17,14 +18,19 @@ export default function Pedidos({ params }) {
     
     const [showInfo,setShowInfo] = useState(true);
     const [showPopupCategories,setPopupCategories] = useState(false)
+    const [showName,setShowName] = useState(false)
+    const [showDescription,setDescription] = useState(false)
+    const [showDate,setDate] = useState(false);
     const [allPlates,setAllPlates] = useState([])
     const [cantProducts,setCantProducts] = useState()
     const [price,setPrice] = useState()
     const { dataId,isLoadingId,errorId } = useFetchId("http://localhost:5000/pedidos",params.id)
     const { data,isLoading,error } = useFetch("http://localhost:5000/platos")
 
-    const {nameOrder,putDates} = useDataForm({
-        nameOrder: ''
+    const {nameOrder,descriptionOrder,dateOrder,putDates} = useDataForm({
+        nameOrder: '',
+        descriptionOrder: '',
+        dateOrder: ''
     })
 
     const item = localStorage.getItem("Order");
@@ -123,7 +129,57 @@ export default function Pedidos({ params }) {
             console.error(err)
         }
     }
-    
+
+    const updateDescription = async(evt)=> {
+        evt.preventDefault();
+        
+        const newDescription = evt.target[0].value
+        dataId.description = newDescription
+
+        console.log(dataId)
+
+        try {
+            await fetch(`http://localhost:5000/pedidos/${params.id}`,{
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataId)
+            })
+        } catch(err) {
+            console.error(err)
+        }
+    }
+
+    const updateDate = async(evt)=> {
+        evt.preventDefault();
+        
+        const newDate = evt.target[0].value
+        dataId.date = newDate
+        const dateTarget = new Date(dataId.date)
+        const dateOrder = {
+            year: dateTarget.getFullYear(),
+            month: dateTarget.getMonth() + 1,
+            day: dateTarget.getDate(),
+            hours: dateTarget.getHours(),
+            minutes: dateTarget.getMinutes()
+        }
+        dataId.date = dateOrder
+
+        console.log(dataId)
+
+        try {
+            await fetch(`http://localhost:5000/pedidos/${params.id}`,{
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dataId)
+            })
+        } catch(err) {
+            console.error(err)
+        }
+    }
 
     useEffect(()=> {
         if(!errorId) {
@@ -142,11 +198,20 @@ export default function Pedidos({ params }) {
             <div className="z-20 p-28 pt-14 relative">
                 <div className='w-full flex flex-col items-center'>
                     <div className="w-[$610px]">
-                        <h2 className="text-2xl w-[610px]">
-                            {isLoadingId ? 'Loading...' : dataId.name}
-                        </h2>
-                        <form onSubmit={updateName}>
-                            <input className="text-2xl" name="nameOrder" value={nameOrder} onChange={putDates}></input>
+                        <div className={`flex ${showName ? 'hidden' : ''}`}>
+                            <h2 className="text-2xl w-[95%]">
+                                {isLoadingId ? 'Loading...' : dataId.name}
+                            </h2>
+                            <button onClick={()=>{
+                                setShowName(true)
+                            }}>
+                                <span className=' text-green-800'>
+                                    <FaEdit />
+                                </span>
+                            </button>
+                        </div>
+                        <form onSubmit={updateName} className={`${showName ? '' : 'hidden'}`} >
+                            <input className="text-2xl" name="nameOrder" value={nameOrder} onChange={putDates} placeholder={dataId.name} />
                         </form>
                         <h3>
                             {
@@ -177,6 +242,50 @@ export default function Pedidos({ params }) {
 
                     <div className="flex w-full pt-14 flex-col">
                         <h2 className="text-xl">Detalles del pedido</h2>
+                        <div className='flex'>
+                            <div className='max-w-[50%] mr-14'>
+                                <div className='flex'>
+                                    <h3 className='mt-2 text-green-800 mr-2'>Descripción</h3>
+                                    <button className={`${showDescription ? 'hidden' : ''}`} onClick={() => {
+                                        setDescription(true)
+                                    }}>
+                                        <span className=' text-green-800'>
+                                            <FaEdit />
+                                        </span>
+                                    </button>
+                                </div>
+                                <p className={`text-sm ${showDescription ? 'hidden' : ''}`}>{dataId.description}</p>
+                                <form onSubmit={updateDescription} className={`${showDescription ? '' : 'hidden'}`}>
+                                    <textarea name="descriptionOrder" value={descriptionOrder} 
+                                    onChange={putDates} placeholder={dataId.description
+                                    }></textarea>
+                                    <button>Update</button>
+                                </form>
+                            </div>
+                            <div>
+                                <div className='flex'>
+                                    <h3 className='mr-2 text-green-800'>Fecha de entrega</h3>
+                                    <button className={`${showDate ? 'hidden' : ''}`} onClick={() => {
+                                        setDate(true)
+                                    }}>
+                                        <span className=' text-green-800'>
+                                            <FaEdit />
+                                        </span>
+                                    </button>
+                                </div>
+                                <h3 className={`text-sm ${showDate ? 'hidden' : ''}`}>
+                                    {
+                                        dataId.date?.day + '/' + dataId.date?.month + '/' + dataId.date?.year + ' - ' +
+                                        dataId.date?.hours + ':' + dataId.date?.minutes
+                                    }
+                                </h3>
+                                <form onSubmit={updateDate} className={`${showDate ? '' : 'hidden'}`}>
+                                    <input type="datetime-local" name="dateOrder" value={dateOrder} onChange={putDates} />
+                                    <button>Update</button>
+                                </form>
+                            </div>
+                        </div>
+                        <h2 className='text-xl mt-4'>Platos del pedido</h2>
                         <div className="grid grid-cols-3 gap-14 mt-9">
                             {
                                 isLoading ?
@@ -225,6 +334,8 @@ export default function Pedidos({ params }) {
                             onClick={() => {
                                 alert("Tu pedido sera enviado, muchas gracias por comprar!")
                                 router.push("/")
+                                closeOperation()
+                                deleteOrder()
                             }}>
                             Enviar pedido
                         </button>

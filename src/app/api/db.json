@@ -1,13 +1,5 @@
 {
-  "pedidos": [
-    {
-      "name": "Pedido #1",
-      "description": "rsgdfzscx",
-      "date": "2023-11-19T16:53",
-      "id": "11a1d041-16c4-4e36-962c-76213bdb5630",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
-    }
-  ],
+  "pedidos": [],
   "platos": [],
   "usuarios": [
     {

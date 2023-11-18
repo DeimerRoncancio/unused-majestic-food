@@ -13,17 +13,6 @@ export default function UserOrders() {
         try {
             const response = await fetch('http://localhost:5000/pedidos').then(res => res.json())
             const orders = response.filter(item => item.idUser === session?.user.id)
-            orders.forEach((item)=> {
-                const dateTarget = new Date(item.date)
-                const dateOrder = {
-                    year: dateTarget.getFullYear(),
-                    month: dateTarget.getMonth() + 1,
-                    day: dateTarget.getDate(),
-                    hours: dateTarget.getHours(),
-                    minutes: dateTarget.getMinutes()
-                }
-                item.date = dateOrder
-            })
             setRes(orders)
         } catch (err) {
             console.error(err)
