@@ -1,7 +1,3 @@
-nav {
-    display: block;
-}
-
 .input-container {
     background-color: var(--tird-white);
     box-shadow: inset 4px 4px 5px var(--second-gray);

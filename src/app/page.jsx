@@ -20,7 +20,6 @@ export default function Home() {
     const platos = useContext(OrdersContext)
 
     const { data:session,status } = useSession();
-    // console.log(session)
 
     const ifShowPopup = (validation) => {
         setShowPopup(validation);

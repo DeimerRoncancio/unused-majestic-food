@@ -2,27 +2,59 @@
   "pedidos": [
     {
       "name": "Pedido #1",
-      "description": "",
-      "date": "",
-      "id": "b7c9017c-bfd0-42cb-8d35-8f4b907309c8",
+      "description": "Esta es la descripción de uno de los pedidos. La pongo no porque importe, sino porque toca.",
+      "date": "2023-11-18T19:31",
+      "id": "84b830f6-0ebb-435b-b16d-a5e98d04c1d5",
       "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
     },
     {
-      "name": "Pedido #2",
-      "description": "",
-      "date": "",
-      "id": "74a569a1-4942-4ee6-b547-751b576390e9",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
-    },
-    {
-      "name": "Pedido #3",
-      "description": "",
-      "date": "",
-      "id": "8be5c728-9544-4569-bc8b-a1eaff42d104",
+      "name": "Pedido #1",
+      "description": "ghdfdsffgh",
+      "date": "2023-11-19T16:06",
+      "id": "fa57effa-7dec-4e7e-a5a6-bab953ae4751",
       "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
     }
   ],
-  "platos": [],
+  "platos": [
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "84b830f6-0ebb-435b-b16d-a5e98d04c1d5",
+      "categoria": "Plato principal",
+      "id": "6ac9fb58-a047-498a-92b6-6847815a4aae"
+    },
+    {
+      "nombre": "Empanada",
+      "imagen": "empanadas.webp",
+      "calificacion": 3.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "5510531c-7e79-4d61-9c9a-0a6a2c77f969",
+      "categoria": "Plato secundario",
+      "id": "7189d6ca-c29b-4863-8114-205d893e851a"
+    },
+    {
+      "nombre": "Coca Cola",
+      "imagen": "cocacola.png",
+      "calificacion": 4.2,
+      "price": "3500",
+      "category": [
+        "bebida"
+      ],
+      "idOrder": "1f5ce8b0-83e8-4ab0-b0b8-c784a45e4582",
+      "categoria": "Bebida",
+      "id": "4ee90e9a-9377-4541-a854-1218855acbd0"
+    }
+  ],
   "usuarios": [
     {
       "email": "deimerroncancio@gmail.com",

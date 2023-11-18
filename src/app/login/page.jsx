@@ -3,11 +3,10 @@
 import { useDataForm } from '@/components/hooks/useDataForm'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
-import '@/app/styles/login.css'
 
 export default function Login() {
     const router = useRouter()
-    
+
     const { email,password,putDates } = useDataForm({
         email: '',
         password: ''

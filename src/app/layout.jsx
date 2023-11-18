@@ -1,8 +1,9 @@
 import { Inter } from 'next/font/google'
-import {OrdersProvider} from '@/context/OrdersContext'
+import { OrdersProvider } from '@/context/OrdersContext'
 import NavBar from '@/components/navbar'
 import Providers from './Provider'
 import './globals.css'
+import Space from '@/components/space'
 
 const inter = Inter({
     subsets: ['latin']
@@ -18,13 +19,13 @@ export default function RootLayout({ children }) {
         <html lang="es">
             <body className={inter.className}>
                 <main className="flex min-h-screen flex-col relative">
-                    <OrdersProvider>
-                        <Providers>
-                            <NavBar />
-                            <div className='space w-full h-[46px]'></div>
-                            {children}
-                        </Providers>
-                    </OrdersProvider>
+                        <OrdersProvider>
+                            <Providers>
+                                <NavBar />
+                                <Space />
+                                {children}
+                            </Providers>
+                        </OrdersProvider>
                 </main>
             </body>
         </html>

@@ -85,6 +85,16 @@ export default function Pedidos({ params }) {
         setCantProducts(cantProds)
     }
 
+    const deleteOrder = async()=> {
+        try {
+            await fetch(`http://localhost:5000/pedidos/${params.id}`,{
+                method: "DELETE"
+            })
+        } catch(err) {
+            console.error(err)
+        }
+    }
+
     useEffect(()=> {
         if(!errorId) {
             console.log("Ha ocurrido un error.")
@@ -191,9 +201,10 @@ export default function Pedidos({ params }) {
                             w-[100%] p-1 px-10 text-lg rounded-full shadow-[0_2px_4px_#a9a9a9] text-black"
                             onClick={()=> {
                                 closeOperation()
-                                router.push("/")
+                                deleteOrder()
+                                router.push("/user-pedidos")
                             }}>
-                            Cancelar
+                            Eliminar
                         </button>
                     </div>
                 </div>
