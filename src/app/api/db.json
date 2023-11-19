@@ -38,6 +38,19 @@
       },
       "id": "ae7ba24c-76ac-4de6-9aed-a3fd43db05af",
       "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+    },
+    {
+      "name": "Pedido #1",
+      "description": "tyjukghjm",
+      "date": {
+        "year": null,
+        "month": null,
+        "day": null,
+        "hours": null,
+        "minutes": null
+      },
+      "id": "4b0c256f-e793-4ae7-b899-11868faee518",
+      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
     }
   ],
   "platos": [
