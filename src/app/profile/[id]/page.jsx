@@ -4,12 +4,12 @@ import { useSession,signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 
-export default function Profile({params}) {
+export default function Profile() {
     const { data:session,status } = useSession()
     const router = useRouter()
     
     return(
-        <div className="w-full h-screen flex flex-col justify-center items-center">
+        <div className="w-full h-[calc(100vh-46px)] flex flex-col justify-center items-center">
             <div className='w-[200px] h-[200px] m-4 relative'>
                 <Image src={`/assets/images/${session?.user.profileImage}`} className="rounded-full object-cover" layout="fill" alt="profile" /> 
             </div>

@@ -50,7 +50,7 @@ export default function Home() {
         <>
             <div className='m-28'>
                 <h1 className='text-3xl'>¡Bienvenido de nuevo!</h1>
-                <h2>Señor {session?.user.name} {session?.user.lastName}</h2>
+                <h2>Señor@ {session?.user.name} {session?.user.lastName}</h2>
             </div>
 
             <div className="input-container px-6 py-2 mx-60 flex items-center rounded-full ">
@@ -82,22 +82,34 @@ export default function Home() {
                     X
                 </button>
 
-                <button className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl 
-                hover:scale-105 transition" 
+                <button className="z-50 w-56 h-56 m-10 shadow-[0_0_20px_#a9a9a9]  rounded-2xl
+                hover:scale-105 transition"
                 onClick={()=> {
                     setShowPopup(false)
                     setShowNewOrder(true)
                 }}>
-                    Añadir en nuevo pedido
+                    <div className='w-full h-full bg-[url("https://gerente.com/co/wp-content/uploads/sites/16/2018/10/COMIDAS-RÁPIDAS-Y-RESTAURANTES.jpg")] 
+                    bg-cover rounded-2xl'>
+                        <div className='w-full h-full p-4 rounded-2xl bg-gradient-to-b from-transparent to-[#22222288] flex flex-col items-start justify-end'>
+                            <h2 className='text-white text-md'>Añadir a nuevo pedido</h2>
+                            <p className='text-xs text-white font-extralight'>Crea un pedido nuevo</p> 
+                        </div>
+                    </div>
                 </button>
 
-                <button className="z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl 
+                <button className="z-50 w-56 h-56 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl 
                 hover:scale-105 transition" 
                 onClick={()=> {
                     setShowPopup(false)
                     setAllOrders(true)
                 }}>
-                    Añadir a pedido existente
+                    <div className='w-full h-full bg-[url("https://cloudfront-us-east-1.images.arcpublishing.com/infobae/42Q6QIMLB5F3JPEXQWI6VV7PQ4.jpg")] 
+                    bg-cover rounded-2xl'>
+                        <div className='w-full h-full p-4 rounded-2xl bg-gradient-to-b from-transparent to-[#22222288] flex flex-col items-start justify-end'>
+                            <h2 className='text-white text-md'>Añadir a un pedido tuyo</h2>
+                            <p className='text-xs text-white font-extralight'>Incluyelo en un pedido existente</p> 
+                        </div>
+                    </div>
                 </button>
 
                 <div className="w-full h-full absolute z-0" onClick={()=> setShowPopup(false)}></div>
@@ -120,8 +132,8 @@ export default function Home() {
 
             <div className={`fixed flex top-0 left-0 w-full h-full ${showAllOrders ? '' : 'hidden'} 
             backdrop-blur-[2px] justify-center items-center z-50`}>
-                <div className="z-50 bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] rounded-2xl flex 
-                flex-col justify-center items-center">
+                <div className="z-50 bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] flex 
+                flex-col justify-center items-center bg-[#f4ece6]">
                     <button
                     className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
                     onClick={() => setAllOrders(false)}>
