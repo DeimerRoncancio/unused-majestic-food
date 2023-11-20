@@ -9,6 +9,7 @@ import Link from 'next/link'
 import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
 import FetchTesting from '../components/fetch-testing'
+import { FaWpforms } from "react-icons/fa6";
 
 import './styles/main-page.css'
 
@@ -62,6 +63,7 @@ export default function Home() {
                 {
                     platos.map((item)=> (
                         <CardOrder
+                            key={item.id}
                             id={item.id}
                             name={item.name}
                             image={item.image}
@@ -118,13 +120,16 @@ export default function Home() {
             <div className={`fixed flex top-0 left-0 w-full h-full ${showNewOrder ? '' : 'hidden'} 
             backdrop-blur-[2px] justify-center items-center z-50`}>
                 <div className="z-50 shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] flex 
-                flex-col justify-center items-center bg-[#f4ece6]">
+                flex-col justify-center items-center bg-[#f4ece6] font-mono rounded-md over">
                     <button
                     className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
                     onClick={() => setShowNewOrder(false)}>
                         X
                     </button>
                     <FormPedidos />
+                    <div className='w-full h-[10%] bg-white self-baseline flex justify-center items-center'>
+                            <FaWpforms size={30}/>
+                    </div>
                 </div>
 
                 <div className="w-full h-full absolute z-0" onClick={()=> setShowNewOrder(false)}></div>
@@ -132,26 +137,34 @@ export default function Home() {
 
             <div className={`fixed flex top-0 left-0 w-full h-full ${showAllOrders ? '' : 'hidden'} 
             backdrop-blur-[2px] justify-center items-center z-50`}>
-                <div className="z-50 bg-white shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] flex 
-                flex-col justify-center items-center bg-[#f4ece6]">
+                <div className="z-50 shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] flex 
+                flex-col justify-center items-center bg-[#f4ece6] rounded-md">
                     <button
                     className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
                     onClick={() => setAllOrders(false)}>
                         X
                     </button>
-                    <ul>
+                    <div className='w-full h-[10%] flex justify-center items-center'>
+                        <h1 className=''>PEDIDOS</h1>
+                    </div>
+                    
+                    <div className='w-full h-[90%] flex justify-center items-center'>
+                      <ul>
                         {
                             allOrders.map((item)=> (
-                                <li>
-                                    <button onClick={()=>sendInOrder(item.id)}>
-                                        <Link href={`pedidos/${item.id}`}>
+                                <li key={item.id}>
+                                    <button className='bg-slate-50 p-3 rounded-2xl border-2 hover:border-green-400 w-[150px] mb-2' 
+                                            onClick={()=>sendInOrder(item.id)}>
+                                        <Link className='font-mono' href={`pedidos/${item.id}`}>
                                             {item.name}
                                         </Link>
                                     </button>
                                 </li> 
                             ))
                         }
-                    </ul>
+                    </ul>  
+                    </div>
+                    
                 </div>
 
                 <div className="w-full h-full absolute z-0" onClick={()=> setAllOrders(false)}></div>

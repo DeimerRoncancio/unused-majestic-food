@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="es">
+        <html lang="es" className='font-mono'>
             <body className={inter.className}>
                 <main className="flex min-h-screen flex-col relative">
                         <OrdersProvider>
