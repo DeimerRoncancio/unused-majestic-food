@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { FaEdit } from "react-icons/fa";
 import PlatePresentation from '@/components/plate-presentation'
+import Button from '@/components/button'
 import Plate from '@/components/plate'
 
 export default function Pedidos({ params }) {
@@ -225,17 +226,23 @@ export default function Pedidos({ params }) {
                         ${params.id === order.idOrder && showInfo  ? '' : 'hidden' }`}>
                             <PlatePresentation />
                             <div className='flex justify-between mt-14'>
-                                <button className="bg-[#3ea440] transition duration-[0.3s] hover:bg-[#348935]
-                                w-[45%] p-2 text-xl rounded-full shadow-[0_2px_4px_#a9a9a9] text-white"
-                                onClick={()=> setPopupCategories(true)}>
-                                    Añadir al pedido
-                                </button>
+                                <Button 
+                                    textContent="Añadir al pedido"
+                                    bgColor="[#3ea440]"
+                                    bgColorHover="[#348935]"
+                                    width='[45%]'
+                                    textColor='white'
+                                    handleClick={()=> setPopupCategories(true)}
+                                />
 
-                                <button className="bg-white transition duration-[0.3s] hover:bg-red-300
-                                w-[45%] p-2 text-xl rounded-full shadow-[0_2px_4px_#a9a9a9] text-black"
-                                onClick={closeOperation}>
-                                    Cancelar operación
-                                </button>
+                                <Button 
+                                    textContent="Cancelar operación"
+                                    bgColor="white"
+                                    bgColorHover="red-300"
+                                    width='[45%]'
+                                    textColor='black'
+                                    handleClick={closeOperation}
+                                />
                             </div>
                         </div>
                     </div>
