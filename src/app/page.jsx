@@ -9,6 +9,7 @@ import { OrdersContext } from '@/context/OrdersContext'
 import Link from 'next/link'
 import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
+import CardButton from '@/components/card-button'
 import Popup from '@/components/popup'
 import FetchTesting from '../components/fetch-testing'
 import { FaWpforms } from "react-icons/fa6";
@@ -83,35 +84,25 @@ export default function Home() {
             bgColor="[#22222298]"
             onClickButton={() => setShowPopup(false)}
             onClickBackground={() => setShowPopup(false)}>
-                <button className="z-50 w-56 h-56 m-10 shadow-[0_0_20px_#222222b4]  rounded-2xl
-                hover:scale-105 transition"
-                onClick={()=> {
-                    setShowPopup(false)
-                    setShowNewOrder(true)
-                }}>
-                    <div className='w-full h-full bg-[url("https://gerente.com/co/wp-content/uploads/sites/16/2018/10/COMIDAS-RÁPIDAS-Y-RESTAURANTES.jpg")] 
-                    bg-cover rounded-2xl'>
-                        <div className='w-full h-full p-4 rounded-2xl bg-gradient-to-b from-transparent to-[#131313d0] flex flex-col items-start justify-end'>
-                            <h2 className='text-[#5bcc60] text-md font-medium'>Añadir a nuevo pedido</h2>
-                            <p className='text-xs text-white font-extralight'>Crea un pedido nuevo</p> 
-                        </div>
-                    </div>
-                </button>
+                <CardButton
+                    onClick={() => {
+                        setShowPopup(false)
+                        setShowNewOrder(true)
+                    }}
+                    url="https://gerente.com/co/wp-content/uploads/sites/16/2018/10/COMIDAS-RÁPIDAS-Y-RESTAURANTES.jpg"
+                    primaryText="Añadir a nuevo pedido"
+                    secondaryText="Crea un pedido nuevo"
+                />
 
-                <button className="z-50 w-56 h-56 m-10 bg-white shadow-[0_0_20px_#222222b4] rounded-2xl 
-                hover:scale-105 transition" 
-                onClick={()=> {
-                    setShowPopup(false)
-                    setAllOrders(true)
-                }}>
-                    <div className='w-full h-full bg-[url("https://cloudfront-us-east-1.images.arcpublishing.com/infobae/42Q6QIMLB5F3JPEXQWI6VV7PQ4.jpg")] 
-                    bg-cover rounded-2xl'>
-                        <div className='w-full h-full p-4 rounded-2xl bg-gradient-to-b from-transparent to-[#131313d0] flex flex-col items-start justify-end'>
-                            <h2 className='text-[#5bcc60] text-md font-medium'>Añadir a un pedido tuyo</h2>
-                            <p className='text-xs text-white font-extralight'>Incluyelo en un pedido existente</p> 
-                        </div>
-                    </div>
-                </button>
+                <CardButton 
+                    onClick={()=> {
+                        setShowPopup(false)
+                        setAllOrders(true)
+                    }}
+                    url="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/42Q6QIMLB5F3JPEXQWI6VV7PQ4.jpg"
+                    primaryText="Añadir a un pedido tuyo"
+                    secondaryText="Incluyelo en un pedido existent"
+                />
             </Popup>
 
             <div className={`fixed flex top-0 left-0 w-full h-full ${showNewOrder ? '' : 'hidden'} 
