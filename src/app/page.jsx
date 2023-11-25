@@ -9,6 +9,7 @@ import { OrdersContext } from '@/context/OrdersContext'
 import Link from 'next/link'
 import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
+import Popup from '@/components/popup'
 import FetchTesting from '../components/fetch-testing'
 import { FaWpforms } from "react-icons/fa6";
 
@@ -77,14 +78,11 @@ export default function Home() {
                 }
             </section>
 
-            <div className={`fixed top-0 lef-0 w-full h-full ${showPopup ? '' : 'hidden'} flex justify-center 
-            items-center bg-[#22222298] backdrop-blur-[2px] transition z-50`}>
-                <button
-                className="z-50 absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
-                onClick={() => setShowPopup(false)}>
-                    X
-                </button>
-
+            <Popup
+            ifShow={showPopup}
+            bgColor="[#22222298]"
+            onClickButton={() => setShowPopup(false)}
+            onClickBackground={() => setShowPopup(false)}>
                 <button className="z-50 w-56 h-56 m-10 shadow-[0_0_20px_#222222b4]  rounded-2xl
                 hover:scale-105 transition"
                 onClick={()=> {
@@ -114,12 +112,10 @@ export default function Home() {
                         </div>
                     </div>
                 </button>
-
-                <div className="w-full h-full absolute z-0" onClick={()=> setShowPopup(false)}></div>
-            </div>
+            </Popup>
 
             <div className={`fixed flex top-0 left-0 w-full h-full ${showNewOrder ? '' : 'hidden'} 
-            backdrop-blur-[2px] justify-center items-center z-50`}>
+            backdrop-blur-[2px] justify-center items-center z-50 bg-transparent`}>
                 <div className="z-50 shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] flex 
                 flex-col justify-center items-center bg-[#f4ece6] font-mono rounded-md over">
                     <button
