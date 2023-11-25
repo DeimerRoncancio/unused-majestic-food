@@ -1,6 +1,7 @@
 "use client";
 
 import { useState,useEffect,useContext } from 'react'
+import { useFetch } from '@/components/hooks/useFetch'
 import { useRouter } from 'next/navigation'
 import { BsSearch } from "react-icons/bs"
 import { useSession } from 'next-auth/react'
@@ -18,6 +19,7 @@ export default function Home() {
     const [showNewOrder,setShowNewOrder] = useState(false);
     const [showAllOrders,setAllOrders] = useState(false);
     const [allOrders,setOrders] = useState([])
+    const { data,isLoading,error } = useFetch("http://localhost:5000/pedidos")
     const platos = useContext(OrdersContext)
 
     const { data:session,status } = useSession();
@@ -26,13 +28,12 @@ export default function Home() {
         setShowPopup(validation);
     }
 
-    const getOrders = async ()=> {
-        try {
-            const response = await fetch('http://localhost:5000/pedidos').then(res => res.json())
-            const orders = response.filter(item => item.idUser === session?.user.id)
+    const getOrders = ()=> {
+        if(error){
+            const orders = data.filter(item => item.idUser === session?.user.id)
             setOrders(orders)
-        } catch(err) {
-            console.error(err)
+        } else {
+            console.log("Hubo un error.")
         }
     }
 
@@ -42,10 +43,10 @@ export default function Home() {
         data.idOrder = id
         localStorage.setItem('Order',JSON.stringify(data))
     }
-    
+
     useEffect(()=> {
         getOrders()
-    },[])
+    },[session])
 
     return (
         <>
@@ -147,10 +148,12 @@ export default function Home() {
                     <div className='w-full h-[10%] flex justify-center items-center'>
                         <h1 className=''>PEDIDOS</h1>
                     </div>
-                    
+
                     <div className='w-full h-[90%] flex justify-center items-center'>
                       <ul>
                         {
+                            isLoading ?
+                            <h2>Loading...</h2> :
                             allOrders.map((item)=> (
                                 <li key={item.id}>
                                     <button className='bg-slate-50 p-3 rounded-2xl border-2 hover:border-green-400 w-[150px] mb-2' 
@@ -169,7 +172,6 @@ export default function Home() {
 
                 <div className="w-full h-full absolute z-0" onClick={()=> setAllOrders(false)}></div>
             </div>
-            <h2>Soy Emerson</h2>
         </>
     );
 }

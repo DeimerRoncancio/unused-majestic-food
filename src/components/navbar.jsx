@@ -10,7 +10,7 @@ import Image from 'next/image'
 import './styles/navbar.css'
 
 export default function NavBar() {
-    const [showProfileOptions,setProfileOptions] = useState(true)
+    const [showProfileOptions,setProfileOptions] = useState(false)
     const [showNavbar,setNavbar] = useState(false)
 
     const { data:session,status } = useSession();
@@ -20,7 +20,7 @@ export default function NavBar() {
     const hiddenProfileOptions = ()=> {
         const body = document.querySelector("body");
         body.addEventListener("click",()=> {
-            setProfileOptions(true)
+            setProfileOptions(setProfileOptions)
         })
     }
 
@@ -60,14 +60,14 @@ export default function NavBar() {
                     }}>
                         <Image src={`/assets/images/${session?.user.profileImage}`} className="rounded-full object-cover" 
                         layout="fill" alt="profile"/>
-                        <div className={`profile-options flex absolute top-[120%] flex-col ${showProfileOptions ? 'hidden' : ''}`}>
+                        <div className={`profile-options flex absolute top-[120%] flex-col ${!showProfileOptions ? 'hidden' : ''}`}>
                             <button className="mt-4"
                             onClick={()=> {
                                 router.push(`/profile/${session?.user.id}`)
                             }}>Perfil</button>
                             <button className="mt-4" onClick={() => {
-                                setProfileOptions(!showProfileOptions)
                                 router.push('/user-pedidos')
+                                setProfileOptions(!showProfileOptions)
                             }}>Pedidos</button>
                         </div>
                     </div>
