@@ -13,7 +13,7 @@ const handler = NextAuth ({
                 const users = await fetch('http://localhost:5000/usuarios').then(res => res.json())
 
                 let user;
-                
+
                 users.forEach((item)=> {
                     if(item.email == credentials.email && item.password == credentials.password) {
                         user = item
