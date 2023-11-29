@@ -48,7 +48,7 @@ export default function Home() {
 
     useEffect(()=> {
         getOrders()
-    },[isLoading])
+    },[session && isLoading])
 
     return (
         <>
