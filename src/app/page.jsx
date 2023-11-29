@@ -48,7 +48,7 @@ export default function Home() {
 
     useEffect(()=> {
         getOrders()
-    },[session])
+    },[isLoading])
 
     return (
         <>
@@ -129,7 +129,7 @@ export default function Home() {
                     <div className='w-full h-[10%] flex justify-center items-center'>
                         <h1 className=''>PEDIDOS</h1>
                     </div>
-                    
+
                     <div className='w-full h-[90%] flex justify-center items-center'>
                         <ul>
                             {
@@ -137,8 +137,8 @@ export default function Home() {
                                 <h2>Loading...</h2> :
                                 allOrders.map((item) => (
                                     <li key={item.id}>
-                                        <button className='bg-slate-50 p-3 rounded-2xl border-2 hover:border-green-400 w-[150px] mb-2'
-                                            onClick={() => sendInOrder(item.id)}>
+                                        <button className='bg-slate-50 p-3 rounded-2xl border-2 hover:border-green-400 
+                                        w-[150px] mb-2' onClick={() => sendInOrder(item.id)}>
                                             <Link className='font-mono' href={`pedidos/${item.id}`}>
                                                 {item.name}
                                             </Link>
