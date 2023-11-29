@@ -66,6 +66,18 @@
       "idOrder": "19c91c26-7c54-4fec-8ced-4787fbbab4fb",
       "categoria": "Plato principal",
       "id": "00cdd990-a7a2-4b12-9301-b6e888ce18de"
+    },
+    {
+      "nombre": "Coca Cola",
+      "imagen": "cocacola.png",
+      "calificacion": 4.2,
+      "price": "3500",
+      "category": [
+        "bebida"
+      ],
+      "idOrder": "73d6b95e-09e0-49bc-91d0-5c7a5849b87b",
+      "categoria": "Bebida",
+      "id": "3556ed93-b3c5-4de6-a9b7-640ca00aeb71"
     }
   ],
   "usuarios": [
