@@ -105,60 +105,51 @@ export default function Home() {
                 />
             </Popup>
 
-            <div className={`fixed flex top-0 left-0 w-full h-full ${showNewOrder ? '' : 'hidden'} 
-            backdrop-blur-[2px] justify-center items-center z-50 bg-transparent`}>
+            <Popup
+            ifShow={showNewOrder}
+            bgColor="[#22222298]"
+            onClickButton={() => setShowNewOrder(false)}
+            onClickBackground={() => setShowNewOrder(false)}>
                 <div className="z-50 shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] flex 
                 flex-col justify-center items-center bg-[#f4ece6] font-mono rounded-md over">
-                    <button
-                    className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
-                    onClick={() => setShowNewOrder(false)}>
-                        X
-                    </button>
                     <FormPedidos />
                     <div className='w-full h-[10%] bg-white self-baseline flex justify-center items-center'>
-                            <FaWpforms size={30}/>
+                        <FaWpforms size={30} />
                     </div>
                 </div>
+            </Popup>
 
-                <div className="w-full h-full absolute z-0" onClick={()=> setShowNewOrder(false)}></div>
-            </div>
-
-            <div className={`fixed flex top-0 left-0 w-full h-full ${showAllOrders ? '' : 'hidden'} 
-            backdrop-blur-[2px] justify-center items-center z-50`}>
+            <Popup
+            ifShow={showAllOrders}
+            bgColor="[#22222298]"
+            onClickButton={() => setAllOrders(false)}
+            onClickBackground={()=> setAllOrders(false)}>
                 <div className="z-50 shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] flex 
                 flex-col justify-center items-center bg-[#f4ece6] rounded-md">
-                    <button
-                    className="absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
-                    onClick={() => setAllOrders(false)}>
-                        X
-                    </button>
                     <div className='w-full h-[10%] flex justify-center items-center'>
                         <h1 className=''>PEDIDOS</h1>
                     </div>
-
-                    <div className='w-full h-[90%] flex justify-center items-center'>
-                      <ul>
-                        {
-                            isLoading ?
-                            <h2>Loading...</h2> :
-                            allOrders.map((item)=> (
-                                <li key={item.id}>
-                                    <button className='bg-slate-50 p-3 rounded-2xl border-2 hover:border-green-400 w-[150px] mb-2' 
-                                            onClick={()=>sendInOrder(item.id)}>
-                                        <Link className='font-mono' href={`pedidos/${item.id}`}>
-                                            {item.name}
-                                        </Link>
-                                    </button>
-                                </li> 
-                            ))
-                        }
-                    </ul>  
-                    </div>
                     
+                    <div className='w-full h-[90%] flex justify-center items-center'>
+                        <ul>
+                            {
+                                isLoading ?
+                                <h2>Loading...</h2> :
+                                allOrders.map((item) => (
+                                    <li key={item.id}>
+                                        <button className='bg-slate-50 p-3 rounded-2xl border-2 hover:border-green-400 w-[150px] mb-2'
+                                            onClick={() => sendInOrder(item.id)}>
+                                            <Link className='font-mono' href={`pedidos/${item.id}`}>
+                                                {item.name}
+                                            </Link>
+                                        </button>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
                 </div>
-
-                <div className="w-full h-full absolute z-0" onClick={()=> setAllOrders(false)}></div>
-            </div>
+            </Popup>
         </>
     );
 }

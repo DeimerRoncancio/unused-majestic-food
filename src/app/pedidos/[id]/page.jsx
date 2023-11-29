@@ -230,7 +230,7 @@ export default function Pedidos({ params }) {
                                     textContent="Añadir al pedido"
                                     bgColor="[#3ea440]"
                                     bgColorHover="[#348935]"
-                                    width='[45%]'
+                                    width='45%'
                                     textColor='white'
                                     handleClick={()=> setPopupCategories(true)}
                                 />
@@ -239,7 +239,7 @@ export default function Pedidos({ params }) {
                                     textContent="Cancelar operación"
                                     bgColor="white"
                                     bgColorHover="red-300"
-                                    width='[45%]'
+                                    width='45%'
                                     textColor='black'
                                     handleClick={closeOperation}
                                 />

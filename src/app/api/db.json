@@ -37,9 +37,9 @@
         "plato-principal",
         "plato-secundario"
       ],
-      "idOrder": "19c91c26-7c54-4fec-8ced-4787fbbab4fb",
-      "categoria": "Plato secundario",
-      "id": "0d71cb72-5d30-40a5-9c14-f21d092879de"
+      "idOrder": "d636827e-054d-4a6c-99cf-791a83fa0551",
+      "categoria": "Bebida",
+      "id": "676dba36-d62d-417a-b1f2-77f2c28eaee7"
     },
     {
       "nombre": "Empanada",
@@ -50,9 +50,9 @@
         "plato-principal",
         "plato-secundario"
       ],
-      "idOrder": "d636827e-054d-4a6c-99cf-791a83fa0551",
-      "categoria": "Bebida",
-      "id": "676dba36-d62d-417a-b1f2-77f2c28eaee7"
+      "idOrder": "19c91c26-7c54-4fec-8ced-4787fbbab4fb",
+      "categoria": "Plato principal",
+      "id": "00cdd990-a7a2-4b12-9301-b6e888ce18de"
     }
   ],
   "usuarios": [
