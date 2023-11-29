@@ -2,6 +2,7 @@ import { v4 as uuid } from 'uuid'
 import { useDataForm } from './hooks/useDataForm'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import getDataForm from './helpers/getFormData'
 
 export default function FormPedidos({category}) {
     const { data:session,status } = useSession()
@@ -16,16 +17,15 @@ export default function FormPedidos({category}) {
     const readFile = async(evt)=> {
         evt.preventDefault();
 
-        const data = new FormData(evt.currentTarget);
-        const allData = Object.fromEntries(data);
-        allData.id = uuid();
-        allData.idUser = session?.user.id
+        const data = getDataForm(evt.target)
+        data.id = uuid();
+        data.idUser = session?.user.id
 
         const item = localStorage.getItem("Order");
         const dataStorage = JSON.parse(item);
-        dataStorage.idOrder = allData.id;
+        dataStorage.idOrder = data.id;
 
-        const dateTarget = new Date(allData.date)
+        const dateTarget = new Date(data.date)
         const dateOrder = {
             year: dateTarget.getFullYear(),
             month: dateTarget.getMonth() + 1,
@@ -34,7 +34,7 @@ export default function FormPedidos({category}) {
             minutes: dateTarget.getMinutes()
         }
 
-        allData.date = dateOrder
+        data.date = dateOrder
 
         localStorage.setItem("Order",JSON.stringify(dataStorage));
 
@@ -42,13 +42,12 @@ export default function FormPedidos({category}) {
             const response = await fetch("http://localhost:5000/pedidos",{
                 method: 'POST',
                 headers: {'content-type':'application/json'},
-                body: JSON.stringify(allData)
+                body: JSON.stringify(data)
             }).then(res => res.json());
             router.push(`pedidos/${response.id}`)
         } catch(err) {
             console.error(err);
         }
-
     }
 
     return (
