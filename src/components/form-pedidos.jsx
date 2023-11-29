@@ -3,6 +3,7 @@ import { useDataForm } from './hooks/useDataForm'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import getDataForm from './helpers/getFormData'
+import getStorage from './helpers/getLocalStorage'
 
 export default function FormPedidos({category}) {
     const { data:session,status } = useSession()
@@ -21,8 +22,7 @@ export default function FormPedidos({category}) {
         data.id = uuid();
         data.idUser = session?.user.id
 
-        const item = localStorage.getItem("Order");
-        const dataStorage = JSON.parse(item);
+        const dataStorage = getStorage("Order")
         dataStorage.idOrder = data.id;
 
         const dateTarget = new Date(data.date)
