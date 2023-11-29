@@ -26,7 +26,7 @@ export default function Login() {
 
         if(signin.ok) return router.push('/')
     }
-    
+
     return (
         <div className="w-full h-screen flex flex-col justify-center items-center">
             <form className="grid grid-cols-2 gap-6" onSubmit={sendUser}>

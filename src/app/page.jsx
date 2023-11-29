@@ -11,6 +11,7 @@ import CardOrder from '@/components/card-order'
 import FormPedidos from '@/components/form-pedidos'
 import CardButton from '@/components/card-button'
 import Popup from '@/components/popup'
+import Testing from '@/components/testing';
 import FetchTesting from '../components/fetch-testing'
 import { FaWpforms } from "react-icons/fa6";
 

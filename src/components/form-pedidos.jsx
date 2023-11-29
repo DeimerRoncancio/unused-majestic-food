@@ -15,12 +15,12 @@ export default function FormPedidos({category}) {
 
     const readFile = async(evt)=> {
         evt.preventDefault();
-        
+
         const data = new FormData(evt.currentTarget);
         const allData = Object.fromEntries(data);
         allData.id = uuid();
         allData.idUser = session?.user.id
-        
+
         const item = localStorage.getItem("Order");
         const dataStorage = JSON.parse(item);
         dataStorage.idOrder = allData.id;
@@ -33,7 +33,7 @@ export default function FormPedidos({category}) {
             hours: dateTarget.getHours(),
             minutes: dateTarget.getMinutes()
         }
-        
+
         allData.date = dateOrder
 
         localStorage.setItem("Order",JSON.stringify(dataStorage));
@@ -57,19 +57,22 @@ export default function FormPedidos({category}) {
                 <h1 className='self-center font-mono text-xl'>CREAR PEDIDO</h1>
                 <label className='m-2 ' htmlFor='nameOrder'>Nombre del pedido:</label>
                 <input 
-                    id="nameOrder" name="name" className="m-2 bg-zinc-100 p-2 rounded-md border-b-2 focus:border-green-500 outline-none" type="text" 
-                    placeholder="Nombre del pedido" value={name} onChange={putDates} 
+                    id="nameOrder" name="name" className="m-2 bg-zinc-100 p-2 rounded-md border-b-2 
+                    focus:border-green-500 outline-none" type="text" placeholder="Nombre del pedido" 
+                    value={name} onChange={putDates} 
                 />
 
                 <label className='m-2' htmlFor='descriptionOrder'>Descripción</label>
                 <textarea 
-                    id='descriptionOrder' name='description' className='m-2 bg-zinc-100 p-2 rounded-md border-b-2 focus:border-green-500 outline-none' 
-                    placeholder="Descripción" value={description} onChange={putDates}
+                    id='descriptionOrder' name='description' className='m-2 bg-zinc-100 p-2 rounded-md 
+                    border-b-2 focus:border-green-500 outline-none' placeholder="Descripción" 
+                    value={description} onChange={putDates}
                 />
 
                 <label className='m-2' htmlFor='dateOrder'>Fecha de entrega</label>
-                <input id='dateOrder' name='date' className='m-2 bg-zinc-100 p-2 rounded-md border-b-2 focus:border-green-500 outline-none' type="datetime-local" 
-                    value={date} onChange={putDates}
+                <input 
+                    id='dateOrder' name='date' className='m-2 bg-zinc-100 p-2 rounded-md border-b-2 
+                    focus:border-green-500 outline-none' type="datetime-local" value={date} onChange={putDates}
                 />
 
                 <button className="m-2 p-2 bg-green-500 rounded-md">
