@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import getDataForm from './helpers/getFormData'
 import getStorage from './helpers/getLocalStorage'
+import getDate from './helpers/getDate'
 
 export default function FormPedidos({category}) {
     const { data:session,status } = useSession()
@@ -25,16 +26,7 @@ export default function FormPedidos({category}) {
         const dataStorage = getStorage("Order")
         dataStorage.idOrder = data.id;
 
-        const dateTarget = new Date(data.date)
-        const dateOrder = {
-            year: dateTarget.getFullYear(),
-            month: dateTarget.getMonth() + 1,
-            day: dateTarget.getDate(),
-            hours: dateTarget.getHours(),
-            minutes: dateTarget.getMinutes()
-        }
-
-        data.date = dateOrder
+        data.date = getDate(data.date)
 
         localStorage.setItem("Order",JSON.stringify(dataStorage));
 
