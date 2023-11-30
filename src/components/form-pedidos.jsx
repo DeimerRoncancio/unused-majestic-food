@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
 // Importar funciones de ayuda
-import fetchPost from '@/components/helpers/fethPostData'
+import fetchPost from '@/components/helpers/fetchPostData'
 import getDataForm from './helpers/getFormData'
 import getStorage from './helpers/getLocalStorage'
 import getDate from './helpers/getDate'

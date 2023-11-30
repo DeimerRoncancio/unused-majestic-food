@@ -1,14 +1,17 @@
 "use client"
 
+import { v4 as uuid } from 'uuid'
 import { useState,useEffect } from 'react'
 import { useFetchId } from '@/components/hooks/useFetchId'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useFetch } from '@/components/hooks/useFetch'
 import { useDataForm } from '@/components/hooks/useDataForm'
-import { v4 as uuid } from 'uuid'
-import { AiOutlinePlus } from 'react-icons/ai'
 import { FaEdit } from "react-icons/fa";
+import { AiOutlinePlus } from 'react-icons/ai'
+import getStorage from '@/components/helpers/getLocalStorage'
+import fetchPost from '@/components/helpers/fetchPostData'
+import fetchDelete from '@/components/helpers/fetchDeleteData'
 import PlatePresentation from '@/components/plate-presentation'
 import Button from '@/components/button'
 import Plate from '@/components/plate'
@@ -34,8 +37,7 @@ export default function Pedidos({ params }) {
         dateOrder: ''
     })
 
-    const item = localStorage.getItem("Order");
-    const order = JSON.parse(item)
+    const order = getStorage("Order");
 
     const closeOperation = ()=> {
         order.idOrder = ''
@@ -49,16 +51,12 @@ export default function Pedidos({ params }) {
         order.categoria = itemCategory
         order.id = uuid()
 
-        try {
-            const response = await fetch("http://localhost:5000/platos", {
-                method: "POST",
-                headers: { "content-type": "application/json" },
-                body: JSON.stringify(order)
-            }).then(res => res.json());
-            console.log(response)
-            setAllPlates([...allPlates,response]);
-        } catch(err) {
-            console.error(err);
+        const { data,isLoading,error } = await fetchPost("http://localhost:5000/platos",order);
+        
+        if(!error) {
+            setAllPlates([...allPlates,data]);
+        } else {
+            console.log("Hubo un error.")
         }
 
         setPopupCategories(false)
@@ -98,18 +96,17 @@ export default function Pedidos({ params }) {
     }
 
     const deleteOrder = async()=> {
-        try {
-            await fetch(`http://localhost:5000/pedidos/${params.id}`,{
-                method: "DELETE"
-            })
-            allPlates.forEach(async(item)=> {
-                await fetch(`http://localhost:5000/platos/${item.id}`,{
-                    method: 'DELETE'
-                })
-            })
-        } catch(err) {
-            console.error(err)
-        }
+        allPlates.forEach(async(item)=> {
+            const { error } = await fetchDelete(`http://localhost:5000/platos/${item.id}`)
+
+            if(!error) {
+                setAllPlates(data)
+                const { error } = await fetchDelete(`http://localhost:5000/pedidos/${params.id}`)
+                if(error) return console.log("Hubo un error.")
+            } else {
+                return console.log(`Hubo un error en el item: ${item.id}`)
+            }
+        })
     }
 
     const updateName = async(evt)=> {
