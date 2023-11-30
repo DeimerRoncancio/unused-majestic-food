@@ -9,9 +9,11 @@ import { useFetch } from '@/components/hooks/useFetch'
 import { useDataForm } from '@/components/hooks/useDataForm'
 import { FaEdit } from "react-icons/fa";
 import { AiOutlinePlus } from 'react-icons/ai'
+import getDate from '@/components/helpers/getDate'
 import getStorage from '@/components/helpers/getLocalStorage'
 import fetchPost from '@/components/helpers/fetchPostData'
 import fetchDelete from '@/components/helpers/fetchDeleteData'
+import fetchPut from '@/components/helpers/fetchPutData'
 import PlatePresentation from '@/components/plate-presentation'
 import Button from '@/components/button'
 import Plate from '@/components/plate'
@@ -51,7 +53,7 @@ export default function Pedidos({ params }) {
         order.categoria = itemCategory
         order.id = uuid()
 
-        const { data,isLoading,error } = await fetchPost("http://localhost:5000/platos",order);
+        const { data,error } = await fetchPost("http://localhost:5000/platos",order);
         
         if(!error) {
             setAllPlates([...allPlates,data]);
@@ -115,17 +117,8 @@ export default function Pedidos({ params }) {
         const newName = evt.target[0].value
         dataId.name = newName
 
-        try {
-            await fetch(`http://localhost:5000/pedidos/${params.id}`,{
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataId)
-            })
-        } catch(err) {
-            console.error(err)
-        }
+        const { error } = await fetchPut(`http://localhost:5000/pedidos/${params.id}`,dataId)
+        if(error) return console.log("Hubo un error al cambiar el nombre del pedido.")
     }
 
     const updateDescription = async(evt)=> {
@@ -134,49 +127,18 @@ export default function Pedidos({ params }) {
         const newDescription = evt.target[0].value
         dataId.description = newDescription
 
-        console.log(dataId)
-
-        try {
-            await fetch(`http://localhost:5000/pedidos/${params.id}`,{
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataId)
-            })
-        } catch(err) {
-            console.error(err)
-        }
+        const { error } = await fetchPut(`http://localhost:5000/pedidos/${params.id}`,dataId)
+        if(error) return console.log("Hubo un error al cambiar la descripción")
     }
 
     const updateDate = async(evt)=> {
         evt.preventDefault();
         
         const newDate = evt.target[0].value
-        dataId.date = newDate
-        const dateTarget = new Date(dataId.date)
-        const dateOrder = {
-            year: dateTarget.getFullYear(),
-            month: dateTarget.getMonth() + 1,
-            day: dateTarget.getDate(),
-            hours: dateTarget.getHours(),
-            minutes: dateTarget.getMinutes()
-        }
-        dataId.date = dateOrder
+        dataId.date = getDate(newDate)
 
-        console.log(dataId)
-
-        try {
-            await fetch(`http://localhost:5000/pedidos/${params.id}`,{
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(dataId)
-            })
-        } catch(err) {
-            console.error(err)
-        }
+        const { error } = await fetchPut(`http://localhost:5000/pedidos/${params.id}`,dataId)
+        if(error) return console.log("Hubo un error al cambiar la fecha.")
     }
 
     useEffect(()=> {

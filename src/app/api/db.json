@@ -1,6 +1,33 @@
 {
-  "pedidos": [],
-  "platos": [],
+  "pedidos": [
+    {
+      "name": "Quiubole caballero",
+      "description": "awefs",
+      "date": {
+        "year": 2023,
+        "month": 11,
+        "day": 14,
+        "hours": 18,
+        "minutes": 3
+      },
+      "id": "62530860-17db-4f09-9abf-73abaf07ca87",
+      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+    }
+  ],
+  "platos": [
+    {
+      "nombre": "Arroz con pollo",
+      "imagen": "arroz-con-pollo.png",
+      "calificacion": 4.8,
+      "price": "15500",
+      "category": [
+        "plato-principal"
+      ],
+      "idOrder": "62530860-17db-4f09-9abf-73abaf07ca87",
+      "categoria": "Plato secundario",
+      "id": "40281a4e-1b3d-49c7-b594-0283191f73ee"
+    }
+  ],
   "usuarios": [
     {
       "email": "deimerroncancio@gmail.com",
