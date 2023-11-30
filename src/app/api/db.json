@@ -1,187 +1,72 @@
 {
   "pedidos": [
     {
-      "name": "Pedido #98562",
-      "description": "dgtfgjkhjlk",
-      "date": {
-        "year": 2023,
-        "month": 11,
-        "day": 26,
-        "hours": 1,
-        "minutes": 20
-      },
-      "id": "19c91c26-7c54-4fec-8ced-4787fbbab4fb",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
-    },
-    {
-      "name": "Pedido #2",
-      "description": "sdfgjvbkn",
-      "date": {
-        "year": 2023,
-        "month": 11,
-        "day": 26,
-        "hours": 13,
-        "minutes": 1
-      },
-      "id": "d636827e-054d-4a6c-99cf-791a83fa0551",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
-    },
-    {
       "name": "Pedido #1",
-      "description": "erthygjuhkijl",
+      "description": "dgrxtfhcgvj",
       "date": {
         "year": 2023,
         "month": 11,
         "day": 30,
-        "hours": 15,
-        "minutes": 32
+        "hours": 23,
+        "minutes": 45
       },
-      "id": "73d6b95e-09e0-49bc-91d0-5c7a5849b87b",
+      "id": "b056e74f-accf-4b7c-a6a8-92eac46eb9c4",
       "idUser": "922ca23d-87bd-4bba-abbc-f763c585b010"
     },
     {
-      "name": "Pedido # 79rg",
-      "description": "wsedghtfgv",
+      "name": "Pedido #1",
+      "description": "fsegdrxtfhcgyjh",
       "date": {
         "year": 2023,
         "month": 11,
         "day": 30,
-        "hours": 19,
-        "minutes": 35
-      },
-      "id": "7abea024-d0b1-491e-be78-b6de0dcc6869",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
-    },
-    {
-      "name": "Deimer",
-      "description": "sdthfgjhkj",
-      "date": {
-        "year": 2023,
-        "month": 11,
-        "day": 30,
-        "hours": 19,
+        "hours": 23,
         "minutes": 46
       },
-      "id": "63c0ba53-8f62-4304-8088-0ab70dcea3b3",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+      "id": "a1e8e091-ab60-42aa-8d57-1b2020e81d1c",
+      "idUser": "922ca23d-87bd-4bba-abbc-f763c585b010"
     },
     {
-      "name": "gdhfcgh",
-      "description": "etyfgyjhjnm,",
+      "name": "Pedido #2",
+      "description": "szdgrxhtfcgjh",
       "date": {
         "year": 2023,
         "month": 11,
         "day": 30,
-        "hours": 19,
-        "minutes": 59
+        "hours": 23,
+        "minutes": 47
       },
-      "id": "196c2be3-bc70-4e99-ab7f-4fdc6193882f",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+      "id": "d53852cc-b148-4c99-a18c-c2e84802fa87",
+      "idUser": "922ca23d-87bd-4bba-abbc-f763c585b010"
+    },
+    {
+      "name": "Pedido # 79",
+      "description": "szdgxfhtcgjvh",
+      "date": {
+        "year": 2023,
+        "month": 12,
+        "day": 1,
+        "hours": 23,
+        "minutes": 47
+      },
+      "id": "a4017bd6-7fa1-40f2-a4b9-7931914d8e1c",
+      "idUser": "922ca23d-87bd-4bba-abbc-f763c585b010"
+    },
+    {
+      "name": "Pedido #3",
+      "description": "grsthyjgjh",
+      "date": {
+        "year": 2023,
+        "month": 12,
+        "day": 2,
+        "hours": 23,
+        "minutes": 48
+      },
+      "id": "6db502b1-2f78-4076-8308-0781a52ad3a4",
+      "idUser": "922ca23d-87bd-4bba-abbc-f763c585b010"
     }
   ],
-  "platos": [
-    {
-      "nombre": "Empanada",
-      "imagen": "empanadas.webp",
-      "calificacion": 3.2,
-      "price": "5000",
-      "category": [
-        "plato-principal",
-        "plato-secundario"
-      ],
-      "idOrder": "d636827e-054d-4a6c-99cf-791a83fa0551",
-      "categoria": "Bebida",
-      "id": "676dba36-d62d-417a-b1f2-77f2c28eaee7"
-    },
-    {
-      "nombre": "Empanada",
-      "imagen": "empanadas.webp",
-      "calificacion": 3.2,
-      "price": "5000",
-      "category": [
-        "plato-principal",
-        "plato-secundario"
-      ],
-      "idOrder": "19c91c26-7c54-4fec-8ced-4787fbbab4fb",
-      "categoria": "Plato principal",
-      "id": "00cdd990-a7a2-4b12-9301-b6e888ce18de"
-    },
-    {
-      "nombre": "Coca Cola",
-      "imagen": "cocacola.png",
-      "calificacion": 4.2,
-      "price": "3500",
-      "category": [
-        "bebida"
-      ],
-      "idOrder": "73d6b95e-09e0-49bc-91d0-5c7a5849b87b",
-      "categoria": "Bebida",
-      "id": "3556ed93-b3c5-4de6-a9b7-640ca00aeb71"
-    },
-    {
-      "nombre": "Empanada",
-      "imagen": "empanadas.webp",
-      "calificacion": 3.2,
-      "price": "5000",
-      "category": [
-        "plato-principal",
-        "plato-secundario"
-      ],
-      "idOrder": "63c0ba53-8f62-4304-8088-0ab70dcea3b3",
-      "categoria": "Plato secundario",
-      "id": "f4d4ab15-c0fe-4676-9a8f-c67dc101434c"
-    },
-    {
-      "nombre": "Coca Cola",
-      "imagen": "cocacola.png",
-      "calificacion": 4.2,
-      "price": "3500",
-      "category": [
-        "bebida"
-      ],
-      "idOrder": "d636827e-054d-4a6c-99cf-791a83fa0551",
-      "categoria": "Bebida",
-      "id": "1dd5e07f-2a14-463f-8770-bbcccf23c7f2"
-    },
-    {
-      "nombre": "Empanada",
-      "imagen": "empanadas.webp",
-      "calificacion": 3.2,
-      "price": "5000",
-      "category": [
-        "plato-principal",
-        "plato-secundario"
-      ],
-      "idOrder": "63c0ba53-8f62-4304-8088-0ab70dcea3b3",
-      "categoria": "Plato secundario",
-      "id": "08cb4550-fe69-46fa-acdf-990b4512371b"
-    },
-    {
-      "nombre": "Coca Cola",
-      "imagen": "cocacola.png",
-      "calificacion": 4.2,
-      "price": "3500",
-      "category": [
-        "bebida"
-      ],
-      "idOrder": "63c0ba53-8f62-4304-8088-0ab70dcea3b3",
-      "categoria": "Bebida",
-      "id": "939089b1-839f-434c-8292-943edf8202ba"
-    },
-    {
-      "nombre": "Hamburguesa clasica",
-      "imagen": "burguer.png",
-      "calificacion": 4.2,
-      "price": "5000",
-      "category": [
-        "plato-principal",
-        "plato-secundario"
-      ],
-      "idOrder": "63c0ba53-8f62-4304-8088-0ab70dcea3b3",
-      "categoria": "Postre",
-      "id": "e0504758-8d7a-4663-a8f7-f532989f6387"
-    }
-  ],
+  "platos": [],
   "usuarios": [
     {
       "email": "deimerroncancio@gmail.com",
