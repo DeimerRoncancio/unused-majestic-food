@@ -23,12 +23,16 @@ export default function Home() {
     const [showPopup, setShowPopup] = useState(false);
     const [showNewOrder,setShowNewOrder] = useState(false);
     const [showAllOrders,setAllOrders] = useState(false);
+
     // Estado para almacenar la lista de pedidos
     const [allOrders,setOrders] = useState([])
+
     // Hook para obtener los pedidos almacenados.
     const { data,isLoading,error } = useFetch("http://localhost:5000/pedidos")
+
     // Hook de Next.js para la navegación
     const router = useRouter()
+    
     // Contexto para los platos (¿está definido en otro lugar?)
     const platos = useContext(OrdersContext)
 

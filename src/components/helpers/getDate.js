@@ -1,5 +1,6 @@
 const getDate = (date) => {
     const dateTarget = new Date(date)
+    
     const dateOrder = {
         year: dateTarget.getFullYear(),
         month: dateTarget.getMonth() + 1,

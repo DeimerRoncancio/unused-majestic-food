@@ -70,7 +70,6 @@ export default function FormPedidos({category}) {
                     Crear
                 </button>
             </div>
-                
         </form>
     )
 }

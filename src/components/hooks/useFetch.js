@@ -1,6 +1,7 @@
 "use client"
 
 import { useState,useEffect } from 'react'
+import fetchData from '@/components/helpers/fetchData'
 
 export const useFetch = (url) => {
     const [data,setData] = useState([])   
@@ -8,13 +9,10 @@ export const useFetch = (url) => {
     const [error,setError] = useState(true)
     
     const getData = async()=> {
-        try {
-            const response = await fetch(`${url}`).then(res => res.json());
-            setData(response)
-            setIsLoading(false)
-        } catch(err) {
-            setError(false)
-        }
+        const { data,isLoading,error } = await fetchData(url)
+        setData(data)
+        setIsLoading(isLoading)
+        setError(error)
     }
 
     useEffect(()=> {
