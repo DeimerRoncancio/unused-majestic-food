@@ -1,7 +1,7 @@
 {
   "pedidos": [
     {
-      "name": "Pedido #1",
+      "name": "Pedido #98562",
       "description": "dgtfgjkhjlk",
       "date": {
         "year": 2023,
@@ -117,6 +117,69 @@
       "idOrder": "73d6b95e-09e0-49bc-91d0-5c7a5849b87b",
       "categoria": "Bebida",
       "id": "3556ed93-b3c5-4de6-a9b7-640ca00aeb71"
+    },
+    {
+      "nombre": "Empanada",
+      "imagen": "empanadas.webp",
+      "calificacion": 3.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "63c0ba53-8f62-4304-8088-0ab70dcea3b3",
+      "categoria": "Plato secundario",
+      "id": "f4d4ab15-c0fe-4676-9a8f-c67dc101434c"
+    },
+    {
+      "nombre": "Coca Cola",
+      "imagen": "cocacola.png",
+      "calificacion": 4.2,
+      "price": "3500",
+      "category": [
+        "bebida"
+      ],
+      "idOrder": "d636827e-054d-4a6c-99cf-791a83fa0551",
+      "categoria": "Bebida",
+      "id": "1dd5e07f-2a14-463f-8770-bbcccf23c7f2"
+    },
+    {
+      "nombre": "Empanada",
+      "imagen": "empanadas.webp",
+      "calificacion": 3.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "63c0ba53-8f62-4304-8088-0ab70dcea3b3",
+      "categoria": "Plato secundario",
+      "id": "08cb4550-fe69-46fa-acdf-990b4512371b"
+    },
+    {
+      "nombre": "Coca Cola",
+      "imagen": "cocacola.png",
+      "calificacion": 4.2,
+      "price": "3500",
+      "category": [
+        "bebida"
+      ],
+      "idOrder": "63c0ba53-8f62-4304-8088-0ab70dcea3b3",
+      "categoria": "Bebida",
+      "id": "939089b1-839f-434c-8292-943edf8202ba"
+    },
+    {
+      "nombre": "Hamburguesa clasica",
+      "imagen": "burguer.png",
+      "calificacion": 4.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "63c0ba53-8f62-4304-8088-0ab70dcea3b3",
+      "categoria": "Postre",
+      "id": "e0504758-8d7a-4663-a8f7-f532989f6387"
     }
   ],
   "usuarios": [

@@ -1,20 +1,18 @@
 "use client"
 
 import { useState,useEffect } from 'react'
+import fetchDataId from '@/components/helpers/fetchDataId'
 
 export const useFetchId = (url,id) => {
     const [dataId,setData] = useState({})   
     const [isLoadingId,setIsLoading] = useState(true)
-    const [errorId,setError] = useState(true)
-    
+    const [errorId,setError] = useState(false)
+
     const getData = async()=> {
-        try {
-            const response = await fetch(`${url}/${id}`).then(res => res.json())
-            setData(response)
-            setIsLoading(false)
-        } catch (err) {
-            setError(false)
-        }
+        const { data,isLoading,error } = await fetchDataId(url,id)
+        setData(data)
+        setIsLoading(isLoading)
+        setError(error)
     }
 
     useEffect(()=> {

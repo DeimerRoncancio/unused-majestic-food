@@ -66,7 +66,7 @@ export default function Pedidos({ params }) {
     }
 
     const getPlates = ()=> {
-        if (error) {
+        if (!error) {
             const arrayElements = data.filter(item => item.idOrder === params.id)
             arrayElements.sort((a, b) => {
                 if (a.categoria === 'Plato principal') {
@@ -183,7 +183,7 @@ export default function Pedidos({ params }) {
     }
 
     useEffect(()=> {
-        if(!errorId) {
+        if(errorId) {
             console.log("Ha ocurrido un error.")
         }
         getPlates()

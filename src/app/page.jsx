@@ -46,7 +46,7 @@ export default function Home() {
 
     // Función para obtener los pedidos del usuario
     const getOrders = ()=> {
-        if(error){
+        if(!error){
             const orders = data.filter(item => item.idUser === session?.user.id)
             setOrders(orders)
         } else {
@@ -61,7 +61,6 @@ export default function Home() {
         data.idOrder = id
         localStorage.setItem('Order',JSON.stringify(data))
         router.push(`pedidos/${id}`)
-        
     }
 
     // Efecto para obtener los pedidos cuando se carga la sesión

@@ -1,16 +1,16 @@
-const fetchData = async(url)=> {
+const fetchDataId = async(url,id)=> {
     try {
-        const data = await fetch(`${url}`).then(res => res.json());
+        const data = await fetch(`${url}/${id}`).then(res => res.json())
         return {
             data,
             isLoading: false,
             error: false
         }
-    } catch(err) {
+    } catch (err) {
         return {
             error: true
         }
     }
 }
 
-export default fetchData
+export default fetchDataId
