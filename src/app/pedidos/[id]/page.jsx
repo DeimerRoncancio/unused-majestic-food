@@ -1,7 +1,7 @@
 "use client"
 
 import { v4 as uuid } from 'uuid'
-import { useState,useEffect } from 'react'
+import { useState,useEffect,useRef } from 'react'
 import { useFetchId } from '@/components/hooks/useFetchId'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
@@ -31,6 +31,7 @@ export default function Pedidos({ params }) {
     const [allPlates,setAllPlates] = useState([])
     const [cantProducts,setCantProducts] = useState()
     const [price,setPrice] = useState()
+    const formRef = useRef()
     const { dataId,isLoadingId,errorId } = useFetchId("http://localhost:5000/pedidos",params.id)
     const { data,isLoading,error } = useFetch("http://localhost:5000/platos")
     const { updateData } = useUpdateInfo({
@@ -115,6 +116,16 @@ export default function Pedidos({ params }) {
         })
     }
 
+    const hideForm = (evt)=> {
+        if(evt.key == "Escape") {
+            setShowName(false)
+        }
+    }
+
+    useEffect(()=> {
+        if(showName) formRef.current.focus()
+    },[showName])
+    
     useEffect(()=> {
         if(errorId) {
             console.log("Ha ocurrido un error.")
@@ -142,15 +153,13 @@ export default function Pedidos({ params }) {
                                 </span>
                             </button>
                         </div>
-                        <form onSubmit={updateData} className={`${showName ? '' : 'hidden'}`} >
-                            <input className="text-2xl" name="name" value={name} onChange={putDates} placeholder={dataId.name} />
+                        <form  onSubmit={updateData} className={`${showName ? '' : 'hidden'}`} onKeyDown={hideForm}>
+                            <input ref={formRef} className="text-2xl" name="name" value={name} onChange={putDates} placeholder={dataId.name} />
                         </form>
                         <h3>
-                            {
-                                (session?.user.name == undefined) ? 
-                                'Loading...' :  
-                                session?.user.name + ' ' + session?.user.lastName
-                            }
+                            {session?.user.name == undefined ? 
+                            'Loading...' :  
+                            session?.user.name + ' ' + session?.user.lastName}
                         </h3>
 
                         <div className={`flex w-full justify-center flex-col mt-10
