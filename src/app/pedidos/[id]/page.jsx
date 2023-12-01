@@ -10,6 +10,7 @@ import { useDataForm } from '@/components/hooks/useDataForm'
 import { useUpdateInfo } from '@/components/hooks/useUpdateInfo'
 import { FaEdit } from "react-icons/fa";
 import { AiOutlinePlus } from 'react-icons/ai'
+import { TiDelete } from 'react-icons/ti'
 import getDate from '@/components/helpers/getDate'
 import getStorage from '@/components/helpers/getLocalStorage'
 import fetchPost from '@/components/helpers/fetchPostData'
@@ -153,8 +154,16 @@ export default function Pedidos({ params }) {
                                 </span>
                             </button>
                         </div>
-                        <form  onSubmit={updateData} className={`${showName ? '' : 'hidden'}`} onKeyDown={hideForm}>
-                            <input ref={formRef} className="text-2xl" name="name" value={name} onChange={putDates} placeholder={dataId.name} />
+                        <form  onSubmit={updateData} className={`${showName ? '' : 'hidden'} flex 
+                        ${params.id === order.idOrder && showInfo ? 'justify-between' : ''}`} 
+                        onKeyDown={hideForm}>
+                            <input ref={formRef} className={`text-2xl ${params.id === order.idOrder && showInfo ? 'w-[calc(100%-50px)]' : ''} `} name="name" value={name} 
+                                onChange={putDates} 
+                                placeholder={dataId.name} 
+                            />
+                            <span className='text-3xl text-red-600 cursor-pointer' onClick={()=> setShowName(false)}>
+                                <TiDelete />
+                            </span>
                         </form>
                         <h3>
                             {session?.user.name == undefined ? 

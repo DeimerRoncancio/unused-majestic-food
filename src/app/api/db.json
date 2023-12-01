@@ -1,7 +1,7 @@
 {
   "pedidos": [
     {
-      "name": "Pedido de Deimer",
+      "name": "Pedido #1",
       "description": "Descripción del pedido #1.",
       "date": {
         "year": 2023,
