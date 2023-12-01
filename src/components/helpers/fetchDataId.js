@@ -1,14 +1,14 @@
 const fetchDataId = async(url,id)=> {
     try {
-        const data = await fetch(`${url}/${id}`).then(res => res.json())
+        const dataId = await fetch(`${url}/${id}`).then(res => res.json())
         return {
-            data,
-            isLoading: false,
-            error: false
+            dataId,
+            isLoadingId: false,
+            errorId: false
         }
     } catch (err) {
         return {
-            error: true
+            errorId: true
         }
     }
 }

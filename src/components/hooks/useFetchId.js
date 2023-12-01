@@ -9,10 +9,10 @@ export const useFetchId = (url,id) => {
     const [errorId,setError] = useState(false)
 
     const getData = async()=> {
-        const { data,isLoading,error } = await fetchDataId(url,id)
-        setData(data)
-        setIsLoading(isLoading)
-        setError(error)
+        const { dataId,isLoadingId,errorId } = await fetchDataId(url,id)
+        setData(dataId)
+        setIsLoading(isLoadingId)
+        setError(errorId)
     }
 
     useEffect(()=> {

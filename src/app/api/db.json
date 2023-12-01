@@ -1,17 +1,18 @@
 {
   "pedidos": [
     {
-      "name": "Quiubole caballero",
-      "description": "awefs",
+      "name": "Pedido de Deimer",
+      "description": "Esta es la descripción del pedido #1",
       "date": {
         "year": 2023,
-        "month": 11,
-        "day": 14,
-        "hours": 18,
-        "minutes": 3
+        "month": 12,
+        "day": 2,
+        "hours": 10,
+        "minutes": 15
       },
       "id": "62530860-17db-4f09-9abf-73abaf07ca87",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
+      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23",
+      "undefined": "d4trh5gf6v2"
     }
   ],
   "platos": [

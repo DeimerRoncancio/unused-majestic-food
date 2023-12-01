@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useFetch } from '@/components/hooks/useFetch'
 import { useDataForm } from '@/components/hooks/useDataForm'
+import { useUpdateInfo } from '@/components/hooks/useUpdateInfo'
 import { FaEdit } from "react-icons/fa";
 import { AiOutlinePlus } from 'react-icons/ai'
 import getDate from '@/components/helpers/getDate'
@@ -32,11 +33,15 @@ export default function Pedidos({ params }) {
     const [price,setPrice] = useState()
     const { dataId,isLoadingId,errorId } = useFetchId("http://localhost:5000/pedidos",params.id)
     const { data,isLoading,error } = useFetch("http://localhost:5000/platos")
-
-    const {nameOrder,descriptionOrder,dateOrder,putDates} = useDataForm({
-        nameOrder: '',
-        descriptionOrder: '',
-        dateOrder: ''
+    const { updateData } = useUpdateInfo({
+        url: "http://localhost:5000/pedidos",
+        id: params.id,
+        urlPut: `http://localhost:5000/pedidos/${params.id}`
+    })
+    const {name,description,date,putDates} = useDataForm({
+        name: '',
+        description: '',
+        date: ''
     })
 
     const order = getStorage("Order");
@@ -111,36 +116,6 @@ export default function Pedidos({ params }) {
         })
     }
 
-    const updateName = async(evt)=> {
-        evt.preventDefault();
-        
-        const newName = evt.target[0].value
-        dataId.name = newName
-
-        const { error } = await fetchPut(`http://localhost:5000/pedidos/${params.id}`,dataId)
-        if(error) return console.log("Hubo un error al cambiar el nombre del pedido.")
-    }
-
-    const updateDescription = async(evt)=> {
-        evt.preventDefault();
-        
-        const newDescription = evt.target[0].value
-        dataId.description = newDescription
-
-        const { error } = await fetchPut(`http://localhost:5000/pedidos/${params.id}`,dataId)
-        if(error) return console.log("Hubo un error al cambiar la descripción")
-    }
-
-    const updateDate = async(evt)=> {
-        evt.preventDefault();
-        
-        const newDate = evt.target[0].value
-        dataId.date = getDate(newDate)
-
-        const { error } = await fetchPut(`http://localhost:5000/pedidos/${params.id}`,dataId)
-        if(error) return console.log("Hubo un error al cambiar la fecha.")
-    }
-
     useEffect(()=> {
         if(errorId) {
             console.log("Ha ocurrido un error.")
@@ -170,8 +145,8 @@ export default function Pedidos({ params }) {
                                 </span>
                             </button>
                         </div>
-                        <form onSubmit={updateName} className={`${showName ? '' : 'hidden'}`} >
-                            <input className="text-2xl" name="nameOrder" value={nameOrder} onChange={putDates} placeholder={dataId.name} />
+                        <form onSubmit={updateData} className={`${showName ? '' : 'hidden'}`} >
+                            <input className="text-2xl" name="name" value={name} onChange={putDates} placeholder={dataId.name} />
                         </form>
                         <h3>
                             {
@@ -221,8 +196,8 @@ export default function Pedidos({ params }) {
                                     </button>
                                 </div>
                                 <p className={`text-sm ${showDescription ? 'hidden' : ''}`}>{dataId.description}</p>
-                                <form onSubmit={updateDescription} className={`${showDescription ? '' : 'hidden'}`}>
-                                    <textarea name="descriptionOrder" value={descriptionOrder} 
+                                <form onSubmit={updateData} className={`${showDescription ? '' : 'hidden'}`}>
+                                    <textarea name="description" value={description} 
                                     onChange={putDates} placeholder={dataId.description
                                     }></textarea>
                                     <button>Update</button>
@@ -245,8 +220,8 @@ export default function Pedidos({ params }) {
                                         dataId.date?.hours + ':' + dataId.date?.minutes
                                     }
                                 </h3>
-                                <form onSubmit={updateDate} className={`${showDate ? '' : 'hidden'}`}>
-                                    <input type="datetime-local" name="dateOrder" value={dateOrder} onChange={putDates} />
+                                <form onSubmit={updateData} className={`${showDate ? '' : 'hidden'}`}>
+                                    <input type="datetime-local" name="date" value={date} onChange={putDates} />
                                     <button>Update</button>
                                 </form>
                             </div>
