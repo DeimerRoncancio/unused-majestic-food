@@ -107,7 +107,6 @@ export default function Pedidos({ params }) {
             const { error } = await fetchDelete(`http://localhost:5000/platos/${item.id}`)
 
             if(!error) {
-                setAllPlates(data)
                 const { error } = await fetchDelete(`http://localhost:5000/pedidos/${params.id}`)
                 if(error) return console.log("Hubo un error.")
             } else {
@@ -122,7 +121,7 @@ export default function Pedidos({ params }) {
         }
         getPlates()
     },[data])
-    
+
     useEffect(()=> {
         getValues()
     },[getValues])
@@ -132,14 +131,12 @@ export default function Pedidos({ params }) {
             <div className="w-[110%] h-[550px] bg-[#76ed78] rounded-b-[50%] top-[-100px] left-[-5%] absolute z-0"></div>
             <div className="z-20 p-28 pt-14 relative">
                 <div className='w-full flex flex-col items-center'>
-                    <div className="w-[$610px]">
+                    <div className={`${params.id === order.idOrder && showInfo ? 'w-[$610px]' : 'w-full'}`}>
                         <div className={`flex ${showName ? 'hidden' : ''}`}>
-                            <h2 className="text-2xl w-[95%]">
+                            <h2 className={`text-2xl ${params.id === order.idOrder && showInfo ? 'w-[95%]' : 'mr-4'}`}>
                                 {isLoadingId ? 'Loading...' : dataId.name}
                             </h2>
-                            <button onClick={()=>{
-                                setShowName(true)
-                            }}>
+                            <button onClick={()=> setShowName(true)}>
                                 <span className=' text-green-800'>
                                     <FaEdit />
                                 </span>
@@ -162,8 +159,8 @@ export default function Pedidos({ params }) {
                             <div className='flex justify-between mt-14'>
                                 <Button 
                                     textContent="Añadir al pedido"
-                                    bgColor="[#3ea440]"
-                                    bgColorHover="[#348935]"
+                                    bgColor="#3ea440"
+                                    bgColorHover="#348935"
                                     width='45%'
                                     textColor='white'
                                     handleClick={()=> setPopupCategories(true)}
@@ -172,7 +169,7 @@ export default function Pedidos({ params }) {
                                 <Button 
                                     textContent="Cancelar operación"
                                     bgColor="white"
-                                    bgColorHover="red-300"
+                                    bgColorHover="rgb(252 165 165)"
                                     width='45%'
                                     textColor='black'
                                     handleClick={closeOperation}

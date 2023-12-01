@@ -7,12 +7,14 @@ export function useUpdateInfo({url,id,urlPut}) {
         evt.preventDefault();
 
         const { dataId } = await fetchDataId(url,id)
+
+        console.log(evt.target[0].type)
         
-        if(evt.target[0].type == "datetime-local") {
-            const newData = getDate(evt.target[0].value)
-            dataId[evt.target[0].name] = newData
-        } else if(evt.target[0].type == "text") {
+        if(evt.target[0].type === "text" || evt.target[0].type === "textarea") {
             const newData = evt.target[0].value
+            dataId[evt.target[0].name] = newData
+        } else if(evt.target[0].type === "datetime-local") {
+            const newData = getDate(evt.target[0].value)
             dataId[evt.target[0].name] = newData
         }
 
