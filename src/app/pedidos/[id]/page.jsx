@@ -10,8 +10,6 @@ import { useDataForm } from '@/components/hooks/useDataForm'
 import { useUpdateInfo } from '@/components/hooks/useUpdateInfo'
 import { FaEdit } from "react-icons/fa";
 import { AiOutlinePlus } from 'react-icons/ai'
-import { TiDelete } from 'react-icons/ti'
-import getDate from '@/components/helpers/getDate'
 import getStorage from '@/components/helpers/getLocalStorage'
 import fetchPost from '@/components/helpers/fetchPostData'
 import fetchDelete from '@/components/helpers/fetchDeleteData'
@@ -33,7 +31,6 @@ export default function Pedidos({ params }) {
     const [allPlates,setAllPlates] = useState([])
     const [cantProducts,setCantProducts] = useState()
     const [price,setPrice] = useState()
-    // const [name,setName] = useState()
     const { dataId,isLoadingId,errorId } = useFetchId("http://localhost:5000/pedidos",params.id)
     const { data,isLoading,error } = useFetch("http://localhost:5000/platos")
     const formRef = useRef()
@@ -47,10 +44,6 @@ export default function Pedidos({ params }) {
         description: '',
         date: ''
     })
-
-    // const putName = ()=> {
-    //     setName(name)
-    // }
     
     const order = getStorage("Order");
 
