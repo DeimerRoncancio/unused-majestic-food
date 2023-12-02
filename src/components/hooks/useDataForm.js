@@ -20,6 +20,8 @@ export function useDataForm(order = {}) {
     // Devolver los datos del formulario y la función para actualizarlos
     return {
         ...dataOrder,
+        dataOrder,
+        setDataOrder,
         putDates
     };
 }

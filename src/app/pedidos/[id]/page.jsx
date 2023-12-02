@@ -33,13 +33,12 @@ export default function Pedidos({ params }) {
     const [price,setPrice] = useState()
     const { dataId,isLoadingId,errorId } = useFetchId("http://localhost:5000/pedidos",params.id)
     const { data,isLoading,error } = useFetch("http://localhost:5000/platos")
-    const formRef = useRef()
     const { updateData } = useUpdateInfo({
         url: "http://localhost:5000/pedidos",
         id: params.id,
         urlPut: `http://localhost:5000/pedidos/${params.id}`
     })
-    const {name,description,date,putDates} = useDataForm({
+    const {name,description,date,putDates,dataOrder,setDataOrder} = useDataForm({
         name:'',
         description: '',
         date: ''
@@ -119,13 +118,10 @@ export default function Pedidos({ params }) {
     const hideForm = (evt)=> {
         if(evt.key == "Escape") {
             setShowName(false)
+            setDataOrder({...dataOrder,name:''})
         }
     }
 
-    useEffect(()=> {
-        if(showName) formRef.current.focus()
-    },[showName])
-    
     useEffect(()=> {
         if(errorId) {
             console.log("Ha ocurrido un error.")
@@ -151,11 +147,10 @@ export default function Pedidos({ params }) {
                             clickEdit={()=> setShowName(true)}
                             submit={updateData} 
                             hidde={hideForm} 
-                            refer={formRef} 
                             inputName="name"
                             inputValue={name}
                             putValues={putDates} 
-                            clickDelete={()=> setShowName(false)}
+                            clickDelete={()=> {setShowName(false); setDataOrder({...dataOrder,name:''})}}
                         />
                         <h3>
                             {session?.user.name == undefined ? 

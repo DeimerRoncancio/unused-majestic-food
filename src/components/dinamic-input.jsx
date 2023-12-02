@@ -1,16 +1,21 @@
-import { useEffect,useState } from 'react'
+import { useEffect,useState,useRef } from 'react'
 import { TiDelete } from 'react-icons/ti'
 import { FaEdit } from 'react-icons/fa'
 
-export default function InputText({show,ifShow,loading,name,clickEdit,submit,hidde,refer,inputName,inputValue,
-putValues,clickDelete}) {
+export default function InputText({show,ifShow,loading,name,clickEdit,submit,hidde,inputName,inputValue,putValues,
+clickDelete}) {
     const [widthName,setWidthName] = useState('')
+    const formRef = useRef(null)
 
     useEffect(()=> {
         if(name) {
             setWidthName(name.length - 4)
         }
     },[!loading])
+
+    useEffect(()=> {
+        if(show) formRef.current.focus()
+    },[show])
     
     return (
         <>
@@ -27,12 +32,13 @@ putValues,clickDelete}) {
             <form onSubmit={submit} className={`${show ? '' : 'hidden'} flex 
             ${ifShow ? 'justify-between' : ''}`}
             onKeyDown={hidde}>
-                <input ref={refer} style={{maxWidth:'90%'}} className={`text-2xl 
+                <input ref={formRef} style={{maxWidth:'310px'}} className={`text-2xl 
                     ${ifShow ? 'w-[calc(100%-50px)]' : ''} `}
                     name={inputName} value={inputValue}
                     onChange={putValues}
                     placeholder={name}
                     size={inputValue.length || widthName}
+                    maxLength={25}
                 />
                 <span className='text-3xl text-red-600 cursor-pointer' onClick={clickDelete}>
                     <TiDelete />
