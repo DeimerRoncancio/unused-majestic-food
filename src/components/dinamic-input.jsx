@@ -1,6 +1,7 @@
 import { useEffect,useState,useRef } from 'react'
 import { TiDelete } from 'react-icons/ti'
 import { FaEdit } from 'react-icons/fa'
+import EditButton from './edit-button'
 
 export default function InputText({show,ifShow,loading,name,clickEdit,submit,hidde,inputName,inputValue,putValues,
 clickDelete}) {
@@ -11,7 +12,7 @@ clickDelete}) {
         if(name) {
             setWidthName(name.length - 4)
         }
-    },[!loading])
+    },[loading])
 
     useEffect(()=> {
         if(show) formRef.current.focus()
@@ -23,14 +24,9 @@ clickDelete}) {
                 <h2 className={`text-2xl ${ifShow ? 'w-[calc(100%-16px)]' : 'mr-4'}`}>
                     {loading ? 'Loading...' : name}
                 </h2>
-                <button onClick={clickEdit}>
-                    <span className=' text-green-800'>
-                        <FaEdit />
-                    </span>
-                </button>
+                <EditButton onClick={clickEdit} textColor="green-800" hoverTextColor="green-900"/>
             </div>
-            <form onSubmit={submit} className={`${show ? '' : 'hidden'} flex 
-            ${ifShow ? 'justify-between' : ''}`}
+            <form onSubmit={submit} className={`${show ? '' : 'hidden'} flex ${ifShow ? 'justify-between' : ''}`}
             onKeyDown={hidde}>
                 <input ref={formRef} style={{maxWidth:'310px'}} className={`text-2xl 
                     ${ifShow ? 'w-[calc(100%-50px)]' : ''} `}
