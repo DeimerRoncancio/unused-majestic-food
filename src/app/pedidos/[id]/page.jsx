@@ -17,6 +17,7 @@ import fetchPost from '@/components/helpers/fetchPostData'
 import fetchDelete from '@/components/helpers/fetchDeleteData'
 import fetchPut from '@/components/helpers/fetchPutData'
 import PlatePresentation from '@/components/plate-presentation'
+import InputText from '@/components/dinamic-input'
 import Button from '@/components/button'
 import Plate from '@/components/plate'
 
@@ -32,20 +33,25 @@ export default function Pedidos({ params }) {
     const [allPlates,setAllPlates] = useState([])
     const [cantProducts,setCantProducts] = useState()
     const [price,setPrice] = useState()
-    const formRef = useRef()
+    // const [name,setName] = useState()
     const { dataId,isLoadingId,errorId } = useFetchId("http://localhost:5000/pedidos",params.id)
     const { data,isLoading,error } = useFetch("http://localhost:5000/platos")
+    const formRef = useRef()
     const { updateData } = useUpdateInfo({
         url: "http://localhost:5000/pedidos",
         id: params.id,
         urlPut: `http://localhost:5000/pedidos/${params.id}`
     })
     const {name,description,date,putDates} = useDataForm({
-        name: '',
+        name:'',
         description: '',
         date: ''
     })
 
+    // const putName = ()=> {
+    //     setName(name)
+    // }
+    
     const order = getStorage("Order");
 
     const closeOperation = ()=> {
@@ -144,27 +150,20 @@ export default function Pedidos({ params }) {
             <div className="z-20 p-28 pt-14 relative">
                 <div className='w-full flex flex-col items-center'>
                     <div className={`${params.id === order.idOrder && showInfo ? 'w-[$610px]' : 'w-full'}`}>
-                        <div className={`flex ${showName ? 'hidden' : ''}`}>
-                            <h2 className={`text-2xl ${params.id === order.idOrder && showInfo ? 'w-[95%]' : 'mr-4'}`}>
-                                {isLoadingId ? 'Loading...' : dataId.name}
-                            </h2>
-                            <button onClick={()=> setShowName(true)}>
-                                <span className=' text-green-800'>
-                                    <FaEdit />
-                                </span>
-                            </button>
-                        </div>
-                        <form  onSubmit={updateData} className={`${showName ? '' : 'hidden'} flex 
-                        ${params.id === order.idOrder && showInfo ? 'justify-between' : ''}`} 
-                        onKeyDown={hideForm}>
-                            <input ref={formRef} className={`text-2xl ${params.id === order.idOrder && showInfo ? 'w-[calc(100%-50px)]' : ''} `} name="name" value={name} 
-                                onChange={putDates} 
-                                placeholder={dataId.name} 
-                            />
-                            <span className='text-3xl text-red-600 cursor-pointer' onClick={()=> setShowName(false)}>
-                                <TiDelete />
-                            </span>
-                        </form>
+                        <InputText
+                            show={showName} 
+                            ifShow={params.id === order.idOrder && showInfo}
+                            loading={isLoadingId} 
+                            name={dataId.name} 
+                            clickEdit={()=> setShowName(true)}
+                            submit={updateData} 
+                            hidde={hideForm} 
+                            refer={formRef} 
+                            inputName="name"
+                            inputValue={name}
+                            putValues={putDates} 
+                            clickDelete={()=> setShowName(false)}
+                        />
                         <h3>
                             {session?.user.name == undefined ? 
                             'Loading...' :  
