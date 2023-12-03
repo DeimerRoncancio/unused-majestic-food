@@ -16,6 +16,7 @@ import fetchDelete from '@/components/helpers/fetchDeleteData'
 import fetchPut from '@/components/helpers/fetchPutData'
 import DicamicInputText from '@/components/dinamic-input'
 import DinamicTextArea from '@/components/dinamic-text-area'
+import DinamicInputDate from '@/components/dinamic-input-date'
 import PlatePresentation from '@/components/plate-presentation'
 import EditButton from '@/components/edit-button'
 import Button from '@/components/button'
@@ -200,22 +201,16 @@ export default function Pedidos({ params }) {
                                 />
                             </div>
                             <div>
-                                <div className='flex'>
-                                    <h3 className='mr-2 text-green-800'>Fecha de entrega</h3>
-                                    <EditButton onClick={() => {
-                                        setDate(true)
-                                    }} textColor="green-800" hoverTextColor="green-900"/>
-                                </div>
-                                <h3 className={`text-sm ${showDate ? 'hidden' : ''}`}>
-                                    {
-                                        dataId.date?.day + '/' + dataId.date?.month + '/' + dataId.date?.year + ' - ' +
-                                        dataId.date?.hours + ':' + dataId.date?.minutes
-                                    }
-                                </h3>
-                                <form onSubmit={updateData} className={`${showDate ? '' : 'hidden'}`}>
-                                    <input type="datetime-local" name="date" value={date} onChange={putDates} />
-                                    <button>Update</button>
-                                </form>
+                                <DinamicInputDate 
+                                    show={showDate}
+                                    clickEdit={() => setDate(true)}
+                                    value={dataId.date?.day + '/' + dataId.date?.month + '/' + dataId.date?.year + ' - ' +
+                                    dataId.date?.hours + ':' + dataId.date?.minutes}
+                                    submit={updateData}
+                                    inputDateName="date"
+                                    inputDateValue={date}
+                                    putValues={putDates}
+                                />
                             </div>
                         </div>
                         <h2 className='text-xl mt-4'>Platos del pedido</h2>
