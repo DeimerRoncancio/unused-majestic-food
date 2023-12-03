@@ -5,12 +5,12 @@ import EditButton from './edit-button'
 
 export default function DinamicInputText({show,ifShow,loading,value,clickEdit,submit,hidde,inputName,inputValue,putValues,
 clickDelete}) {
-    const formRef = useRef(null)
+    const refer = useRef(null)
 
     useEffect(()=> {
-        if(show) formRef.current.focus()
+        if(show) refer.current.focus()
     },[show])
-    
+
     return (
         <>
             <div className={`flex ${show ? 'hidden' : ''}`}>
@@ -21,7 +21,7 @@ clickDelete}) {
             </div>
             <form onSubmit={submit} className={`${show ? '' : 'hidden'} flex ${ifShow ? 'justify-between' : ''}`}
             onKeyDown={hidde}>
-                <input ref={formRef} className={`text-2xl 
+                <input ref={refer} className={`text-2xl 
                     ${ifShow ? 'w-[calc(100%-50px)]' : ''} `}
                     name={inputName} value={inputValue}
                     onChange={putValues}

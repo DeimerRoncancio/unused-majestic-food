@@ -121,6 +121,7 @@ export default function Pedidos({ params }) {
     const hideForm = (evt)=> {
         if(evt.key == "Escape") {
             setShowName(false)
+            setDescription(false)
             setDataOrder({...dataOrder,name:''})
         }
     }
@@ -194,10 +195,12 @@ export default function Pedidos({ params }) {
                                     show={showDescription}
                                     value={dataId.description}
                                     clickEdit={() => setDescription(true)}
+                                    hidde={hideForm}
                                     areaName="description"
                                     areaValue={description}
                                     putValues={putDates}
                                     submit={updateData}
+                                    clickDelete={()=> {setDescription(false); setDataOrder({...dataOrder,description:''})}}
                                 />
                             </div>
                             <div>
