@@ -15,7 +15,8 @@ import fetchPost from '@/components/helpers/fetchPostData'
 import fetchDelete from '@/components/helpers/fetchDeleteData'
 import fetchPut from '@/components/helpers/fetchPutData'
 import PlatePresentation from '@/components/plate-presentation'
-import InputText from '@/components/dinamic-input'
+import DicamicInputText from '@/components/dinamic-input'
+import EditButton from '@/components/edit-button'
 import Button from '@/components/button'
 import Plate from '@/components/plate'
 
@@ -139,7 +140,7 @@ export default function Pedidos({ params }) {
             <div className="z-20 p-28 pt-14 relative">
                 <div className='w-full flex flex-col items-center'>
                     <div className={`${params.id === order.idOrder && showInfo ? 'w-[$610px]' : 'w-full'}`}>
-                        <InputText
+                        <DicamicInputText
                             show={showName} 
                             ifShow={params.id === order.idOrder && showInfo}
                             loading={isLoadingId} 
@@ -189,13 +190,9 @@ export default function Pedidos({ params }) {
                             <div className='max-w-[50%] mr-14'>
                                 <div className='flex'>
                                     <h3 className='mt-2 text-green-800 mr-2'>Descripción</h3>
-                                    <button className={`${showDescription ? 'hidden' : ''}`} onClick={() => {
+                                    <EditButton onClick={() => {
                                         setDescription(true)
-                                    }}>
-                                        <span className=' text-green-800'>
-                                            <FaEdit />
-                                        </span>
-                                    </button>
+                                    }} textColor="green-800" hoverTextColor="green-900"/>
                                 </div>
                                 <p className={`text-sm ${showDescription ? 'hidden' : ''}`}>{dataId.description}</p>
                                 <form onSubmit={updateData} className={`${showDescription ? '' : 'hidden'}`}>
@@ -208,13 +205,9 @@ export default function Pedidos({ params }) {
                             <div>
                                 <div className='flex'>
                                     <h3 className='mr-2 text-green-800'>Fecha de entrega</h3>
-                                    <button className={`${showDate ? 'hidden' : ''}`} onClick={() => {
+                                    <EditButton onClick={() => {
                                         setDate(true)
-                                    }}>
-                                        <span className=' text-green-800'>
-                                            <FaEdit />
-                                        </span>
-                                    </button>
+                                    }} textColor="green-800" hoverTextColor="green-900"/>
                                 </div>
                                 <h3 className={`text-sm ${showDate ? 'hidden' : ''}`}>
                                     {
