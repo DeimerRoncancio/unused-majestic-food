@@ -14,8 +14,9 @@ import getStorage from '@/components/helpers/getLocalStorage'
 import fetchPost from '@/components/helpers/fetchPostData'
 import fetchDelete from '@/components/helpers/fetchDeleteData'
 import fetchPut from '@/components/helpers/fetchPutData'
-import PlatePresentation from '@/components/plate-presentation'
 import DicamicInputText from '@/components/dinamic-input'
+import DinamicTextArea from '@/components/dinamic-text-area'
+import PlatePresentation from '@/components/plate-presentation'
 import EditButton from '@/components/edit-button'
 import Button from '@/components/button'
 import Plate from '@/components/plate'
@@ -144,7 +145,7 @@ export default function Pedidos({ params }) {
                             show={showName} 
                             ifShow={params.id === order.idOrder && showInfo}
                             loading={isLoadingId} 
-                            name={dataId.name} 
+                            value={dataId.name} 
                             clickEdit={()=> setShowName(true)}
                             submit={updateData} 
                             hidde={hideForm} 
@@ -188,19 +189,15 @@ export default function Pedidos({ params }) {
                         <h2 className="text-xl">Detalles del pedido</h2>
                         <div className='flex'>
                             <div className='max-w-[50%] mr-14'>
-                                <div className='flex'>
-                                    <h3 className='mt-2 text-green-800 mr-2'>Descripción</h3>
-                                    <EditButton onClick={() => {
-                                        setDescription(true)
-                                    }} textColor="green-800" hoverTextColor="green-900"/>
-                                </div>
-                                <p className={`text-sm ${showDescription ? 'hidden' : ''}`}>{dataId.description}</p>
-                                <form onSubmit={updateData} className={`${showDescription ? '' : 'hidden'}`}>
-                                    <textarea name="description" value={description} 
-                                    onChange={putDates} placeholder={dataId.description
-                                    }></textarea>
-                                    <button>Update</button>
-                                </form>
+                                <DinamicTextArea 
+                                    show={showDescription}
+                                    value={dataId.description}
+                                    clickEdit={() => setDescription(true)}
+                                    areaName="description"
+                                    areaValue={description}
+                                    putValues={putDates}
+                                    submit={updateData}
+                                />
                             </div>
                             <div>
                                 <div className='flex'>

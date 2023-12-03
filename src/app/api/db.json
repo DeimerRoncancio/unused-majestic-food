@@ -2,7 +2,7 @@
   "pedidos": [
     {
       "name": "Pedido de Deimer",
-      "description": "Este es el pedido de Deimer.",
+      "description": "Crear",
       "date": {
         "year": 2023,
         "month": 12,
