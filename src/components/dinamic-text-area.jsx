@@ -13,7 +13,7 @@ export default function DinamicTextArea({show,value,clickEdit,hidde,areaName,are
     return (
         <>
             <div className='flex'>
-                <h3 className='mt-2 text-green-800 mr-2'>Descripción</h3>
+                <h3 className='text-green-800 mr-2'>Descripción</h3>
                 <EditButton onClick={clickEdit} textColor="green-800" hoverTextColor="green-900" />
             </div>
             <p className={`text-sm ${show ? 'hidden' : ''}`}>{value}</p>

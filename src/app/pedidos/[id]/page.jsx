@@ -122,7 +122,11 @@ export default function Pedidos({ params }) {
         if(evt.key == "Escape") {
             setShowName(false)
             setDescription(false)
-            setDataOrder({...dataOrder,name:''})
+            setDate(false)
+            setDataOrder({...dataOrder,
+                name:'',
+                description: ''
+            })
         }
     }
 
@@ -210,9 +214,11 @@ export default function Pedidos({ params }) {
                                     value={dataId.date?.day + '/' + dataId.date?.month + '/' + dataId.date?.year + ' - ' +
                                     dataId.date?.hours + ':' + dataId.date?.minutes}
                                     submit={updateData}
+                                    hidde={hideForm}
                                     inputDateName="date"
                                     inputDateValue={date}
                                     putValues={putDates}
+                                    clickDelete={()=> setDate(false)}
                                 />
                             </div>
                         </div>
