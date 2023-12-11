@@ -126,9 +126,9 @@ export default function Pedidos({ params }) {
 
     const hideForm = (evt)=> {
         if(evt.key == "Escape") {
-            setShowName(false)
-            setDescription(false)
-            setDate(false)
+            showControl("showName",false)
+            showControl("showDescription",false)
+            showControl("showDate",false)
             setDataOrder({...dataOrder,
                 name:'',
                 description: ''
