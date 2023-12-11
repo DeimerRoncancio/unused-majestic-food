@@ -8,6 +8,7 @@ import { useSession } from 'next-auth/react'
 import { useFetch } from '@/components/hooks/useFetch'
 import { useDataForm } from '@/components/hooks/useDataForm'
 import { useUpdateInfo } from '@/components/hooks/useUpdateInfo'
+import { useShowControl } from '@/components/hooks/useShowControl'
 import { FaEdit } from "react-icons/fa";
 import { AiOutlinePlus } from 'react-icons/ai'
 import getStorage from '@/components/helpers/getLocalStorage'
@@ -28,9 +29,9 @@ export default function Pedidos({ params }) {
     
     const [showInfo,setShowInfo] = useState(true);
     const [showPopupCategories,setPopupCategories] = useState(false)
-    const [showName,setShowName] = useState(false)
-    const [showDescription,setDescription] = useState(false)
-    const [showDate,setDate] = useState(false);
+    // const [showName,setShowName] = useState(false)
+    // const [showDescription,setDescription] = useState(false)
+    // const [showDate,setDate] = useState(false);
     const [allPlates,setAllPlates] = useState([])
     const [cantProducts,setCantProducts] = useState()
     const [price,setPrice] = useState()
@@ -40,6 +41,11 @@ export default function Pedidos({ params }) {
         url: "http://localhost:5000/pedidos",
         id: params.id,
         urlPut: `http://localhost:5000/pedidos/${params.id}`
+    })
+    const { showName,showDescription,showDate,showControl } = useShowControl({
+        showName: false,
+        showDescription: false,
+        showDate: false
     })
     const {name,description,date,putDates,dataOrder,setDataOrder} = useDataForm({
         name:'',
@@ -152,13 +158,13 @@ export default function Pedidos({ params }) {
                             ifShow={params.id === order.idOrder && showInfo}
                             loading={isLoadingId} 
                             value={dataId.name} 
-                            clickEdit={()=> setShowName(true)}
+                            clickEdit={()=> showControl("showName",true)}
                             submit={updateData} 
                             hidde={hideForm} 
                             inputName="name"
                             inputValue={name}
                             putValues={putDates} 
-                            clickDelete={()=> {setShowName(false); setDataOrder({...dataOrder,name:''})}}
+                            clickDelete={()=> {showControl("showName",false); setDataOrder({...dataOrder,name:''})}}
                         />
                         <h3>
                             {session?.user.name == undefined ? 
@@ -198,19 +204,19 @@ export default function Pedidos({ params }) {
                                 <DinamicTextArea 
                                     show={showDescription}
                                     value={dataId.description}
-                                    clickEdit={() => setDescription(true)}
+                                    clickEdit={()=> showControl("showDescription",true)}
                                     hidde={hideForm}
                                     areaName="description"
                                     areaValue={description}
                                     putValues={putDates}
                                     submit={updateData}
-                                    clickDelete={()=> {setDescription(false); setDataOrder({...dataOrder,description:''})}}
+                                    clickDelete={()=> {showControl("showDescription",false); setDataOrder({...dataOrder,description:''})}}
                                 />
                             </div>
                             <div>
                                 <DinamicInputDate 
                                     show={showDate}
-                                    clickEdit={() => setDate(true)}
+                                    clickEdit={()=> showControl("showDate",true)}
                                     value={dataId.date?.day + '/' + dataId.date?.month + '/' + dataId.date?.year + ' - ' +
                                     dataId.date?.hours + ':' + dataId.date?.minutes}
                                     submit={updateData}
@@ -218,7 +224,7 @@ export default function Pedidos({ params }) {
                                     inputDateName="date"
                                     inputDateValue={date}
                                     putValues={putDates}
-                                    clickDelete={()=> setDate(false)}
+                                    clickDelete={()=> showControl("showDate",false)}
                                 />
                             </div>
                         </div>
