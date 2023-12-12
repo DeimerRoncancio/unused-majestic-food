@@ -1,7 +1,7 @@
 "use client"
 
 import { v4 as uuid } from 'uuid'
-import { useState,useEffect,useRef } from 'react'
+import { useState,useEffect } from 'react'
 import { useFetchId } from '@/components/hooks/useFetchId'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
@@ -9,29 +9,30 @@ import { useFetch } from '@/components/hooks/useFetch'
 import { useDataForm } from '@/components/hooks/useDataForm'
 import { useUpdateInfo } from '@/components/hooks/useUpdateInfo'
 import { useShowControl } from '@/components/hooks/useShowControl'
-import { FaEdit } from "react-icons/fa";
 import { AiOutlinePlus } from 'react-icons/ai'
+
+// Importación de helpers
 import getStorage from '@/components/helpers/getLocalStorage'
 import fetchPost from '@/components/helpers/fetchPostData'
 import fetchDelete from '@/components/helpers/fetchDeleteData'
 import fetchPut from '@/components/helpers/fetchPutData'
+
+// Importación de componentes
 import DicamicInputText from '@/components/dinamic-input'
 import DinamicTextArea from '@/components/dinamic-text-area'
 import DinamicInputDate from '@/components/dinamic-input-date'
 import PlatePresentation from '@/components/plate-presentation'
-import EditButton from '@/components/edit-button'
 import Button from '@/components/button'
 import Plate from '@/components/plate'
+import Popup from '@/components/popup'
+import CardButton from '@/components/card-button'
 
 export default function Pedidos({ params }) {
     const { data:session } = useSession()
     const router = useRouter()
-    
+
     const [showInfo,setShowInfo] = useState(true);
     const [showPopupCategories,setPopupCategories] = useState(false)
-    // const [showName,setShowName] = useState(false)
-    // const [showDescription,setDescription] = useState(false)
-    // const [showDate,setDate] = useState(false);
     const [allPlates,setAllPlates] = useState([])
     const [cantProducts,setCantProducts] = useState()
     const [price,setPrice] = useState()
@@ -42,7 +43,7 @@ export default function Pedidos({ params }) {
         id: params.id,
         urlPut: `http://localhost:5000/pedidos/${params.id}`
     })
-    const { showName,showDescription,showDate,showControl } = useShowControl({
+    const { showName,showDescription,showDate,dataControl,showControl } = useShowControl({
         showName: false,
         showDescription: false,
         showDate: false
@@ -52,7 +53,7 @@ export default function Pedidos({ params }) {
         description: '',
         date: ''
     })
-    
+
     const order = getStorage("Order");
 
     const closeOperation = ()=> {
@@ -68,7 +69,7 @@ export default function Pedidos({ params }) {
         order.id = uuid()
 
         const { data,error } = await fetchPost("http://localhost:5000/platos",order);
-        
+
         if(!error) {
             setAllPlates([...allPlates,data]);
         } else {
@@ -126,14 +127,28 @@ export default function Pedidos({ params }) {
 
     const hideForm = (evt)=> {
         if(evt.key == "Escape") {
-            showControl("showName",false)
-            showControl("showDescription",false)
-            showControl("showDate",false)
+            Object.keys(dataControl).forEach((key)=> {
+                showControl(key,false)
+            })
+
             setDataOrder({...dataOrder,
                 name:'',
                 description: ''
             })
         }
+    }
+
+    const sendOrder = () => {
+        alert("Tu pedido sera enviado, muchas gracias por comprar!")
+        router.push("/")
+        closeOperation()
+        deleteOrder()
+    }
+
+    const trashOrder = ()=> {
+        closeOperation()
+        deleteOrder()
+        router.push("/user-pedidos")
     }
 
     useEffect(()=> {
@@ -154,21 +169,21 @@ export default function Pedidos({ params }) {
                 <div className='w-full flex flex-col items-center'>
                     <div className={`${params.id === order.idOrder && showInfo ? 'w-[$610px]' : 'w-full'}`}>
                         <DicamicInputText
-                            show={showName} 
+                            show={showName}
                             ifShow={params.id === order.idOrder && showInfo}
-                            loading={isLoadingId} 
-                            value={dataId.name} 
+                            loading={isLoadingId}
+                            value={dataId.name}
                             clickEdit={()=> showControl("showName",true)}
-                            submit={updateData} 
-                            hidde={hideForm} 
+                            submit={updateData}
+                            hidde={hideForm}
                             inputName="name"
                             inputValue={name}
-                            putValues={putDates} 
+                            putValues={putDates}
                             clickDelete={()=> {showControl("showName",false); setDataOrder({...dataOrder,name:''})}}
                         />
                         <h3>
-                            {session?.user.name == undefined ? 
-                            'Loading...' :  
+                            {session?.user.name == undefined ?
+                            'Loading...' :
                             session?.user.name + ' ' + session?.user.lastName}
                         </h3>
 
@@ -176,21 +191,27 @@ export default function Pedidos({ params }) {
                         ${params.id === order.idOrder && showInfo  ? '' : 'hidden' }`}>
                             <PlatePresentation />
                             <div className='flex justify-between mt-14'>
-                                <Button 
+                                <Button
                                     textContent="Añadir al pedido"
                                     bgColor="#3ea440"
                                     bgColorHover="#348935"
+                                    padding="0.5rem"
                                     width='45%'
                                     textColor='white'
+                                    textWidth="1.25rem"
+                                    lineHeight="1.75rem"
                                     handleClick={()=> setPopupCategories(true)}
                                 />
 
-                                <Button 
+                                <Button
                                     textContent="Cancelar operación"
                                     bgColor="white"
                                     bgColorHover="rgb(252 165 165)"
+                                    padding="0.5rem"
                                     width='45%'
                                     textColor='black'
+                                    textWidth="1.25rem"
+                                    lineHeight="1.75rem"
                                     handleClick={closeOperation}
                                 />
                             </div>
@@ -201,7 +222,7 @@ export default function Pedidos({ params }) {
                         <h2 className="text-xl">Detalles del pedido</h2>
                         <div className='flex'>
                             <div className='max-w-[50%] mr-14'>
-                                <DinamicTextArea 
+                                <DinamicTextArea
                                     show={showDescription}
                                     value={dataId.description}
                                     clickEdit={()=> showControl("showDescription",true)}
@@ -214,7 +235,7 @@ export default function Pedidos({ params }) {
                                 />
                             </div>
                             <div>
-                                <DinamicInputDate 
+                                <DinamicInputDate
                                     show={showDate}
                                     clickEdit={()=> showControl("showDate",true)}
                                     value={dataId.date?.day + '/' + dataId.date?.month + '/' + dataId.date?.year + ' - ' +
@@ -234,10 +255,10 @@ export default function Pedidos({ params }) {
                                 isLoading ?
                                 'Loading...' :
                                 allPlates.map((item) => (
-                                    <Plate 
+                                    <Plate
                                         key={item.id}
-                                        nombre={item.nombre} 
-                                        precio={item.price} 
+                                        nombre={item.nombre}
+                                        precio={item.price}
                                         categoria={item.categoria}
                                         imagen={item.imagen}
                                         id={item.id}
@@ -252,7 +273,7 @@ export default function Pedidos({ params }) {
                                 <div className="flex w-[40%] flex-col justify-between">
                                     <h3>Añadir Articulo</h3>
                                 </div>
-                                
+
                                 <div className='flex w-[60%] h-[120px] relative justify-center'>
                                     <AiOutlinePlus className='w-full h-full text-[#a3a3a3]' />
                                 </div>
@@ -272,61 +293,68 @@ export default function Pedidos({ params }) {
 
                 <div className='flex'>
                     <div className='my-14 mr-4'>
-                        <button className="bg-[#3ea440] transition duration-[0.3s] hover:bg-[#348935]
-                            w-[100%] p-1 px-10 text-lg rounded-full shadow-[0_2px_4px_#a9a9a9] text-white"
-                            onClick={() => {
-                                alert("Tu pedido sera enviado, muchas gracias por comprar!")
-                                router.push("/")
-                                closeOperation()
-                                deleteOrder()
-                            }}>
-                            Enviar pedido
-                        </button>
+                        <Button
+                            textContent="Enviar pedido"
+                            bgColor="#3ea440"
+                            bgColorHover="#348935"
+                            padding="0.25rem"
+                            width='195.95px'
+                            textColor='white'
+                            textWidth="1.25rem"
+                            lineHeight="1.75rem"
+                            handleClick={sendOrder}
+                        />
                     </div>
 
                     <div className='my-14 ml-4'>
-                        <button className="bg-red-300 transition duration-[0.3s] hover:bg-red-400
-                            w-[100%] p-1 px-10 text-lg rounded-full shadow-[0_2px_4px_#a9a9a9] text-black"
-                            onClick={()=> {
-                                closeOperation()
-                                deleteOrder()
-                                router.push("/user-pedidos")
-                            }}>
-                            Eliminar
-                        </button>
+                        <Button
+                            textContent="Eliminar"
+                            bgColor="white"
+                            bgColorHover="rgb(252 165 165)"
+                            padding="0.25rem"
+                            width='141.61px'
+                            textColor='black'
+                            textWidth="1.125rem"
+                            lineHeight="1.75rem"
+                            handleClick={trashOrder}
+                        />
                     </div>
                 </div>
             </div>
 
-            <div className={`fixed top-0 lef-0 w-full h-full ${showPopupCategories ? '' : 'hidden'} flex
-            justify-center items-center backdrop-blur-[2px] transition z-50`}>
-                <button className="z-50 absolute top-0 right-0 m-10 p-4 bg-red-600 text-white rounded-xl"
-                onClick={() => setPopupCategories(false)}>
-                    X
-                </button>
+            <Popup 
+            ifShow={showPopupCategories}
+            bgColor="[#22222298]"
+            onClickButton={() => setPopupCategories(false)}
+            onClickBackground={()=> setPopupCategories(false)}>
+                <CardButton
+                    onClick={(evt)=> setPlate(evt,"Plato principal")}
+                    url="https://especiales.peru21.pe/como-preparar-pavo-horno-otros-platillos-cena-navidad-nndd-p21visual/img/recetas/pavo-al-horno.png?vbf"
+                    primaryText="Plato principal"
+                    secondaryText="Es el plato inicial de la carta."
+                />
 
-                <button className={`z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
-                transition`} onClick={(evt)=> setPlate(evt,"Plato principal")}>
-                    Plato principal
-                </button>
+                <CardButton
+                    onClick={(evt)=> setPlate(evt,"Plato secundario")}
+                    url="https://deliciaskitchen.com/wp-content/uploads/2023/02/sopa-de-verduras-saludable-receta-detox.jpg"
+                    primaryText="Plato secundario"
+                    secondaryText="Es el plato que acompaña al plato inicial."
+                />
 
-                <button className={`z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
-                transition`} onClick={(evt)=> setPlate(evt,"Plato secundario")}>
-                    Plato secundario
-                </button>
+                <CardButton
+                    onClick={(evt)=> setPlate(evt,"Bebida")}
+                    url="https://cdn.aarp.net/content/dam/aarp/food/recipes/2018/10/1140-limofresa-gas-drink-esp.jpg"
+                    primaryText="Bebida"
+                    secondaryText="Agua, gaseosa o jugo para acompañar la cena."
+                />
 
-                <button className={`z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
-                transition`} onClick={(evt)=> setPlate(evt,"Bebida")}>
-                    Bebida
-                </button>
-
-                <button className={`z-50 w-52 h-52 p-2 m-10 bg-white shadow-[0_0_20px_#a9a9a9] rounded-2xl hover:scale-105
-                transition`} onClick={(evt)=> setPlate(evt,"Postre")}>
-                    Postre
-                </button>
-
-                <div className="w-full h-full absolute z-0" onClick={()=> setPopupCategories(false)}></div>
-            </div>
+                <CardButton
+                    onClick={(evt)=> setPlate(evt,"Postre")}
+                    url="https://cloudfront-us-east-1.images.arcpublishing.com/elespectador/QGE4K3AENJDJRBOCC5APKEG3DI.jpg"
+                    primaryText="Postre"
+                    secondaryText="Acompañamiento dulce para el final de la cena."
+                />
+            </Popup>
         </>
     )
 }

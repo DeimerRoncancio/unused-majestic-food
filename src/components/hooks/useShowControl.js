@@ -16,6 +16,7 @@ export function useShowControl(data = {}) {
     
     return {
         ...dataControl,
+        dataControl,
         showControl
     }
 }

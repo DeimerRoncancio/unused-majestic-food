@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-export default function Button({textContent,bgColor,bgColorHover,width,textColor,handleClick}) {
+export default function Button({textContent,bgColor,bgColorHover,
+padding,width,textColor,textWidth,lineHeight,handleClick}) {
     const [hover,setHover] = useState(false)
     
     const handleMouse = ()=> {
@@ -10,11 +11,14 @@ export default function Button({textContent,bgColor,bgColorHover,width,textColor
     const backgroundColor = !hover ? `${bgColor}` : `${bgColorHover}`
     
     return (
-        <button className="transition duration-[0.3s] p-2 text-xl rounded-full shadow-[0_2px_4px_#a9a9a9]"
+        <button className="transition duration-[0.3s] p-2 rounded-full shadow-[0_2px_4px_#a9a9a9]"
         style={{
             width: `${width}`,
             backgroundColor: backgroundColor,
-            color: `${textColor}`
+            color: `${textColor}`,
+            padding: `${padding}`,
+            fontSize: `${textWidth}`,
+            lineHeight: `${lineHeight}`
         }}
         onMouseEnter={handleMouse}
         onMouseLeave={handleMouse}
