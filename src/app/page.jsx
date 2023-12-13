@@ -106,6 +106,7 @@ export default function Home() {
             onClickButton={() => setShowPopup(false)}
             onClickBackground={() => setShowPopup(false)}>
                 {/* Contenido del Popup */}
+                
                 <CardButton
                     onClick={() => {
                         setShowPopup(false)
@@ -134,6 +135,7 @@ export default function Home() {
             onClickButton={() => setShowNewOrder(false)}
             onClickBackground={() => setShowNewOrder(false)}>
                 {/* Contenido del Popup de Nuevo Pedido */}
+                
                 <div className="z-50 shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] flex 
                 flex-col justify-center items-center bg-[#f4ece6] font-mono rounded-md over">
                     <FormPedidos />
@@ -150,6 +152,7 @@ export default function Home() {
             onClickButton={() => setAllOrders(false)}
             onClickBackground={()=> setAllOrders(false)}>
                 {/* Contenido del Popup de Todos los Pedidos */}
+                
                 <div className="z-50 shadow-[0_0_20px_#a9a9a9] w-[650px] h-[500px] flex 
                 flex-col justify-center items-center bg-[#f4ece6] rounded-md">
                     <div className='w-full h-[10%] flex justify-center items-center'>
@@ -159,6 +162,7 @@ export default function Home() {
                     <div className='w-full h-[90%] flex justify-center items-center'>
                         <ul>
                             {/* Renderizar la lista de pedidos */}
+                            
                             {isLoading ?
                             <h2>Loading...</h2> :
                             allOrders.map((item) => (

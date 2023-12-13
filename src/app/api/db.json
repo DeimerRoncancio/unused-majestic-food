@@ -1,49 +1,20 @@
 {
   "pedidos": [
     {
-      "name": "Pedido #1",
-      "description": "Este es el pedido de Deimer.",
+      "name": "erfds",
+      "description": "ersfdcx",
       "date": {
         "year": 2023,
         "month": 12,
-        "day": 6,
-        "hours": 14,
-        "minutes": 14
+        "day": 13,
+        "hours": 18,
+        "minutes": 4
       },
-      "id": "62530860-17db-4f09-9abf-73abaf07ca87",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23",
-      "undefined": "d4trh5gf6v2",
-      "": "Pedido de Deimer",
-      "data": "rggrer"
+      "id": "146372db-39ae-43be-9efe-780f196b95ec",
+      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
     }
   ],
-  "platos": [
-    {
-      "nombre": "Empanada",
-      "imagen": "empanadas.webp",
-      "calificacion": 3.2,
-      "price": "5000",
-      "category": [
-        "plato-principal",
-        "plato-secundario"
-      ],
-      "idOrder": "62530860-17db-4f09-9abf-73abaf07ca87",
-      "categoria": "Bebida",
-      "id": "b851b95d-5656-4120-ad4e-04b1ab928370"
-    },
-    {
-      "nombre": "Coca Cola",
-      "imagen": "cocacola.png",
-      "calificacion": 4.2,
-      "price": "3500",
-      "category": [
-        "bebida"
-      ],
-      "idOrder": "62530860-17db-4f09-9abf-73abaf07ca87",
-      "categoria": "Bebida",
-      "id": "21583f3f-eeff-4da7-a2ca-d3ed69476b95"
-    }
-  ],
+  "platos": [],
   "usuarios": [
     {
       "email": "deimerroncancio@gmail.com",
