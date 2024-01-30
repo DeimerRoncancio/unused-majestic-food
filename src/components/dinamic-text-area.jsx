@@ -7,7 +7,7 @@ export default function DinamicTextArea({show,value,clickEdit,hidde,areaName,are
     const refer = useRef(null)
     
     useEffect(()=> {
-        if(show) refer.current.focus()
+        refer.current.focus()
     },[show])
     
     return (

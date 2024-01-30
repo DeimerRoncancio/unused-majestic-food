@@ -17,14 +17,6 @@
   "platos": [],
   "usuarios": [
     {
-      "email": "deimerroncancio@gmail.com",
-      "password": "02062002De",
-      "name": "Deimer",
-      "lastName": "Roncancio",
-      "profileImage": "profile-image.webp",
-      "id": "d77202cd-4238-473e-bf50-9e2b68c08f23"
-    },
-    {
       "email": "roncanciodeison@gmail.com",
       "password": "02062002De",
       "name": "Emerson",
@@ -47,6 +39,14 @@
       "lastName": "uyghjknwefsd",
       "profileImage": "cropped-1366-768-1280309.jpg",
       "id": "28162cac-e346-4139-a83d-e099885753ea"
+    },
+    {
+      "email": "deimerroncancio@gmail.com",
+      "password": "02062002De",
+      "name": "Deimer",
+      "lastName": "Roncancio",
+      "profileImage": "anime-girls-room-original-characters-technology-darkness-games-796312-wallhere.com.jpg",
+      "id": "f474640c-43f0-42d4-90d9-6a146a51100d"
     }
   ]
 }
