@@ -1,12 +1,17 @@
+/* Estilos para la pagina principal */
+
+/* Estilos para el contenedor de entrada */
 .input-container {
-    background-color: var(--tird-white);
-    box-shadow: inset 4px 4px 5px var(--second-gray);
+    background-color: var(--tird-white); /* Fondo blanco */
+    box-shadow: inset 4px 4px 5px var(--second-gray); /* Sombra interna para dar profundidad */
 }
 
+/* Estilos para el icono de búsqueda */
 .search-icon {
-    color: var(--second-gray);
+    color: var(--second-gray); /* Color del icono de búsqueda */
 }
 
+/* Estilos para la sección de pedidos */
 .order-section {
-    grid-template-columns: repeat(auto-fill,minmax(280px,1fr))
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Diseño de cuadrícula responsivo con columnas flexibles */
 }
