@@ -332,7 +332,7 @@ export default function Pedidos({ params }) {
                     </div>
                 </div>
 
-                {/* Información de cantidad de productos y valor del pedido */}°
+                {/* Información de cantidad de productos y valor del pedido */}
                 <div className='flex mt-14'>
                     <div className='flex'>
                         <h2>Cantidad de productos:</h2><h2 className='text-[#3da443] ml-2'>{cantProducts}</h2>

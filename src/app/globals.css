@@ -1,23 +1,29 @@
+/* Estilos globales */
+
+/* Importación de estilos de Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Definición de variables de color en el documento */
 :root {
-    --first-green: #3da443;
-    --first-white: #f4f4f4;
-    --second-white: #ffffff;
-    --tird-white: #e9e9e9;
-    --first-gray: #222222;
-    --second-gray: #a9a9a9;
-    --tird-gray: #5c5c5c;
-    --color: #22222298;
+    --first-green: #3da443; /* Verde principal */
+    --first-white: #f4f4f4; /* Blanco principal */
+    --second-white: #ffffff; /* Blanco secundario */
+    --tird-white: #e9e9e9; /* Blanco terciario */
+    --first-gray: #222222; /* Gris principal */
+    --second-gray: #a9a9a9; /* Gris secundario */
+    --tird-gray: #5c5c5c; /* Gris terciario */
+    --color: #22222298; /* Color con opacidad */
 }
 
+/* Estilos para el cuerpo de la página */
 body {
-    background-color: var(--first-white);
-    overflow-x: hidden;
+    background-color: var(--first-white); /* Color de fondo del cuerpo de la página */
+    overflow-x: hidden; /* Ocultar la barra de desplazamiento horizontal para prevenir desplazamiento lateral */
 }
 
+/* Estilos para el área de texto */
 textarea {
-    resize: none;
+    resize: none; /* Desactivar la capacidad de redimensionar el área de texto */
 }

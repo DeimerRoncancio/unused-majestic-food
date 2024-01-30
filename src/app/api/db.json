@@ -25,6 +25,19 @@
       },
       "id": "03158358-43c1-4eb2-9e64-10af70b69220",
       "idUser": "f474640c-43f0-42d4-90d9-6a146a51100d"
+    },
+    {
+      "name": "Pedido #1",
+      "description": "awdsdfghmj",
+      "date": {
+        "year": 2024,
+        "month": 1,
+        "day": 30,
+        "hours": 22,
+        "minutes": 33
+      },
+      "id": "5b7bb465-d5c8-4754-9540-d9f923d07175",
+      "idUser": "f474640c-43f0-42d4-90d9-6a146a51100d"
     }
   ],
   "platos": [],
