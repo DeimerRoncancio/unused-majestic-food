@@ -180,7 +180,7 @@ export default function Pedidos({ params }) {
             console.log("Ha ocurrido un error.")
         }
         getPlates()
-    },[data])
+    },[data,dataId])
 
     // Efecto para recalcular valores cuando cambia la función getValues
     useEffect(()=> {

@@ -1,8 +1,14 @@
-const getDataForm = (target)=> {
-    const dataForm = new FormData(target)
-    const data = Object.fromEntries(dataForm)
+// Función para obtener datos de un formulario a partir de su elemento target
+const getDataForm = (target) => {
+    // Crear un objeto FormData a partir del elemento target del formulario
+    const dataForm = new FormData(target);
 
-    return data
-}
+    // Convertir el objeto FormData en un objeto convencional
+    const data = Object.fromEntries(dataForm);
 
-export default getDataForm
+    // Devolver el objeto de datos del formulario
+    return data;
+};
+
+// Exportar la función getDataForm como módulo predeterminado
+export default getDataForm;

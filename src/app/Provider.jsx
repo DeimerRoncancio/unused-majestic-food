@@ -1,3 +1,5 @@
+"use client"
+
 // Importar el proveedor de sesión de NextAuth
 import { SessionProvider } from "next-auth/react"
 

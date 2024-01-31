@@ -1,21 +1,26 @@
-const fetchPut = async(url,body)=> {
+// Función asincrónica para realizar solicitudes PUT a una URL con un cuerpo (body) específico
+const fetchPut = async (url, body) => {
     try {
-        await fetch(url,{
+        // Realizar una solicitud PUT a la URL con el cuerpo en formato JSON
+        await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(body)
-        })
+        });
 
+        // Devolver un objeto sin errores
         return {
             error: false
-        }
-    } catch(err) {
+        };
+    } catch (err) {
+        // En caso de error, devolver un objeto con error en verdadero
         return {
             error: true
-        }
+        };
     }
-}
+};
 
-export default fetchPut
+// Exportar la función fetchPut como módulo predeterminado
+export default fetchPut;
