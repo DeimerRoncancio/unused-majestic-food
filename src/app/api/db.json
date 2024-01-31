@@ -27,7 +27,21 @@
       "idUser": "f474640c-43f0-42d4-90d9-6a146a51100d"
     }
   ],
-  "platos": [],
+  "platos": [
+    {
+      "nombre": "Empanada",
+      "imagen": "empanadas.webp",
+      "calificacion": 3.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "5b7bb465-d5c8-4754-9540-d9f923d07175",
+      "categoria": "Plato principal",
+      "id": "94f6c2d8-eb8c-4221-8a30-d21c4b28da85"
+    }
+  ],
   "usuarios": [
     {
       "email": "roncanciodeison@gmail.com",
