@@ -2,13 +2,17 @@
 const fetchPut = async (url, body) => {
     try {
         // Realizar una solicitud PUT a la URL con el cuerpo en formato JSON
-        await fetch(url, {
+        const data = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(body)
         });
+
+        if(data.status) {
+            throw "Error";
+        }
 
         // Devolver un objeto sin errores
         return {

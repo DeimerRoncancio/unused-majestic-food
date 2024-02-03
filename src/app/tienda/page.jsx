@@ -1,7 +1,7 @@
-export default function Tienda() {
-    return (
-        <div>
-            <h2>Tienda</h2>
-        </div>
-    )
+export default function Tienda () {
+  return (
+    <div>
+      <h2>Tienda</h2>
+    </div>
+  )
 }

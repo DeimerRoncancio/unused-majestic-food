@@ -1,23 +1,23 @@
-"use client"
+'use client'
 
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-export default function Space({height}) {
-    const [showSpace,setSpace]  = useState(false)
-    
-    const currentPath = usePathname()
+export default function Space ({ height }) {
+  const [showSpace, setSpace] = useState(false)
 
-    const hiddenSpace = ()=> {
-        if (currentPath == '/register' || currentPath == '/login') setSpace(true)
-        else setSpace(false)
-    }
+  const currentPath = usePathname()
 
-    useEffect(()=> {
-        hiddenSpace()
-    },[currentPath])
+  const hiddenSpace = () => {
+    if (currentPath === '/register' || currentPath === '/login') setSpace(true)
+    else setSpace(false)
+  }
 
-    return (
-        <div className={`space w-full h-[46px] ${showSpace ? 'hidden' : ''}`}></div>
-    )
+  useEffect(() => {
+    hiddenSpace()
+  }, [currentPath])
+
+  return (
+    <div className={`space w-full h-[46px] ${showSpace ? 'hidden' : ''}`}></div>
+  )
 }

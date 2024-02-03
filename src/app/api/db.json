@@ -1,47 +1,20 @@
 {
   "pedidos": [
     {
-      "name": "erfds",
-      "description": "ersfdcx",
-      "date": {
-        "year": 2023,
-        "month": 12,
-        "day": 13,
-        "hours": 18,
-        "minutes": 4
-      },
-      "id": "146372db-39ae-43be-9efe-780f196b95ec",
-      "idUser": "d77202cd-4238-473e-bf50-9e2b68c08f23"
-    },
-    {
       "name": "Pedido #1",
-      "description": "awdsdfghmj",
+      "description": "sdfbg",
       "date": {
         "year": 2024,
-        "month": 1,
-        "day": 30,
-        "hours": 22,
-        "minutes": 33
+        "month": 2,
+        "day": 2,
+        "hours": 23,
+        "minutes": 32
       },
-      "id": "5b7bb465-d5c8-4754-9540-d9f923d07175",
+      "id": "a0ae4e46-1ca3-4ded-b80c-04d7bae97fb1",
       "idUser": "f474640c-43f0-42d4-90d9-6a146a51100d"
     }
   ],
-  "platos": [
-    {
-      "nombre": "Empanada",
-      "imagen": "empanadas.webp",
-      "calificacion": 3.2,
-      "price": "5000",
-      "category": [
-        "plato-principal",
-        "plato-secundario"
-      ],
-      "idOrder": "5b7bb465-d5c8-4754-9540-d9f923d07175",
-      "categoria": "Plato principal",
-      "id": "94f6c2d8-eb8c-4221-8a30-d21c4b28da85"
-    }
-  ],
+  "platos": [],
   "usuarios": [
     {
       "email": "roncanciodeison@gmail.com",
