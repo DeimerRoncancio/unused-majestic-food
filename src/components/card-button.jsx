@@ -1,6 +1,7 @@
+// Componente de botón con tarjeta
 export default function CardButton ({ onClick, url, primaryText, secondaryText }) {
   return (
-    <button className="z-50 w-56 h-56 m-10 shadow-[0_0_20px_#222222b4]  rounded-2xl
+    <button className="z-50 w-56 h-56 m-10 shadow-[0_0_20px_#222222b4] rounded-2xl
         hover:scale-105 transition"
       onClick={onClick}>
       <div className='w-full h-full bg-center bg-cover rounded-2xl' style={{ backgroundImage: `url(${url})` }}>
