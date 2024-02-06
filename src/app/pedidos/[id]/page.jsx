@@ -383,6 +383,13 @@ export default function Pedidos ({ params }) {
         </div>
       </div>
 
+      <button onClick={async () => {
+        console.log(dataId)
+        console.log(errorId)
+      }}>
+        Fetch
+      </button>
+
       {/* Popup de Categorías de Platos */}
       <Popup
         ifShow={showPopupCategories}

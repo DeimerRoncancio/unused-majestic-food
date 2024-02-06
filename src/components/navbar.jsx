@@ -8,6 +8,7 @@ import { IoExit } from 'react-icons/io5'
 import Link from 'next/link'
 import Image from 'next/image'
 
+// Importar estilos del NavBar
 import './styles/navbar.css'
 
 // Componente de barra de navegación
