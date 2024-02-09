@@ -1,6 +1,5 @@
 'use client'
 
-// Importación de módulos y paquetes externos
 import { v4 as uuid } from 'uuid'
 import { useState, useEffect } from 'react'
 import { useFetchId } from '@/components/hooks/useFetchId'
@@ -12,14 +11,12 @@ import { useUpdateInfo } from '@/components/hooks/useUpdateInfo'
 import { useShowControl } from '@/components/hooks/useShowControl'
 import { AiOutlinePlus } from 'react-icons/ai'
 
-// Importación de helpers
 import getStorage from '@/components/helpers/getLocalStorage'
 import fetchPost from '@/components/helpers/fetchPostData'
 // import fetchDataId from '@/components/helpers/fetchDataId'
 import fetchDelete from '@/components/helpers/fetchDeleteData'
 // import fetchPut from '@/components/helpers/fetchPutData'
 
-// Importación de componentes
 import DicamicInputText from '@/components/dinamic-input'
 import DinamicTextArea from '@/components/dinamic-text-area'
 import DinamicInputDate from '@/components/dinamic-input-date'
@@ -29,57 +26,46 @@ import Plate from '@/components/plate'
 import Popup from '@/components/popup'
 import CardButton from '@/components/card-button'
 
-// Componente React para manejar y mostrar pedidos
 export default function Pedidos ({ params }) {
-  // Variables de estado
   const [showInfo, setShowInfo] = useState(true)
   const [showPopupCategories, setPopupCategories] = useState(false)
   const [allPlates, setAllPlates] = useState([])
   const [cantProducts, setCantProducts] = useState()
   const [price, setPrice] = useState()
 
-  // Información de sesión de autenticación
   const { data: session } = useSession()
 
-  // Router de Next.js
   const router = useRouter()
 
-  // Hooks personalizados para obtener datos por ID y obtención general de datos
   const { dataId, isLoadingId, errorId } = useFetchId('http://localhost:5000/pedidos', params.id)
   const { data, isLoading, error } = useFetch('http://localhost:5000/platos')
 
-  // Hook personalizado para actualizar información
   const { updateData } = useUpdateInfo({
     url: 'http://localhost:5000/pedidos',
     id: params.id,
     urlPut: `http://localhost:5000/pedi/${params.id}`
   })
 
-  // Hook personalizado para controlar la visibilidad de los campos del formulario
   const { showName, showDescription, showDate, dataControl, showControl } = useShowControl({
     showName: false,
     showDescription: false,
     showDate: false
   })
 
-  // Hook personalizado para gestionar datos del formulario
   const { name, description, date, putDates, dataOrder, setDataOrder } = useDataForm({
     name: '',
     description: '',
     date: ''
   })
 
-  // Obtener información del pedido desde el almacenamiento local
   const order = getStorage('Order')
 
-  // Cerrar la operación y limpiar la información del pedido
   const closeOperation = () => {
     order.idOrder = ''
     localStorage.setItem('Order', JSON.stringify(order))
     setShowInfo(false)
   }
 
-  // Establecer información del plato y realizar una solicitud POST
   const setPlate = async (evt, itemCategory) => {
     evt.preventDefault()
 
@@ -98,7 +84,6 @@ export default function Pedidos ({ params }) {
     closeOperation()
   }
 
-  // Obtener platos asociados al pedido actual
   const getPlates = () => {
     if (!error) {
       const arrayElements = data.filter(item => item.idOrder === params.id)
@@ -121,7 +106,6 @@ export default function Pedidos ({ params }) {
     }
   }
 
-  // Calcular el precio total y el número de productos
   const getValues = () => {
     let sum = 0
     let cantProds = 0
@@ -133,27 +117,26 @@ export default function Pedidos ({ params }) {
     setCantProducts(cantProds)
   }
 
-  // Eliminar el pedido actual y los platos asociados
-  const deleteOrder = async () => {
-    const killOrder = async () => {
-      await fetchDelete(`http://localhost:5000/pedi/${params.id}`)
-    }
+  const deleteOrder = () => {
+    let thereIsPlates = false
+    const killOrder = () => fetchDelete(`http://localhost:5000/pedidos/${params.id}`)
+      .catch(err => console.log(err))
 
-    const killPlates = async () => {
-      allPlates.forEach(async (item) => {
-        await fetchDelete(`http://localhost:5000/platos/${item.id}`)
+    allPlates.forEach(() => {
+      thereIsPlates = true
+    })
+
+    if (thereIsPlates) {
+      allPlates.map(async item => {
+        fetchDelete(`http://localhost:5000/platos/${item.id}`)
+          .then(() => killOrder())
+          .catch(err => console.log(err))
       })
-    }
-
-    try {
-      await killPlates()
-      await killOrder()
-    } catch (err) {
-      console.log(typeof err)
+    } else {
+      killOrder()
     }
   }
 
-  // Manejar el evento de pulsación de tecla para ocultar elementos del formulario
   const hideForm = (evt) => {
     if (evt.key === 'Escape') {
       Object.keys(dataControl).forEach((key) => {
@@ -168,7 +151,6 @@ export default function Pedidos ({ params }) {
     }
   }
 
-  // Confirmar el pedido y navegar a la página de inicio
   const sendOrder = () => {
     alert('Tu pedido sera enviado, muchas gracias por comprar!')
     router.push('/')
@@ -176,14 +158,12 @@ export default function Pedidos ({ params }) {
     deleteOrder()
   }
 
-  // Eliminar el pedido y navegar a la página de pedidos del usuario
   const trashOrder = () => {
     closeOperation()
     deleteOrder()
     // router.push("/user-pedidos")
   }
 
-  // Efecto para obtener platos cuando cambian los datos
   useEffect(() => {
     if (errorId) {
       console.log('Ha ocurrido un error.')
@@ -191,25 +171,19 @@ export default function Pedidos ({ params }) {
     getPlates()
   }, [data])
 
-  // Efecto para recalcular valores cuando cambia la función getValues
   useEffect(() => {
     getValues()
   }, [getValues])
 
-  // Devolver el contenido JSX para renderizar
   return (
     <>
-      {/* Fondo decorativo */}
       <div className="w-[110%] h-[550px] bg-[#76ed78] rounded-b-[50%] top-[-100px] left-[-5%] absolute z-0"></div>
 
-      {/* Contenedor principal */}
       <div className="z-20 p-28 pt-14 relative">
         <div className='w-full flex flex-col items-center'>
 
-          {/* Sección de información personal */}
           <div className={`${params.id === order.idOrder && showInfo ? 'w-[$610px]' : 'w-full'}`}>
 
-            {/* Componente de entrada de texto dinámico para el nombre */}
             <DicamicInputText
               show={showName}
               ifShow={params.id === order.idOrder && showInfo}
@@ -224,21 +198,17 @@ export default function Pedidos ({ params }) {
               clickDelete={() => { showControl('showName', false); setDataOrder({ ...dataOrder, name: '' }) }}
             />
 
-            {/* Nombre del usuario */}
             <h3>
               {session?.user.name === undefined
                 ? 'Loading...'
                 : session?.user.name + ' ' + session?.user.lastName}
             </h3>
 
-            {/* Sección de platos y acciones */}
             <div className={`flex w-full justify-center flex-col mt-10
-                        ${params.id === order.idOrder && showInfo ? '' : 'hidden'}`}>
+            ${params.id === order.idOrder && showInfo ? '' : 'hidden'}`}>
 
-              {/* Presentación de plato */}
               <PlatePresentation />
 
-              {/* Botones de acción */}
               <div className='flex justify-between mt-14'>
                 <Button
                   textContent="Añadir al pedido"
@@ -267,13 +237,10 @@ export default function Pedidos ({ params }) {
             </div>
           </div>
 
-          {/* Detalles del pedido */}
           <div className="flex w-full pt-14 flex-col">
-            {/* Detalles adicionales del pedido (text area, input date) */}
             <h2 className="text-xl">Detalles del pedido</h2>
 
             <div className='flex'>
-              {/* Otros componentes de entrada dinámica (text area, input date) */}
               <div className='max-w-[50%] mr-14'>
                 <DinamicTextArea
                   show={showDescription}
@@ -303,13 +270,10 @@ export default function Pedidos ({ params }) {
               </div>
             </div>
 
-            {/* Platos del pedido actual */}
             <h2 className='text-xl mt-4'>Platos del pedido</h2>
 
-            {/* Grid de platos */}
             <div className="grid grid-cols-3 gap-14 mt-9">
 
-              {/* Iteración sobre platos */}
               {isLoading
                 ? 'Loading...'
                 : allPlates.map((item) => (
@@ -323,12 +287,10 @@ export default function Pedidos ({ params }) {
                   />
                 ))}
 
-              {/* Botón para añadir artículo */}
               <button className="flex p-4 bg-white shadow-[0_0_10px_#a9a9a9] rounded-xl"
                 onClick={() => {
                   router.push('/')
                 }}>
-                {/* Contenido del botón */}
                 <div className="flex w-[40%] flex-col justify-between">
                   <h3>Añadir Articulo</h3>
                 </div>
@@ -341,7 +303,6 @@ export default function Pedidos ({ params }) {
           </div>
         </div>
 
-        {/* Información de cantidad de productos y valor del pedido */}
         <div className='flex mt-14'>
           <div className='flex'>
             <h2>Cantidad de productos:</h2><h2 className='text-[#3da443] ml-2'>{cantProducts}</h2>
@@ -351,7 +312,6 @@ export default function Pedidos ({ params }) {
           </div>
         </div>
 
-        {/* Botones de acción final */}
         <div className='flex'>
           <div className='my-14 mr-4'>
             <Button
@@ -383,14 +343,6 @@ export default function Pedidos ({ params }) {
         </div>
       </div>
 
-      <button onClick={async () => {
-        console.log(dataId)
-        console.log(errorId)
-      }}>
-        Fetch
-      </button>
-
-      {/* Popup de Categorías de Platos */}
       <Popup
         ifShow={showPopupCategories}
         bgColor="[#22222298]"
