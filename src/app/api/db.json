@@ -1,6 +1,47 @@
 {
-  "pedidos": [],
-  "platos": [],
+  "pedidos": [
+    {
+      "name": "Pedido #2",
+      "description": "erd",
+      "date": {
+        "year": 2024,
+        "month": 2,
+        "day": 14,
+        "hours": 17,
+        "minutes": 52
+      },
+      "id": "ddb1b83b-c88c-4f11-90ec-8a8fcca23eb6",
+      "idUser": "f474640c-43f0-42d4-90d9-6a146a51100d"
+    },
+    {
+      "name": "Pedido #1",
+      "description": "ethrgfc",
+      "date": {
+        "year": 2024,
+        "month": 2,
+        "day": 14,
+        "hours": 17,
+        "minutes": 58
+      },
+      "id": "0408b722-4d97-4463-883d-3c1c4d8a9759",
+      "idUser": "f474640c-43f0-42d4-90d9-6a146a51100d"
+    }
+  ],
+  "platos": [
+    {
+      "nombre": "Empanada",
+      "imagen": "empanadas.webp",
+      "calificacion": 3.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "ddb1b83b-c88c-4f11-90ec-8a8fcca23eb6",
+      "categoria": "Bebida",
+      "id": "0e5b8d34-b02a-4d5b-af56-67ca2404848e"
+    }
+  ],
   "usuarios": [
     {
       "email": "roncanciodeison@gmail.com",
@@ -33,6 +74,14 @@
       "lastName": "Roncancio",
       "profileImage": "anime-girls-room-original-characters-technology-darkness-games-796312-wallhere.com.jpg",
       "id": "f474640c-43f0-42d4-90d9-6a146a51100d"
+    },
+    {
+      "email": "julian@gmail.com",
+      "password": "02062002De",
+      "name": "Julian",
+      "lastName": "uyghjknwefsd",
+      "profileImage": "chica-anime-con-lentes-y-cigarro_3840x2160_xtrafondos.com.jpg",
+      "id": "ad8e2643-81b2-4708-bb67-296ab4e1b362"
     }
   ]
 }

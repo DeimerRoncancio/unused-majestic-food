@@ -1,6 +1,11 @@
-const fetchData = (url) => {
+import { ApiError } from '@/errors'
+
+const fetchData = ({ url }) => {
   return fetch(url)
-    .then(data => data)
+    .then(promise => {
+      if (promise.statusText === 'Not Found') throw new ApiError('Source not found')
+      return promise
+    })
 }
 
 export default fetchData

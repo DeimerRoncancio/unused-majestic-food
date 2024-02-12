@@ -11,6 +11,8 @@ import { useUpdateInfo } from '@/components/hooks/useUpdateInfo'
 import { useShowControl } from '@/components/hooks/useShowControl'
 import { AiOutlinePlus } from 'react-icons/ai'
 
+import { ApiError } from '@/errors'
+
 import getStorage from '@/components/helpers/getLocalStorage'
 import fetchPost from '@/components/helpers/fetchPostData'
 // import fetchDataId from '@/components/helpers/fetchDataId'
@@ -43,7 +45,7 @@ export default function Pedidos ({ params }) {
   const { updateData } = useUpdateInfo({
     url: 'http://localhost:5000/pedidos',
     id: params.id,
-    urlPut: `http://localhost:5000/pedi/${params.id}`
+    urlPut: `http://localhost:5000/pedidos/${params.id}`
   })
 
   const { showName, showDescription, showDate, dataControl, showControl } = useShowControl({
@@ -66,19 +68,18 @@ export default function Pedidos ({ params }) {
     setShowInfo(false)
   }
 
-  const setPlate = async (evt, itemCategory) => {
+  const setPlate = (evt, itemCategory) => {
     evt.preventDefault()
 
     order.categoria = itemCategory
     order.id = uuid()
 
-    const { data, error } = await fetchPost('http://localhost:5000/platos', order)
-
-    if (!error) {
-      setAllPlates([...allPlates, data])
-    } else {
-      console.log('Hubo un error.')
-    }
+    fetchPost({ url: 'http://localhost:5000/platos', body: order })
+      .then(res => res.json())
+      .then(data => setAllPlates([...allPlates, data]))
+      .catch(err => {
+        if (err instanceof ApiError) console.log('Hubo un error, no se encontro el recurso.')
+      })
 
     setPopupCategories(false)
     closeOperation()
@@ -119,19 +120,28 @@ export default function Pedidos ({ params }) {
 
   const deleteOrder = () => {
     let thereIsPlates = false
-    const killOrder = () => fetchDelete(`http://localhost:5000/pedidos/${params.id}`)
-      .catch(err => console.log(err))
 
     allPlates.forEach(() => {
       thereIsPlates = true
     })
 
-    if (thereIsPlates) {
-      allPlates.map(async item => {
-        fetchDelete(`http://localhost:5000/platos/${item.id}`)
-          .then(() => killOrder())
-          .catch(err => console.log(err))
+    const killOrder = () => fetchDelete({ url: `http://localhost:5000/pedidos/${params.id}` })
+      .then(() => router.push('/user-pedidos'))
+      .catch(err => {
+        if (err instanceof ApiError) console.log('Hubo un error, no se econtro el recurso.')
       })
+
+    if (thereIsPlates) {
+      let error = false
+      allPlates.map(async item => {
+        fetchDelete({ url: `http://localhost:5000/platos/${item.id}` })
+          .catch(err => {
+            if (err instanceof ApiError) console.log('Hubo un error, no se econtro el recurso.')
+            error = true
+          })
+      })
+
+      if (!error) killOrder()
     } else {
       killOrder()
     }
@@ -161,13 +171,10 @@ export default function Pedidos ({ params }) {
   const trashOrder = () => {
     closeOperation()
     deleteOrder()
-    // router.push("/user-pedidos")
   }
 
   useEffect(() => {
-    if (errorId) {
-      console.log('Ha ocurrido un error.')
-    }
+    if (errorId instanceof ApiError) console.log('Hubo un error, no se econtro el recurso.')
     getPlates()
   }, [data])
 

@@ -7,7 +7,7 @@ import Providers from './Provider'
 import Space from '@/components/space'
 import './globals.css'
 
-const inter = Inter({ subsets: ['greek'] })
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Majestic Food',
