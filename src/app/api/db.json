@@ -25,6 +25,19 @@
       },
       "id": "0408b722-4d97-4463-883d-3c1c4d8a9759",
       "idUser": "f474640c-43f0-42d4-90d9-6a146a51100d"
+    },
+    {
+      "name": "Pedido #1",
+      "description": "rgdfcx",
+      "date": {
+        "year": 2024,
+        "month": 2,
+        "day": 20,
+        "hours": 0,
+        "minutes": 26
+      },
+      "id": "7b5a8257-2c91-4fd4-8acd-de84a2c4993e",
+      "idUser": "ad8e2643-81b2-4708-bb67-296ab4e1b362"
     }
   ],
   "platos": [
@@ -40,6 +53,19 @@
       "idOrder": "ddb1b83b-c88c-4f11-90ec-8a8fcca23eb6",
       "categoria": "Bebida",
       "id": "0e5b8d34-b02a-4d5b-af56-67ca2404848e"
+    },
+    {
+      "nombre": "Empanada",
+      "imagen": "empanadas.webp",
+      "calificacion": 3.2,
+      "price": "5000",
+      "category": [
+        "plato-principal",
+        "plato-secundario"
+      ],
+      "idOrder": "7b5a8257-2c91-4fd4-8acd-de84a2c4993e",
+      "categoria": "Plato secundario",
+      "id": "e0f47fba-e0b0-4243-9691-f46d7eb04f12"
     }
   ],
   "usuarios": [
